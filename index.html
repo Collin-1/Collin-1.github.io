@@ -3,34 +3,181 @@
 
 <head>
   <style>
-    .header {
-      background-color: #c4aeae;
-      padding: 20px;
-      text-align: center;
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000000;
+    }
+
+    .nav {
+      width: 100%;
+      height: 50px;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      color: #333;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s ease;
+    }
+
+    .nav a:hover {
+      color: #007BFF;
+    }
+
+    .intro {
+      width: 90%;
+      height: 100px;
+      background-color: #000000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .intro-cont {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: x-large;
+      color: #e9ecef;
+    }
+
+    .hero {
+      width: 90%;
+      height: 350px;
+      background-color: #000000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .hero-content {
+      margin-left: 50px;
+      color: #e9ecef;
+    }
+
+    .side-heading {
+      font-family: cursive;
+      font-size: 70px;
+      /* replace with your desired font size */
+      color: #e9ecef;
+    }
+
+    .hero-content-opps {
+      margin-right: 50px;
+      color: #e9ecef;
+    }
+
+    .hero-image {
+      transition: transform 0.3s ease-in-out;
+      max-width: 100%;
+      /* this ensures the image does not exceed the width of the hero section */
+      max-height: 100%;
+      /* this ensures the image does not exceed the height of the hero section */
+      object-fit: cover;
+      /* this scales the image to maintain its aspect ratio while filling the hero section */
+      margin-left: 50px;
+    }
+
+    .hero-image:hover {
+      transform: scale(1.1);
+      /* this scales up the image to 110% of its original size */
+    }
+
+    .hero-image-ops {
+      transition: transform 0.3s ease-in-out;
+      max-width: 100%;
+      /* this ensures the image does not exceed the width of the hero section */
+      max-height: 100%;
+      /* this ensures the image does not exceed the height of the hero section */
+      object-fit: cover;
+      /* this scales the image to maintain its aspect ratio while filling the hero section */
+      margin-left: 50px;
+    }
+
+    .info {
+      width: 45%;
+      background-color: #e9ecef;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer {
+      width: 100%;
+      height: 50px;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+      /* distribute icons evenly */
+    }
+
+    .icon {
+      text-decoration: none;
+      /* remove underline from links */
+      color: inherit;
+      /* make icons same color as text */
     }
   </style>
 </head>
 
 <body>
-
-  <div class="header">
-    <h1>My Website</h1>
-    <p>A website created by me.</p>
+  <div class="nav">
+    <a href="#about me">About Me</a>
+    <a href="#tech stack">Tech Stack</a>
+    <a href="#art">Art</a>
+    <a href="#toolbox">Art Toolbox</a>
   </div>
-
-
-  <body>
-
-    <p>i am a creative technologist with a passion for combining art and technology to create innovative and engaging
-      experiences that push the boundaries of what is possible.
-    </p>
-
-    <p>I am an aspiring data engineer, with a background in the visual arts. I am excited about the potential of
+  <div class="intro">
+    <p class="intro-cont">Hey, it's Collin Sefako Makwala here.</p>
+  </div>
+  <div id="about me" class="hero">
+    <p class="hero-content"> I am an aspiring data engineer, with a background in the visual arts. I am excited about
+      the potential of
       technology to transform industries and improve people's lives. My background in the visual arts has given me a
       unique perspective on problem-solving and creativity, which I believe will be valuable in my future career. With
       my combination of technical skills and creative thinking, I am confident that I can make a meaningful contribution
-      to any organisation that values innovation and collaboration.
-    </p>
-  </body>
+      to any organisation that values innovation and collaboration.</p>
+    <img src="profile-pic.png" alt="Hero Image" class="hero-image">
+  </div>
+  <div id="tech stack" class="hero">
+    <img src="Tech-stack.png" alt="Hero Image" class="hero-image">
+    <p class="side-heading">Tech stack</p>
+  </div>
+  <div id="art" class="hero">
+    <p class="side-heading">Art/Portfolio</p>
+    <img src="art.png" alt="Hero Image" class="hero-image">
+  </div>
+  <div id="toolbox" class="hero">
+    <img src="Art Toolbox.png" alt="Hero Image" class="hero-image">
+    <p class="side-heading">Art Toolbox</p>
 
-</html
+  </div>
+
+  <div class="footer">
+    <a href="https://www.youtube.com/watch?v=DtH26TNNR2I" class="icon">
+      <img src="youtube.png" alt="Hero Image" class="hero-image"></a>
+    <a href="mailto:wordsofwords1915@gmail.com" class="icon">
+      <img src="email.png" alt="Hero Image" class="hero-image"></a>
+    </a>
+    <a href="https://www.instagram.com/follow_collin/" class="icon">
+      <img src="instagram.png" alt="Hero Image" class="hero-image"></a>
+    </a>
+  </div>
+
+</body>
+
+</html>
