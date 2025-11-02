@@ -1,190 +1,1014 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PNTMFLPC");
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Collin Sefako Makwala | Backend Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #030304;
+        --bg-secondary: #0d0d10;
+        --fg: #f4f4f4;
+        --muted: #8b8b8b;
+        --accent: #7dff9c;
+        --accent-soft: rgba(125, 255, 156, 0.08);
+        --card: rgba(19, 19, 24, 0.6);
+        --border: rgba(125, 255, 156, 0.22);
+        --max-width: 1120px;
+      }
 
-<head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-PNTMFLPC');</script>
-  <!-- End Google Tag Manager -->
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #000000;
-    }
+      * {
+        box-sizing: border-box;
+      }
 
-    .nav {
-      width: 100%;
-      height: 50px;
-      background-color: #f8f9fa;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      color: #333;
-      text-decoration: none;
-      margin: 0 15px;
-      transition: color 0.3s ease;
-    }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+        color: var(--fg);
+        background: var(--bg);
+        position: relative;
+        overflow-x: hidden;
+      }
 
-    .nav a:hover {
-      color: #007BFF;
-    }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -40vmax;
+        background: radial-gradient(
+            circle at 15% 20%,
+            rgba(125, 255, 156, 0.16),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 85% 30%,
+            rgba(125, 255, 156, 0.08),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(125, 255, 156, 0.12),
+            transparent 60%
+          );
+        filter: blur(42px) saturate(110%);
+        z-index: -2;
+      }
 
-    .intro {
-      width: 90%;
-      height: 100px;
-      background-color: #000000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-      position: relative;
-    }
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url('data:image/svg+xml,%3Csvg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M2 2H4V4H2V2ZM58 2H60V4H58V2ZM114 2H116V4H114V2ZM2 58H4V60H2V58ZM58 58H60V60H58V58ZM114 58H116V60H114V58ZM2 114H4V116H2V114ZM58 114H60V116H58V114ZM114 114H116V116H114V114Z" fill="rgba(125,255,156,0.05)"/%3E%3C/svg%3E');
+        opacity: 0.2;
+        z-index: -1;
+        pointer-events: none;
+      }
 
-    .intro-cont {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: x-large;
-      color: #e9ecef;
-    }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
 
-    .hero {
-      width: 90%;
-      height: 350px;
-      background-color: #000000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-      position: relative;
-    }
+      main {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 120px 24px 96px;
+      }
 
-    .hero-content {
-      margin-left: 50px;
-      color: #e9ecef;
-    }
+      header {
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(14px);
+        background: rgba(3, 3, 4, 0.86);
+        border-bottom: 1px solid rgba(125, 255, 156, 0.18);
+        z-index: 20;
+      }
 
-    .side-heading {
-      font-family: cursive;
-      font-size: 70px;
-      /* replace with your desired font size */
-      color: #e9ecef;
-    }
+      .nav-bar {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px;
+      }
 
-    .hero-content-opps {
-      margin-right: 50px;
-      color: #e9ecef;
-    }
+      .brand {
+        font-family: "Space Mono", monospace;
+        font-size: 1.05rem;
+        letter-spacing: 0.16rem;
+        text-transform: uppercase;
+      }
 
-    .hero-image {
-      transition: transform 0.3s ease-in-out;
-      max-width: 100%;
-      /* this ensures the image does not exceed the width of the hero section */
-      max-height: 100%;
-      /* this ensures the image does not exceed the height of the hero section */
-      object-fit: cover;
-      /* this scales the image to maintain its aspect ratio while filling the hero section */
-      margin-left: 50px;
-    }
+      .brand span {
+        color: var(--accent);
+      }
 
-    .hero-image:hover {
-      transform: scale(1.1);
-      /* this scales up the image to 110% of its original size */
-    }
+      .nav-links {
+        display: flex;
+        gap: 22px;
+        font-size: 0.95rem;
+      }
 
-    .hero-image-ops {
-      transition: transform 0.3s ease-in-out;
-      max-width: 100%;
-      /* this ensures the image does not exceed the width of the hero section */
-      max-height: 100%;
-      /* this ensures the image does not exceed the height of the hero section */
-      object-fit: cover;
-      /* this scales the image to maintain its aspect ratio while filling the hero section */
-      margin-left: 50px;
-    }
+      .nav-links a {
+        position: relative;
+        padding-bottom: 4px;
+      }
 
-    .info {
-      width: 45%;
-      background-color: #e9ecef;
-      height: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent),
+          transparent
+        );
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.3s ease;
+      }
 
-    .footer {
-      width: 100%;
-      height: 50px;
-      background-color: #f8f9fa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-around;
-      /* distribute icons evenly */
-    }
+      .nav-links a:hover::after,
+      .nav-links a:focus-visible::after {
+        transform: scaleX(1);
+      }
 
-    .icon {
-      text-decoration: none;
-      /* remove underline from links */
-      color: inherit;
-      /* make icons same color as text */
-    }
-  </style>
-</head>
+      .hero {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 48px;
+        align-items: center;
+        margin-bottom: 120px;
+      }
 
-<body>
-  <div class="nav">
-    <a href="#about me">About Me</a>
-    <a href="#tech stack">Tech Stack</a>
-    <a href="#art">Art</a>
-    <a href="#toolbox">Art Toolbox</a>
-  </div>
-  <div class="intro">
-    <p class="intro-cont">Hey, it's Collin Sefako Makwala here.</p>
-  </div>
-  <div id="about me" class="hero">
-    <p class="hero-content"> I am an aspiring data engineer, with a background in the visual arts. I am excited about
-      the potential of
-      technology to transform industries and improve people's lives. My background in the visual arts has given me a
-      unique perspective on problem-solving and creativity, which I believe will be valuable in my future career. With
-      my combination of technical skills and creative thinking, I am confident that I can make a meaningful contribution
-      to any organisation that values innovation and collaboration.</p>
-    <img src="profile-pic.png" alt="Hero Image" class="hero-image">
-  </div>
-  <div id="tech stack" class="hero">
-    <img src="Tech-stack.png" alt="Hero Image" class="hero-image">
-    <p class="side-heading">Tech stack</p>
-  </div>
-  <div id="art" class="hero">
-    <p class="side-heading">Art/Portfolio</p>
-    <img src="art.png" alt="Hero Image" class="hero-image">
-  </div>
-  <div id="toolbox" class="hero">
-    <img src="Art Toolbox.png" alt="Hero Image" class="hero-image">
-    <p class="side-heading">Art Toolbox</p>
+      .hero-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
 
-  </div>
+      .eyebrow {
+        font-size: 0.9rem;
+        letter-spacing: 0.28rem;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-family: "Space Mono", monospace;
+      }
 
-  <div class="footer">
-    <a href="https://www.youtube.com/watch?v=DtH26TNNR2I" class="icon">
-      <img src="youtube.png" alt="Hero Image" class="hero-image"></a>
-    <a href="mailto:wordsofwords1915@gmail.com" class="icon">
-      <img src="email.png" alt="Hero Image" class="hero-image"></a>
-    </a>
-    <a href="https://www.instagram.com/follow_collin/" class="icon">
-      <img src="instagram.png" alt="Hero Image" class="hero-image"></a>
-    </a>
-  </div>
+      h1 {
+        font-size: clamp(2.8rem, 5vw, 4.2rem);
+        margin: 0;
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+      }
 
-</body>
+      .accent-glow {
+        color: var(--accent);
+        text-shadow: 0 0 12px rgba(125, 255, 156, 0.35);
+      }
 
+      .hero-copy p {
+        margin: 0;
+        max-width: 620px;
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 1.05rem;
+      }
+
+      .hero-highlights {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .hero-badge {
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: rgba(125, 255, 156, 0.09);
+        border: 1px solid rgba(125, 255, 156, 0.22);
+        font-family: "Space Mono", monospace;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .hero-actions a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 24px;
+        border-radius: 999px;
+        font-weight: 600;
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+      }
+
+      .cta-primary {
+        background: var(--accent);
+        color: #020202;
+        box-shadow: 0 0 18px rgba(125, 255, 156, 0.35);
+      }
+
+      .cta-secondary {
+        background: rgba(125, 255, 156, 0.08);
+        border: 1px solid rgba(125, 255, 156, 0.22);
+        color: var(--fg);
+      }
+
+      .hero-actions a:hover {
+        transform: translateY(-3px);
+      }
+
+      .hero-visual {
+        position: relative;
+        padding: 40px;
+        border-radius: 32px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.42);
+        overflow: hidden;
+      }
+
+      .hero-visual::before {
+        content: "";
+        position: absolute;
+        inset: 18px;
+        border: 1px solid rgba(125, 255, 156, 0.18);
+        border-radius: 24px;
+        filter: blur(1px);
+      }
+
+      .hero-visual::after {
+        content: "Crafting backend experiences";
+        position: absolute;
+        bottom: 24px;
+        right: 32px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.28rem;
+        color: rgba(244, 244, 244, 0.4);
+      }
+
+      .hero-visual img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 16px;
+        border: 1px solid rgba(125, 255, 156, 0.26);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5);
+      }
+
+      .sections {
+        display: flex;
+        flex-direction: column;
+        gap: 120px;
+      }
+
+      section {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: baseline;
+        gap: 18px;
+        text-transform: uppercase;
+        letter-spacing: 0.28rem;
+        color: var(--accent);
+        font-family: "Space Mono", monospace;
+      }
+
+      .section-heading span {
+        color: var(--fg);
+        letter-spacing: normal;
+        text-transform: none;
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        font-weight: 600;
+      }
+
+      .rich-card {
+        background: var(--card);
+        padding: 32px;
+        border-radius: 24px;
+        border: 1px solid rgba(125, 255, 156, 0.16);
+        box-shadow: 0 16px 38px rgba(0, 0, 0, 0.38);
+        display: grid;
+        gap: 18px;
+      }
+
+      .rich-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 1.02rem;
+      }
+
+      .rich-card strong {
+        color: var(--fg);
+      }
+
+      .experience-grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 20px;
+      }
+
+      .timeline-item {
+        position: relative;
+        padding: 24px 28px 24px 42px;
+        background: rgba(13, 13, 16, 0.85);
+        border-radius: 18px;
+        border: 1px solid rgba(125, 255, 156, 0.16);
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: 26px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 10px rgba(125, 255, 156, 0.5);
+      }
+
+      .timeline-item h3 {
+        margin: 0 0 6px;
+        font-size: 1.25rem;
+      }
+
+      .timeline-item span {
+        display: block;
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+
+      .timeline-item p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .tech-marquee {
+        position: relative;
+        overflow: hidden;
+        border-radius: 22px;
+        border: 1px solid rgba(125, 255, 156, 0.16);
+        background: rgba(12, 12, 16, 0.74);
+        padding: 20px 0;
+        mask-image: linear-gradient(
+          90deg,
+          transparent,
+          black 12%,
+          black 88%,
+          transparent
+        );
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          transparent,
+          black 12%,
+          black 88%,
+          transparent
+        );
+      }
+
+      .tech-track {
+        display: flex;
+        gap: 32px;
+        width: max-content;
+        animation: scroll 24s linear infinite;
+      }
+
+      .tech-track:nth-of-type(2) {
+        animation-direction: reverse;
+        animation-duration: 32s;
+      }
+
+      .tech-card {
+        min-width: 200px;
+        padding: 18px 24px;
+        border-radius: 18px;
+        border: 1px solid rgba(125, 255, 156, 0.24);
+        background: rgba(20, 20, 26, 0.88);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.32);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .tech-card strong {
+        font-size: 1.1rem;
+        color: var(--accent);
+        font-family: "Space Mono", monospace;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .tech-card span {
+        font-size: 0.9rem;
+        color: var(--fg);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .project-card {
+        position: relative;
+        padding: 32px 28px 36px;
+        border-radius: 22px;
+        background: rgba(13, 13, 16, 0.9);
+        border: 1px solid rgba(125, 255, 156, 0.18);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.33);
+        display: grid;
+        gap: 16px;
+      }
+
+      .project-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(
+          circle at top right,
+          rgba(125, 255, 156, 0.12),
+          transparent 55%
+        );
+        pointer-events: none;
+      }
+
+      .project-card h3 {
+        margin: 0;
+        font-size: 1.25rem;
+      }
+
+      .project-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .project-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(244, 244, 244, 0.6);
+        font-family: "Space Mono", monospace;
+      }
+
+      .project-link {
+        justify-self: flex-start;
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: rgba(125, 255, 156, 0.08);
+        border: 1px solid rgba(125, 255, 156, 0.24);
+        font-weight: 600;
+        transition: transform 0.2s ease;
+      }
+
+      .project-link:hover {
+        transform: translateY(-2px);
+      }
+
+      .contact-card {
+        display: grid;
+        gap: 28px;
+        padding: 32px;
+        border-radius: 24px;
+        background: linear-gradient(
+          135deg,
+          rgba(125, 255, 156, 0.12),
+          rgba(3, 3, 4, 0.92)
+        );
+        border: 1px solid rgba(125, 255, 156, 0.22);
+      }
+
+      .contact-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .contact-actions a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+        border-radius: 999px;
+        background: rgba(12, 12, 16, 0.82);
+        border: 1px solid rgba(125, 255, 156, 0.24);
+        transition: background 0.2s ease;
+      }
+
+      .contact-actions a:hover {
+        background: rgba(125, 255, 156, 0.16);
+        color: #0f1a13;
+      }
+
+      footer {
+        padding: 36px 24px 64px;
+        text-align: center;
+        color: rgba(244, 244, 244, 0.55);
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      footer a {
+        color: var(--accent);
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      @media (max-width: 860px) {
+        .nav-links {
+          display: none;
+        }
+
+        main {
+          padding-top: 96px;
+        }
+
+        .hero {
+          margin-bottom: 96px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .tech-track {
+          animation: none;
+        }
+
+        .hero-actions a,
+        .project-link {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="nav-bar">
+        <a class="brand" href="#top">Collin<span>.</span></a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#tech">Tech</a>
+          <a href="#work">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Backend Developer & Data Engineer</p>
+          <h1>
+            Collin Sefako Makwala
+            <span class="accent-glow"
+              >builds resilient data-driven platforms.</span
+            >
+          </h1>
+          <p>
+            After completing a year-long Data Engineering learnership with the
+            Umuzi Academy and Ogilvy South Africa, I stepped into a .NET junior
+            backend developer role where I've spent the past seven months
+            shipping APIs, data services, and integration layers that power
+            real-world campaigns.
+          </p>
+          <div class="hero-highlights">
+            <span class="hero-badge">.NET Core</span>
+            <span class="hero-badge">Azure & SQL</span>
+            <span class="hero-badge">Data Pipelines</span>
+            <span class="hero-badge">Creative Technologist</span>
+          </div>
+          <div class="hero-actions">
+            <a class="cta-primary" href="mailto:wordsofwords1915@gmail.com"
+              >Let's collaborate</a
+            >
+            <a
+              class="cta-secondary"
+              href="https://www.instagram.com/follow_collin/"
+              target="_blank"
+              rel="noreferrer"
+              >Visual playground</a
+            >
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img src="profile-pic.png" alt="Collin Sefako Makwala headshot" />
+        </div>
+      </section>
+
+      <div class="sections">
+        <section id="about">
+          <div class="section-heading">
+            <span>About Collin</span>
+          </div>
+          <div class="rich-card">
+            <p>
+              I'm a hands-on backend developer who thrives at the intersection
+              of data and storytelling. The Umuzi &amp; Ogilvy learnership
+              taught me to treat data as a narrative device; today, I translate
+              that mindset into performant C# services, reproducible pipelines,
+              and dashboards that clients actually use.
+            </p>
+            <p>
+              I lean into experimentation - whether it's orchestrating an ELT
+              workflow in Azure Data Factory, sketching conceptual art pieces,
+              or wrangling event-driven architectures so campaigns feel personal
+              and timely.
+            </p>
+          </div>
+        </section>
+
+        <section id="experience">
+          <div class="section-heading">
+            <span>Experience</span>
+          </div>
+          <div class="experience-grid">
+            <div class="timeline">
+              <article class="timeline-item">
+                <h3>.NET Junior Backend Developer</h3>
+                <span>Ogilvy South Africa | Mar 2025 - Present</span>
+                <p>
+                  Build and maintain API-first services in C#/.NET, delivering
+                  campaign automation, content personalization, and secure data
+                  syncs between marketing platforms and client CRMs. Collaborate
+                  with multi-disciplinary squads to iterate quickly without
+                  sacrificing observability.
+                </p>
+              </article>
+              <article class="timeline-item">
+                <h3>Data Engineering Learnership</h3>
+                <span>Umuzi Academy x Ogilvy | Feb 2024 - Feb 2025</span>
+                <p>
+                  Completed an intensive, industry-led programme covering
+                  Python, SQL, cloud data warehousing, and analytics
+                  storytelling. Delivered capstone projects featuring streaming
+                  ingestion, dashboarding, and stakeholder demos that bridged
+                  technical insight with creative execution.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="tech">
+          <div class="section-heading">
+            <span>Toolkit Carousel</span>
+          </div>
+          <div class="tech-marquee" aria-label="Technologies I work with">
+            <div class="tech-track">
+              <div class="tech-card">
+                <strong>C#</strong
+                ><span>Language of choice for clean, testable services.</span>
+              </div>
+              <div class="tech-card">
+                <strong>.NET Core</strong
+                ><span>API-first design, Minimal APIs, worker services.</span>
+              </div>
+              <div class="tech-card">
+                <strong>ASP.NET</strong
+                ><span
+                  >Secure REST endpoints and middleware orchestration.</span
+                >
+              </div>
+              <div class="tech-card">
+                <strong>Azure</strong
+                ><span>App Service, Functions, Data Factory, Monitor.</span>
+              </div>
+              <div class="tech-card">
+                <strong>SQL Server</strong
+                ><span>Performance-tuned queries and stored procedures.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Power BI</strong
+                ><span>Story-driven dashboards for campaign insights.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Python</strong
+                ><span>Data munging, notebooks, Mlflow experimentation.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Airflow</strong
+                ><span>Composable orchestration for ELT workloads.</span>
+              </div>
+              <div class="tech-card">
+                <strong>dbt</strong
+                ><span>Modular transformations with tested datasets.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Docker</strong
+                ><span>Containerized services and local parity.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Git</strong
+                ><span>Trunk-based delivery with disciplined reviews.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Jira</strong
+                ><span>Lean delivery rituals and transparent progress.</span>
+              </div>
+              <!-- duplicate for seamless loop -->
+              <div class="tech-card">
+                <strong>C#</strong
+                ><span>Language of choice for clean, testable services.</span>
+              </div>
+              <div class="tech-card">
+                <strong>.NET Core</strong
+                ><span>API-first design, Minimal APIs, worker services.</span>
+              </div>
+              <div class="tech-card">
+                <strong>ASP.NET</strong
+                ><span
+                  >Secure REST endpoints and middleware orchestration.</span
+                >
+              </div>
+              <div class="tech-card">
+                <strong>Azure</strong
+                ><span>App Service, Functions, Data Factory, Monitor.</span>
+              </div>
+              <div class="tech-card">
+                <strong>SQL Server</strong
+                ><span>Performance-tuned queries and stored procedures.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Power BI</strong
+                ><span>Story-driven dashboards for campaign insights.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Python</strong
+                ><span>Data munging, notebooks, Mlflow experimentation.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Airflow</strong
+                ><span>Composable orchestration for ELT workloads.</span>
+              </div>
+              <div class="tech-card">
+                <strong>dbt</strong
+                ><span>Modular transformations with tested datasets.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Docker</strong
+                ><span>Containerized services and local parity.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Git</strong
+                ><span>Trunk-based delivery with disciplined reviews.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Jira</strong
+                ><span>Lean delivery rituals and transparent progress.</span>
+              </div>
+            </div>
+            <div class="tech-track" aria-hidden="true">
+              <div class="tech-card">
+                <strong>Kafka</strong
+                ><span>Messaging backbones for evented experiences.</span>
+              </div>
+              <div class="tech-card">
+                <strong>PostgreSQL</strong
+                ><span>Reliable relational workloads at scale.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Terraform</strong
+                ><span
+                  >Infrastructure as code for repeatable environments.</span
+                >
+              </div>
+              <div class="tech-card">
+                <strong>Grafana</strong
+                ><span>Observability with actionable dashboards.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Figma</strong
+                ><span>Rapid prototyping bridging art and engineering.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Power Automate</strong
+                ><span>Low-code glue for campaign workflows.</span>
+              </div>
+              <div class="tech-card">
+                <strong>CI/CD</strong
+                ><span>Azure DevOps pipelines &amp; GitHub Actions.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Unit Testing</strong
+                ><span>xUnit, FluentAssertions, coverage discipline.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Design Thinking</strong
+                ><span>Collaborative discovery, tight feedback loops.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Storytelling</strong
+                ><span>From art installations to data narratives.</span>
+              </div>
+              <!-- duplicate for seamless loop -->
+              <div class="tech-card">
+                <strong>Kafka</strong
+                ><span>Messaging backbones for evented experiences.</span>
+              </div>
+              <div class="tech-card">
+                <strong>PostgreSQL</strong
+                ><span>Reliable relational workloads at scale.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Terraform</strong
+                ><span
+                  >Infrastructure as code for repeatable environments.</span
+                >
+              </div>
+              <div class="tech-card">
+                <strong>Grafana</strong
+                ><span>Observability with actionable dashboards.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Figma</strong
+                ><span>Rapid prototyping bridging art and engineering.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Power Automate</strong
+                ><span>Low-code glue for campaign workflows.</span>
+              </div>
+              <div class="tech-card">
+                <strong>CI/CD</strong
+                ><span>Azure DevOps pipelines &amp; GitHub Actions.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Unit Testing</strong
+                ><span>xUnit, FluentAssertions, coverage discipline.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Design Thinking</strong
+                ><span>Collaborative discovery, tight feedback loops.</span>
+              </div>
+              <div class="tech-card">
+                <strong>Storytelling</strong
+                ><span>From art installations to data narratives.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="work">
+          <div class="section-heading">
+            <span>Selected Work</span>
+          </div>
+          <div class="projects-grid">
+            <article class="project-card">
+              <h3>Campaign Intelligence Layer</h3>
+              <div class="project-meta">
+                <span>.NET</span>
+                <span>Azure Functions</span>
+                <span>SQL</span>
+              </div>
+              <p>
+                Unified scattered marketing data sources into a centralised,
+                queryable API serving campaign managers in real time. Reduced
+                manual reporting workloads by 60% and unlocked new
+                personalisation triggers.
+              </p>
+              <a
+                class="project-link"
+                href="mailto:wordsofwords1915@gmail.com?subject=Tell%20me%20more%20about%20your%20campaign%20intelligence%20layer"
+                >Request a walkthrough</a
+              >
+            </article>
+            <article class="project-card">
+              <h3>Artful Data Narratives</h3>
+              <div class="project-meta">
+                <span>Power BI</span>
+                <span>Storytelling</span>
+              </div>
+              <p>
+                Designed interactive dashboards that pair campaign metrics with
+                provocative visual language, helping creative directors bridge
+                gut instinct with evidence.
+              </p>
+              <a
+                class="project-link"
+                href="https://www.instagram.com/follow_collin/"
+                target="_blank"
+                rel="noreferrer"
+                >See visual cues</a
+              >
+            </article>
+            <article class="project-card">
+              <h3>Pipeline Reliability Playbook</h3>
+              <div class="project-meta">
+                <span>Airflow</span>
+                <span>dbt</span>
+                <span>Observability</span>
+              </div>
+              <p>
+                Authored zero-to-production documentation and guardrails for
+                data ingestion across squads - covering orchestration, testing,
+                and recovery patterns alongside real-world code examples.
+              </p>
+              <a
+                class="project-link"
+                href="mailto:wordsofwords1915@gmail.com?subject=Collin%20Pipeline%20Reliability"
+                >Chat about resilience</a
+              >
+            </article>
+          </div>
+        </section>
+
+        <section id="contact">
+          <div class="section-heading">
+            <span>Let's Collaborate</span>
+          </div>
+          <div class="contact-card">
+            <p>
+              Need someone who can balance backend reliability with bold
+              creative instincts? I'm always up for building campaigns,
+              installations, and data stories that glow in the dark.
+            </p>
+            <div class="contact-actions">
+              <a href="mailto:wordsofwords1915@gmail.com">Email</a>
+              <a
+                href="https://www.youtube.com/watch?v=DtH26TNNR2I"
+                target="_blank"
+                rel="noreferrer"
+                >YouTube</a
+              >
+              <a
+                href="https://www.instagram.com/follow_collin/"
+                target="_blank"
+                rel="noreferrer"
+                >Instagram</a
+              >
+              <a
+                href="https://github.com/Collin-1"
+                target="_blank"
+                rel="noreferrer"
+                >GitHub</a
+              >
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      Collin Sefako Makwala | Built with a neon glow |
+      <a href="#top">Back to top</a>
+    </footer>
+  </body>
 </html>
