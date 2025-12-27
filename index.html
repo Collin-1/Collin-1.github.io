@@ -483,6 +483,10 @@
         animation-duration: 32s;
       }
 
+      .tech-marquee:hover .tech-track {
+        animation-play-state: paused;
+      }
+
       .tech-card {
         width: clamp(180px, 18vw, 220px);
         aspect-ratio: 1;
@@ -773,7 +777,7 @@
     <main id="top">
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Backend Developer | Data Engineer</p>
+          <p class="eyebrow">Software Developer</p>
           <h1>
             Collin Makwala
             <span class="accent-glow"
@@ -838,41 +842,39 @@
           </div>
           <div class="skills-grid">
             <article class="skill-card">
-              <h3>Backend Engineering</h3>
+              <h3>Programming &amp; Frameworks</h3>
               <ul>
-                <li>C#, ASP.NET Core, .NET 9 Minimal APIs</li>
-                <li>Entity Framework Core, LINQ performance tuning</li>
-                <li>RESTful service design, Swagger-first integrations</li>
-                <li>Umbraco CMS content workflows</li>
+                <li>C#, ASP.NET Core</li>
+                <li>Python, Flask, FastAPI</li>
+                <li>JavaScript (ES6+), React.js, Node.js</li>
+                <li>HTML5, CSS3, SQL</li>
               </ul>
             </article>
             <article class="skill-card">
-              <h3>Data Engineering</h3>
+              <h3>Databases &amp; Data</h3>
               <ul>
-                <li>Python, Flask, SQLAlchemy, Alembic migrations</li>
-                <li>Apache Airflow DAG design and scheduling</li>
-                <li>ETL pipelines across SQL Server, PostgreSQL, MongoDB</li>
-                <li>Data modeling, warehousing, orchestration strategy</li>
+                <li>PostgreSQL, MongoDB (NoSQL)</li>
+                <li>RESTful API Design</li>
+                <li>Entity Framework Core</li>
+                <li>Data Modeling &amp; Systems Analysis</li>
               </ul>
             </article>
             <article class="skill-card">
-              <h3>DevOps &amp; Quality</h3>
+              <h3>Testing &amp; DevOps</h3>
               <ul>
-                <li>Dockerized environments and local parity tooling</li>
-                <li>CI/CD with Jenkins, GitHub Actions, automated tests</li>
-                <li>xUnit, Pytest, Playwright end-to-end validation</li>
-                <li>Observability and performance profiling for APIs</li>
+                <li>xUnit, NUnit, pytest, unittest</li>
+                <li>Playwright, Selenium (exposure)</li>
+                <li>Docker, Jenkins (CI/CD)</li>
+                <li>Git/GitHub, TDD</li>
               </ul>
             </article>
             <article class="skill-card">
-              <h3>Collaboration</h3>
+              <h3>Professional &amp; Agile</h3>
               <ul>
-                <li>
-                  Agile and Scrum rituals, sprint planning, retrospectives
-                </li>
-                <li>Technical mentorship for cross-language squads</li>
-                <li>Stakeholder storytelling and requirements synthesis</li>
-                <li>Postman-first API review and documentation habits</li>
+                <li>Agile Methodologies, Scrum</li>
+                <li>Jira/Trello, Workflow Management</li>
+                <li>OOP, Web Application Security</li>
+                <li>Stakeholder Communication</li>
               </ul>
             </article>
           </div>
@@ -885,8 +887,8 @@
           <div class="experience-grid">
             <div class="timeline">
               <article class="timeline-item">
-                <h3>.NET Junior Backend Developer</h3>
-                <span>Ogilvy South Africa | Mar 2025 – Present</span>
+                <h3>Junior Software Developer(contract)</h3>
+                <span>Ogilvy South Africa | Mar 2025 – December 2025</span>
                 <p>
                   Develop RESTful services in C# and ASP.NET Core that power
                   marketing automation, campaign personalization, and CRM
@@ -896,7 +898,7 @@
                 </p>
               </article>
               <article class="timeline-item">
-                <h3>Data Engineering Learnership</h3>
+                <h3>Web Developer Intern</h3>
                 <span
                   >Ogilvy South Africa &amp; Umuzi.org | Mar 2024 – Mar
                   2025</span
@@ -973,6 +975,10 @@
                 ><span>REST APIs with SQLAlchemy and JWT protection.</span>
               </div>
               <div class="tech-card">
+                <strong>FastAPI</strong
+                ><span>Modern, fast (high-performance), web framework for building APIs.</span>
+              </div>
+              <div class="tech-card">
                 <strong>Airflow</strong
                 ><span>Composable orchestration for ELT workloads.</span>
               </div>
@@ -1030,6 +1036,10 @@
               <div class="tech-card">
                 <strong>Flask</strong
                 ><span>REST APIs with SQLAlchemy and JWT protection.</span>
+              </div>
+              <div class="tech-card">
+                <strong>FastAPI</strong
+                ><span>Modern, fast (high-performance), web framework for building APIs.</span>
               </div>
               <div class="tech-card">
                 <strong>Airflow</strong
@@ -1154,7 +1164,7 @@
               </p>
               <div style="display: flex; gap: 12px; flex-wrap: wrap">
                 <a class="project-link" href="project-moment.html"
-                  >View Case Study</a
+                  >Project Details</a
                 >
                 <a
                   class="project-link"
@@ -1182,33 +1192,24 @@
                 50 ms ticks in sync while client-side prediction and Canvas 2D
                 ensure the action feels responsive in the browser.
               </p>
-              <a
-                class="project-link"
-                href="https://github.com/Collin-1/swarmandsnack/pull/4"
-                target="_blank"
-                rel="noreferrer"
-                >Explore the build</a
-              >
-            </article>
-            <article class="project-card">
-              <h3>Campaign Intelligence Layer</h3>
-              <div class="project-meta">
-                <span>.NET</span>
-                <span>Azure Functions</span>
-                <span>SQL</span>
+              <div style="display: flex; gap: 12px; flex-wrap: wrap">
+                <a class="project-link" href="project-swarmandsnack.html"
+                  >Project Details</a
+                >
+                <a
+                  class="project-link"
+                  href="https://github.com/Collin-1/swarmandsnack/pull/4"
+                  target="_blank"
+                  rel="noreferrer"
+                  style="
+                    background: transparent;
+                    border-color: rgba(160, 172, 255, 0.2);
+                  "
+                  >GitHub</a
+                >
               </div>
-              <p>
-                Unified scattered marketing data sources into a centralised,
-                queryable API serving campaign managers in real time. Reduced
-                manual reporting workloads by 60% and unlocked new
-                personalisation triggers.
-              </p>
-              <a
-                class="project-link"
-                href="mailto:wordsofwords1915@gmail.com?subject=Tell%20me%20more%20about%20your%20campaign%20intelligence%20layer"
-                >Request a walkthrough</a
-              >
             </article>
+
             <article class="project-card">
               <h3>FutureV Storefront</h3>
               <div class="project-meta">
@@ -1224,7 +1225,7 @@
               </p>
               <div style="display: flex; gap: 12px; flex-wrap: wrap">
                 <a class="project-link" href="project-futurev.html"
-                  >View Case Study</a
+                  >Project Details</a
                 >
                 <a
                   class="project-link"
@@ -1239,43 +1240,8 @@
                 >
               </div>
             </article>
-            <article class="project-card">
-              <h3>Artful Data Narratives</h3>
-              <div class="project-meta">
-                <span>Power BI</span>
-                <span>Storytelling</span>
-              </div>
-              <p>
-                Designed interactive dashboards that pair campaign metrics with
-                provocative visual language, helping creative directors bridge
-                gut instinct with evidence.
-              </p>
-              <a
-                class="project-link"
-                href="https://www.instagram.com/follow_collin/"
-                target="_blank"
-                rel="noreferrer"
-                >See visual cues</a
-              >
-            </article>
-            <article class="project-card">
-              <h3>Pipeline Reliability Playbook</h3>
-              <div class="project-meta">
-                <span>Airflow</span>
-                <span>dbt</span>
-                <span>Observability</span>
-              </div>
-              <p>
-                Authored zero-to-production documentation and guardrails for
-                data ingestion across squads - covering orchestration, testing,
-                and recovery patterns alongside real-world code examples.
-              </p>
-              <a
-                class="project-link"
-                href="mailto:wordsofwords1915@gmail.com?subject=Collin%20Pipeline%20Reliability"
-                >Chat about resilience</a
-              >
-            </article>
+
+
           </div>
         </section>
 
