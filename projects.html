@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PNTMFLPC");
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects - Collin Makwala</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #030304;
+        --bg-secondary: #0d0d10;
+        --fg: #f4f4f4;
+        --muted: #8b8b8b;
+        --accent: #a0acff;
+        --accent-soft: rgba(160, 172, 255, 0.1);
+        --card: rgba(19, 19, 24, 0.6);
+        --border: rgba(160, 172, 255, 0.22);
+        --sidebar-width: 280px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+        color: var(--fg);
+        background: var(--bg);
+        display: flex;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -40vmax;
+        background: radial-gradient(
+            circle at 15% 20%,
+            rgba(160, 172, 255, 0.2),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 85% 30%,
+            rgba(160, 172, 255, 0.12),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(160, 172, 255, 0.16),
+            transparent 60%
+          );
+        filter: blur(42px) saturate(110%);
+        z-index: -2;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* Sidebar Navigation */
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: var(--sidebar-width);
+        height: 100vh;
+        background: rgba(13, 13, 16, 0.7);
+        backdrop-filter: blur(20px);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        padding: 40px 24px;
+        z-index: 100;
+      }
+
+      .sidebar-header {
+        margin-bottom: 48px;
+      }
+
+      .sidebar-brand {
+        font-family: "Space Mono", monospace;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+      }
+
+      .sidebar-subtitle {
+        font-size: 0.85rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+      }
+
+      .sidebar-nav {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .sidebar-nav a {
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active {
+        background: rgba(160, 172, 255, 0.15);
+        color: var(--accent);
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        padding-top: 24px;
+        border-top: 1px solid rgba(160, 172, 255, 0.15);
+      }
+
+      .sidebar-footer h4 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+        margin: 0 0 16px;
+      }
+
+      .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .social-links a {
+        font-size: 0.9rem;
+        color: var(--muted);
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: var(--sidebar-width);
+        flex: 1;
+        padding: 80px 60px;
+        max-width: 1200px;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        margin: 0 0 16px;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        font-weight: 700;
+      }
+
+      p {
+        line-height: 1.8;
+        color: var(--muted);
+        margin-bottom: 24px;
+        font-size: 1.05rem;
+      }
+
+      .page-intro {
+        margin-bottom: 64px;
+        color: var(--muted);
+        font-size: 1.1rem;
+        line-height: 1.9;
+      }
+
+      /* Projects Grid */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 32px;
+      }
+
+      .project-card {
+        background: rgba(13, 13, 16, 0.6);
+        padding: 32px;
+        border-radius: 16px;
+        border: 1px solid rgba(160, 172, 255, 0.2);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project-card:hover {
+        border-color: rgba(160, 172, 255, 0.4);
+        transform: translateY(-6px);
+        box-shadow: 0 12px 32px rgba(160, 172, 255, 0.15);
+      }
+
+      .project-status {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-family: "Space Mono", monospace;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 16px;
+        font-weight: 600;
+        width: fit-content;
+      }
+
+      .status-active {
+        background: rgba(0, 255, 136, 0.15);
+        color: #00ff88;
+        border: 1px solid rgba(0, 255, 136, 0.3);
+      }
+
+      .status-archived {
+        background: rgba(255, 193, 7, 0.15);
+        color: #ffc107;
+        border: 1px solid rgba(255, 193, 7, 0.3);
+      }
+
+      .project-card h3 {
+        font-size: 1.4rem;
+        margin: 0 0 12px;
+        font-weight: 700;
+      }
+
+      .project-stats {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 16px;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .project-description {
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 20px;
+        flex: 1;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .project-tag {
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: rgba(160, 172, 255, 0.1);
+        border: 1px solid rgba(160, 172, 255, 0.2);
+        font-family: "Space Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--accent);
+      }
+
+      .project-links {
+        display: flex;
+        gap: 12px;
+        margin-top: auto;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .link-primary {
+        background: var(--accent);
+        color: #000;
+      }
+
+      .link-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(160, 172, 255, 0.4);
+      }
+
+      .link-secondary {
+        background: rgba(160, 172, 255, 0.1);
+        border: 1px solid rgba(160, 172, 255, 0.3);
+      }
+
+      .link-secondary:hover {
+        background: rgba(160, 172, 255, 0.2);
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 968px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+          padding: 24px;
+        }
+
+        .main-content {
+          margin-left: 0;
+          padding: 40px 24px;
+        }
+
+        body {
+          flex-direction: column;
+        }
+
+        .sidebar-nav {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">Collin Makwala</div>
+        <div class="sidebar-subtitle">Backend Developer</div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html">Home</a>
+        <a href="experience.html">Experience</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="stack.html">Stack</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <h4>Connect</h4>
+        <div class="social-links">
+          <a href="https://twitter.com/yourhandle" target="_blank"
+            >X (Twitter)</a
+          >
+          <a href="https://linkedin.com/in/yourprofile" target="_blank"
+            >LinkedIn</a
+          >
+          <a href="https://github.com/Collin-1" target="_blank">GitHub</a>
+          <a href="https://instagram.com/follow_collin" target="_blank"
+            >Instagram</a
+          >
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <h1>Projects</h1>
+      <p class="page-intro">
+        A collection of my work ranging from real-time multiplayer games to
+        production-grade backend systems. Each project showcases different
+        aspects of full-stack development with a focus on clean architecture and
+        scalable design.
+      </p>
+
+      <div class="projects-grid">
+        <!-- Moment -->
+        <article class="project-card">
+          <span class="project-status status-active">Active</span>
+          <h3>Moment</h3>
+          <p class="project-description">
+            A privacy-first messaging platform where rooms expire on a timer or
+            group vote. SignalR keeps conversations instant while in-memory
+            storage, rate limiting, and democratic shutdown flows guarantee
+            every discussion disappears without a trace.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">.NET 9</span>
+            <span class="project-tag">SignalR</span>
+            <span class="project-tag">Real-time</span>
+            <span class="project-tag">Ephemeral Chat</span>
+          </div>
+          <div class="project-links">
+            <a href="project-moment.html" class="project-link link-primary"
+              >View Project</a
+            >
+            <a
+              href="https://github.com/Collin-1/Moment"
+              target="_blank"
+              class="project-link link-secondary"
+              >GitHub</a
+            >
+          </div>
+        </article>
+
+        <!-- Swarm and Snack -->
+        <article class="project-card">
+          <span class="project-status status-active">Active</span>
+          <h3>Swarm and Snack</h3>
+          <p class="project-description">
+            A head-to-head arena game where each player commands a swarm of
+            underlings in a deterministic .NET 9 simulation. SignalR keeps 50 ms
+            ticks in sync while client-side prediction and Canvas 2D ensure the
+            action feels responsive in the browser.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">ASP.NET Core 9</span>
+            <span class="project-tag">SignalR</span>
+            <span class="project-tag">Multiplayer</span>
+            <span class="project-tag">Canvas 2D</span>
+          </div>
+          <div class="project-links">
+            <a
+              href="project-swarmandsnack.html"
+              class="project-link link-primary"
+              >View Project</a
+            >
+            <a
+              href="https://github.com/Collin-1/swarmandsnack/pull/4"
+              target="_blank"
+              class="project-link link-secondary"
+              >GitHub</a
+            >
+          </div>
+        </article>
+
+        <!-- FutureV -->
+        <article class="project-card">
+          <span class="project-status status-active">Active</span>
+          <h3>FutureV Storefront</h3>
+          <p class="project-description">
+            A speculative vehicle eCommerce experience pairing cinematic
+            storytelling with a lightweight admin deck. Passphrase-protected
+            CRUD flows manage multi-angle galleries while EF Core seeds the
+            catalog for fast demos and Render deployments.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">.NET 9 Razor Pages</span>
+            <span class="project-tag">EF Core</span>
+            <span class="project-tag">PostgreSQL</span>
+            <span class="project-tag">Bootstrap 5</span>
+          </div>
+          <div class="project-links">
+            <a href="project-futurev.html" class="project-link link-primary"
+              >View Project</a
+            >
+            <a
+              href="https://github.com/Collin-1/FutureV"
+              target="_blank"
+              class="project-link link-secondary"
+              >GitHub</a
+            >
+          </div>
+        </article>
+
+        <!-- Add more projects as needed -->
+        <article class="project-card">
+          <span class="project-status status-active">Active</span>
+          <h3>Airflow ETL Pipelines</h3>
+          <p class="project-description">
+            Automated workflows that communicate with GitHub API for pull
+            request hygiene and data validation. Built resilient ETL streams
+            across PostgreSQL and MongoDB backends with proper error handling
+            and monitoring.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Airflow</span>
+            <span class="project-tag">PostgreSQL</span>
+            <span class="project-tag">MongoDB</span>
+            <span class="project-tag">ETL</span>
+          </div>
+          <div class="project-links">
+            <a
+              href="https://github.com/Collin-1"
+              target="_blank"
+              class="project-link link-secondary"
+              >GitHub</a
+            >
+          </div>
+        </article>
+
+        <article class="project-card">
+          <span class="project-status status-active">Active</span>
+          <h3>Marketing Automation APIs</h3>
+          <p class="project-description">
+            RESTful services in C# and ASP.NET Core that power marketing
+            automation, campaign personalization, and CRM integrations. Built
+            with clean architecture principles and comprehensive test coverage.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">C#</span>
+            <span class="project-tag">ASP.NET Core</span>
+            <span class="project-tag">SQL Server</span>
+            <span class="project-tag">REST API</span>
+            <span class="project-tag">TDD</span>
+          </div>
+          <div class="project-links">
+            <a href="contact.html" class="project-link link-secondary"
+              >Inquire</a
+            >
+          </div>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

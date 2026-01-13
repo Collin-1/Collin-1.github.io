@@ -14,10 +14,9 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-PNTMFLPC");
     </script>
-    <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Collin Sefako Makwala | Backend Developer</title>
+    <title>About - Collin Makwala</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -98,15 +97,6 @@
         margin-bottom: 48px;
       }
 
-      .profile-image {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        border: 2px solid var(--accent);
-        object-fit: cover;
-        margin-bottom: 16px;
-      }
-
       .sidebar-brand {
         font-family: "Space Mono", monospace;
         font-size: 1.4rem;
@@ -177,85 +167,117 @@
       .main-content {
         margin-left: var(--sidebar-width);
         flex: 1;
-        padding: 120px 80px 80px;
-        max-width: 900px;
+        padding: 80px 60px;
+        max-width: 1000px;
       }
 
       h1 {
-        font-size: clamp(2.8rem, 5vw, 3.8rem);
-        margin: 0 0 20px;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        margin: 0 0 32px;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
         font-weight: 700;
-        color: var(--fg);
       }
 
       h2 {
-        font-size: 1.5rem;
-        margin: 0 0 32px;
-        color: rgba(160, 172, 255, 0.9);
+        font-size: 1.6rem;
+        margin: 48px 0 24px;
+        color: var(--accent);
         font-weight: 600;
-        letter-spacing: -0.01em;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+        margin: 32px 0 16px;
+        font-weight: 600;
       }
 
       p {
-        line-height: 1.7;
-        color: rgba(139, 139, 139, 0.95);
-        margin-bottom: 20px;
-        font-size: 1.05rem;
+        line-height: 1.9;
+        color: var(--muted);
+        margin-bottom: 24px;
+        font-size: 1.1rem;
       }
 
-      .hero {
-        margin-bottom: 80px;
+      .about-content p strong {
+        color: var(--fg);
       }
 
-      .eyebrow {
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
+      .skills-section {
+        margin-top: 48px;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 24px;
+        margin-top: 32px;
+      }
+
+      .skill-category {
+        background: rgba(13, 13, 16, 0.5);
+        padding: 24px;
+        border-radius: 12px;
+        border: 1px solid rgba(160, 172, 255, 0.2);
+      }
+
+      .skill-category h3 {
+        margin: 0 0 16px;
+        font-size: 1.1rem;
         color: var(--accent);
-        margin-bottom: 12px;
-        font-weight: 600;
       }
 
-      .hero h1 {
-        font-size: clamp(2.8rem, 5vw, 3.8rem);
-        margin-bottom: 16px;
+      .skill-category ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
       }
 
-      .hero h1 .highlight {
-        color: rgba(160, 172, 255, 0.85);
-        display: inline;
-        font-weight: 600;
+      .skill-category li {
+        padding: 8px 0;
+        color: var(--muted);
+        font-size: 0.95rem;
       }
 
-      .hero-description {
-        max-width: 680px;
-        font-size: 1.08rem;
-        line-height: 1.75;
-        margin-bottom: 20px;
-        color: rgba(139, 139, 139, 0.9);
+      .skill-category li::before {
+        content: "▹ ";
+        color: var(--accent);
+        font-weight: bold;
+        margin-right: 8px;
+      }
+
+      .cta-section {
+        margin-top: 64px;
+        padding: 40px;
+        background: linear-gradient(
+          135deg,
+          rgba(160, 172, 255, 0.15),
+          rgba(13, 13, 16, 0.6)
+        );
+        border-radius: 16px;
+        border: 1px solid rgba(160, 172, 255, 0.3);
+      }
+
+      .cta-section h2 {
+        margin-top: 0;
       }
 
       .cta-buttons {
         display: flex;
-        gap: 14px;
+        gap: 16px;
         flex-wrap: wrap;
-        margin-top: 32px;
+        margin-top: 24px;
       }
 
       .btn {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
         gap: 8px;
-        padding: 13px 26px;
-        border-radius: 8px;
+        padding: 12px 24px;
+        border-radius: 999px;
         font-weight: 600;
-        font-size: 0.92rem;
-        transition: all 0.2s ease;
-        border: none;
-        cursor: pointer;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
       }
 
       .btn-primary {
@@ -264,77 +286,8 @@
       }
 
       .btn-primary:hover {
-        background: rgba(160, 172, 255, 0.9);
-        transform: translateY(-1px);
-      }
-
-      .btn-secondary {
-        background: rgba(160, 172, 255, 0.08);
-        border: 1px solid rgba(160, 172, 255, 0.25);
-        color: var(--fg);
-      }
-
-      .btn-secondary:hover {
-        background: rgba(160, 172, 255, 0.15);
-        border-color: rgba(160, 172, 255, 0.4);
-      }
-
-      .tech-stack {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin: 28px 0 0;
-      }
-
-      .tech-badge {
-        padding: 8px 16px;
-        border-radius: 6px;
-        background: rgba(13, 13, 16, 0.6);
-        border: 1px solid rgba(160, 172, 255, 0.2);
-        font-family: "Space Mono", monospace;
-        font-size: 0.82rem;
-        letter-spacing: 0.02em;
-        color: rgba(244, 244, 244, 0.85);
-        font-weight: 500;
-      }
-
-      .featured-section {
-        margin-top: 72px;
-      }
-
-      .featured-section h2 {
-        margin-bottom: 28px;
-        color: rgba(160, 172, 255, 0.9);
-      }
-
-      .feature-card {
-        background: rgba(13, 13, 16, 0.4);
-        padding: 28px;
-        border-radius: 12px;
-        border: 1px solid rgba(160, 172, 255, 0.15);
-        margin-bottom: 20px;
-        transition: all 0.25s ease;
-        display: block;
-      }
-
-      .feature-card:hover {
-        border-color: rgba(160, 172, 255, 0.35);
-        transform: translateY(-3px);
-        background: rgba(13, 13, 16, 0.5);
-      }
-
-      .feature-card h3 {
-        font-size: 1.25rem;
-        margin: 0 0 10px;
-        font-weight: 600;
-        color: var(--fg);
-      }
-
-      .feature-card p {
-        margin: 0;
-        font-size: 0.98rem;
-        line-height: 1.65;
-        color: rgba(139, 139, 139, 0.9);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(160, 172, 255, 0.4);
       }
 
       /* Mobile Responsive */
@@ -359,6 +312,10 @@
           flex-direction: row;
           flex-wrap: wrap;
         }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -372,11 +329,11 @@
       </div>
 
       <nav class="sidebar-nav">
-        <a href="index.html" class="active">Home</a>
+        <a href="index.html">Home</a>
         <a href="experience.html">Experience</a>
         <a href="projects.html">Projects</a>
         <a href="stack.html">Stack</a>
-        <a href="about.html">About</a>
+        <a href="about.html" class="active">About</a>
         <a href="contact.html">Contact</a>
       </nav>
 
@@ -399,66 +356,89 @@
 
     <!-- Main Content -->
     <main class="main-content">
-      <section class="hero">
-        <p class="eyebrow">Software Developer</p>
-        <h1>
-          Collin Makwala
-          <span class="highlight">builds resilient data-driven platforms.</span>
-        </h1>
+      <h1>About Me</h1>
 
-        <p class="hero-description">
-          Engineering systems that blend .NET craftsmanship with data
-          engineering rigour, I help teams ship reliable platforms that scale
-          with creative ambition.
+      <div class="about-content">
+        <p>
+          I started out as a <strong>visual artist</strong>, sketching concept
+          worlds for a daring startup and freelancing to keep the lights on
+          after it folded. That season trained my eye for detail and taught me
+          how to keep creating even when the brief changes mid-stroke.
         </p>
 
-        <div class="tech-stack">
-          <span class="tech-badge">.NET Core</span>
-          <span class="tech-badge">Python</span>
-          <span class="tech-badge">EF Core + SQL</span>
-          <span class="tech-badge">Airflow Pipelines</span>
-          <span class="tech-badge">Team Leadership</span>
-        </div>
+        <p>
+          From there I moved into <strong>sales at Bearing Man Group</strong>,
+          where I learned how to read people, frame technical value, and stay
+          calm when the stakes were real. Somewhere between late-night proposals
+          and early morning client calls I fell for code—it let me build
+          solutions with the same creative energy, but with outcomes you can
+          deploy.
+        </p>
 
+        <p>
+          Today I ship <strong>backend services and data pipelines</strong>,
+          still carrying that artist's curiosity. The mission is to blend
+          creative tech with operational reliability—whether it's a CMS rollout
+          or an Airflow DAG that keeps campaign data fresh. I love leading from
+          the trenches, pairing junior developers, and translating complex
+          systems into stories teams can rally behind.
+        </p>
+
+        <h2>What I Do</h2>
+        <p>
+          I specialize in building
+          <strong>scalable backend systems</strong> using .NET and Python. My
+          work spans from real-time multiplayer applications to data engineering
+          pipelines. I'm passionate about clean architecture, test-driven
+          development, and creating systems that teams can understand and
+          maintain.
+        </p>
+
+        <p>
+          Currently, I'm building marketing automation services at
+          <strong>Ogilvy South Africa</strong>, where I develop RESTful APIs in
+          C# and ASP.NET Core that power campaign personalization and CRM
+          integrations.
+        </p>
+
+        <h2>Technical Philosophy</h2>
+        <p>
+          I believe in writing code that tells a story. Every class, every
+          function, every variable name should communicate intent. I favor
+          <strong>composition over inheritance</strong>,
+          <strong>simplicity over cleverness</strong>, and
+          <strong>tests over documentation</strong> (though good documentation
+          is still essential).
+        </p>
+
+        <p>
+          My approach combines the rigor of traditional software engineering
+          with the pragmatism needed to ship products. I'm equally comfortable
+          discussing SOLID principles and database normalization as I am
+          pair-programming through a gnarly bug at 2 AM.
+        </p>
+      </div>
+
+      <section class="cta-section">
+        <h2>Let's Build Something Together</h2>
+        <p>
+          I'm always interested in hearing about new opportunities,
+          collaborations, or just chatting about technology. Whether you have a
+          project in mind or just want to connect, feel free to reach out.
+        </p>
         <div class="cta-buttons">
-          <a href="mailto:collinmakwala@gmail.com" class="btn btn-primary"
-            >Let's collaborate</a
-          >
-          <a href="experience.html" class="btn btn-secondary"
-            >Resume highlights</a
+          <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+          <a
+            href="projects.html"
+            class="btn btn-primary"
+            style="
+              background: rgba(160, 172, 255, 0.15);
+              color: var(--fg);
+              border: 1px solid rgba(160, 172, 255, 0.3);
+            "
+            >View My Work</a
           >
         </div>
-      </section>
-
-      <section class="featured-section">
-        <h2>Featured Work</h2>
-
-        <a href="project-moment.html" class="feature-card">
-          <h3>Moment</h3>
-          <p>
-            A privacy-first messaging platform where rooms expire on a timer or
-            group vote. Built with .NET 9, SignalR, and in-memory storage for
-            ephemeral conversations.
-          </p>
-        </a>
-
-        <a href="project-swarmandsnack.html" class="feature-card">
-          <h3>Swarm and Snack</h3>
-          <p>
-            Real-time multiplayer arena game with deterministic .NET 9
-            simulation, SignalR synchronization, and client-side prediction for
-            responsive gameplay.
-          </p>
-        </a>
-
-        <a href="project-futurev.html" class="feature-card">
-          <h3>FutureV Storefront</h3>
-          <p>
-            Speculative vehicle eCommerce platform built with Clean
-            Architecture, Repository Pattern, and FluentValidation on .NET 9
-            Razor Pages.
-          </p>
-        </a>
       </section>
     </main>
   </body>
