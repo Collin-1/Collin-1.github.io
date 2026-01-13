@@ -82,6 +82,19 @@
 
       .sidebar-header {
         margin-bottom: 48px;
+        text-align: center;
+      }
+
+      .profile-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        object-fit: cover;
+        margin-bottom: 16px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .sidebar-brand {
@@ -96,6 +109,7 @@
         font-size: 0.85rem;
         color: var(--muted);
         letter-spacing: 0.05em;
+        min-height: 1.2em;
       }
 
       .sidebar-nav {
@@ -111,9 +125,18 @@
         font-size: 0.95rem;
         transition: all 0.3s ease;
         font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
       }
 
-      .sidebar-nav a:hover {
+      .sidebar-nav a::before {
+        content: attr(data-icon);
+        font-size: 1.1rem;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active {
         background: rgba(160, 172, 255, 0.15);
         color: var(--accent);
       }
@@ -153,7 +176,8 @@
         margin-left: var(--sidebar-width);
         flex: 1;
         padding: 80px 60px 96px;
-        max-width: 1200px;
+        max-width: 1100px;
+        margin-right: auto;
       }
 
       header {

@@ -95,11 +95,28 @@
 
       .sidebar-header {
         margin-bottom: 48px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .profile-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .sidebar-info {
+        flex: 1;
+        min-width: 0;
       }
 
       .sidebar-brand {
         font-family: "Space Mono", monospace;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 700;
         letter-spacing: 0.05em;
         margin-bottom: 4px;
@@ -109,6 +126,7 @@
         font-size: 0.85rem;
         color: var(--muted);
         letter-spacing: 0.05em;
+        min-height: 1.2em;
       }
 
       .sidebar-nav {
@@ -124,6 +142,14 @@
         font-size: 0.95rem;
         transition: all 0.3s ease;
         font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sidebar-nav a::before {
+        content: attr(data-icon);
+        font-size: 1.1rem;
       }
 
       .sidebar-nav a:hover,
@@ -166,9 +192,15 @@
       /* Main Content */
       .main-content {
         margin-left: var(--sidebar-width);
-        flex: 1;
+        width: calc(100vw - var(--sidebar-width));
+        display: flex;
+        justify-content: center;
         padding: 80px 60px;
-        max-width: 1000px;
+      }
+
+      .main-content > * {
+        width: 100%;
+        max-width: 900px;
       }
 
       h1 {
@@ -324,17 +356,22 @@
     <!-- Sidebar Navigation -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <div class="sidebar-brand">Collin Makwala</div>
-        <div class="sidebar-subtitle">Backend Developer</div>
+        <img src="profile-pic.png" alt="Collin Makwala" class="profile-image" />
+        <div class="sidebar-info">
+          <div class="sidebar-brand">Collin Makwala</div>
+          <div class="sidebar-subtitle" id="rotating-title">
+            Backend Developer
+          </div>
+        </div>
       </div>
 
       <nav class="sidebar-nav">
-        <a href="index.html">Home</a>
-        <a href="experience.html">Experience</a>
-        <a href="projects.html">Projects</a>
-        <a href="stack.html">Stack</a>
-        <a href="about.html" class="active">About</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html" data-icon="⌂">Home</a>
+        <a href="experience.html" data-icon="▸">Experience</a>
+        <a href="projects.html" data-icon="◆">Projects</a>
+        <a href="stack.html" data-icon="≡">Stack</a>
+        <a href="about.html" class="active" data-icon="●">About</a>
+        <a href="contact.html" data-icon="✉">Contact</a>
       </nav>
 
       <div class="sidebar-footer">
@@ -356,90 +393,115 @@
 
     <!-- Main Content -->
     <main class="main-content">
-      <h1>About Me</h1>
+      <div>
+        <h1>About Me</h1>
 
-      <div class="about-content">
-        <p>
-          I started out as a <strong>visual artist</strong>, sketching concept
-          worlds for a daring startup and freelancing to keep the lights on
-          after it folded. That season trained my eye for detail and taught me
-          how to keep creating even when the brief changes mid-stroke.
-        </p>
+        <div class="about-content">
+          <p>
+            I started out as a <strong>visual artist</strong>, sketching concept
+            worlds for a daring startup and freelancing to keep the lights on
+            after it folded. That season trained my eye for detail and taught me
+            how to keep creating even when the brief changes mid-stroke.
+          </p>
 
-        <p>
-          From there I moved into <strong>sales at Bearing Man Group</strong>,
-          where I learned how to read people, frame technical value, and stay
-          calm when the stakes were real. Somewhere between late-night proposals
-          and early morning client calls I fell for code—it let me build
-          solutions with the same creative energy, but with outcomes you can
-          deploy.
-        </p>
+          <p>
+            From there I moved into <strong>sales at Bearing Man Group</strong>,
+            where I learned how to read people, frame technical value, and stay
+            calm when the stakes were real. Somewhere between late-night
+            proposals and early morning client calls I fell for code—it let me
+            build solutions with the same creative energy, but with outcomes you
+            can deploy.
+          </p>
 
-        <p>
-          Today I ship <strong>backend services and data pipelines</strong>,
-          still carrying that artist's curiosity. The mission is to blend
-          creative tech with operational reliability—whether it's a CMS rollout
-          or an Airflow DAG that keeps campaign data fresh. I love leading from
-          the trenches, pairing junior developers, and translating complex
-          systems into stories teams can rally behind.
-        </p>
+          <p>
+            Today I ship <strong>backend services and data pipelines</strong>,
+            still carrying that artist's curiosity. The mission is to blend
+            creative tech with operational reliability—whether it's a CMS
+            rollout or an Airflow DAG that keeps campaign data fresh. I love
+            leading from the trenches, pairing junior developers, and
+            translating complex systems into stories teams can rally behind.
+          </p>
 
-        <h2>What I Do</h2>
-        <p>
-          I specialize in building
-          <strong>scalable backend systems</strong> using .NET and Python. My
-          work spans from real-time multiplayer applications to data engineering
-          pipelines. I'm passionate about clean architecture, test-driven
-          development, and creating systems that teams can understand and
-          maintain.
-        </p>
+          <h2>What I Do</h2>
+          <p>
+            I specialize in building
+            <strong>scalable backend systems</strong> using .NET and Python. My
+            work spans from real-time multiplayer applications to data
+            engineering pipelines. I'm passionate about clean architecture,
+            test-driven development, and creating systems that teams can
+            understand and maintain.
+          </p>
 
-        <p>
-          Currently, I'm building marketing automation services at
-          <strong>Ogilvy South Africa</strong>, where I develop RESTful APIs in
-          C# and ASP.NET Core that power campaign personalization and CRM
-          integrations.
-        </p>
+          <p>
+            Currently, I'm focused on expanding my skills and seeking new
+            opportunities. Previously contracted at
+            <strong>Ogilvy South Africa</strong> (Mar 2025 - Dec 2025), where I
+            developed RESTful APIs in C# and ASP.NET Core that power campaign
+            personalization and CRM integrations.
+          </p>
 
-        <h2>Technical Philosophy</h2>
-        <p>
-          I believe in writing code that tells a story. Every class, every
-          function, every variable name should communicate intent. I favor
-          <strong>composition over inheritance</strong>,
-          <strong>simplicity over cleverness</strong>, and
-          <strong>tests over documentation</strong> (though good documentation
-          is still essential).
-        </p>
+          <h2>Technical Philosophy</h2>
+          <p>
+            I believe in writing code that tells a story. Every class, every
+            function, every variable name should communicate intent. I favor
+            <strong>composition over inheritance</strong>,
+            <strong>simplicity over cleverness</strong>, and
+            <strong>tests over documentation</strong> (though good documentation
+            is still essential).
+          </p>
 
-        <p>
-          My approach combines the rigor of traditional software engineering
-          with the pragmatism needed to ship products. I'm equally comfortable
-          discussing SOLID principles and database normalization as I am
-          pair-programming through a gnarly bug at 2 AM.
-        </p>
-      </div>
-
-      <section class="cta-section">
-        <h2>Let's Build Something Together</h2>
-        <p>
-          I'm always interested in hearing about new opportunities,
-          collaborations, or just chatting about technology. Whether you have a
-          project in mind or just want to connect, feel free to reach out.
-        </p>
-        <div class="cta-buttons">
-          <a href="contact.html" class="btn btn-primary">Get in Touch</a>
-          <a
-            href="projects.html"
-            class="btn btn-primary"
-            style="
-              background: rgba(160, 172, 255, 0.15);
-              color: var(--fg);
-              border: 1px solid rgba(160, 172, 255, 0.3);
-            "
-            >View My Work</a
-          >
+          <p>
+            My approach combines the rigor of traditional software engineering
+            with the pragmatism needed to ship products. I'm equally comfortable
+            discussing SOLID principles and database normalization as I am
+            pair-programming through a gnarly bug at 2 AM.
+          </p>
         </div>
-      </section>
+
+        <section class="cta-section">
+          <h2>Let's Build Something Together</h2>
+          <p>
+            I'm always interested in hearing about new opportunities,
+            collaborations, or just chatting about technology. Whether you have
+            a project in mind or just want to connect, feel free to reach out.
+          </p>
+          <div class="cta-buttons">
+            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+            <a
+              href="projects.html"
+              class="btn btn-primary"
+              style="
+                background: rgba(160, 172, 255, 0.15);
+                color: var(--fg);
+                border: 1px solid rgba(160, 172, 255, 0.3);
+              "
+              >View My Work</a
+            >
+          </div>
+        </section>
+      </div>
     </main>
+    <script>
+      const titles = [
+        "Backend Developer",
+        "System Builder",
+        "Data Engineer",
+        "Problem Solver",
+        ".NET Developer",
+      ];
+      let currentIndex = 0;
+      const subtitleElement = document.getElementById("rotating-title");
+
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % titles.length;
+        subtitleElement.style.opacity = "0";
+        setTimeout(() => {
+          subtitleElement.textContent = titles[currentIndex];
+          subtitleElement.style.opacity = "1";
+        }, 300);
+      }, 3000);
+
+      subtitleElement.style.transition = "opacity 0.3s ease";
+    </script>
   </body>
 </html>
