@@ -82,11 +82,28 @@
 
       .sidebar-header {
         margin-bottom: 48px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .profile-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .sidebar-info {
+        flex: 1;
+        min-width: 0;
       }
 
       .sidebar-brand {
         font-family: "Space Mono", monospace;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 700;
         letter-spacing: 0.05em;
         margin-bottom: 4px;
@@ -149,11 +166,18 @@
         transform: translateX(4px);
       }
 
-      main {
+      /* Main Content */
+      .main-content {
         margin-left: var(--sidebar-width);
-        flex: 1;
-        padding: 80px 60px 96px;
-        max-width: 1200px;
+        width: calc(100vw - var(--sidebar-width));
+        display: flex;
+        justify-content: center;
+        padding: 80px 120px 96px 120px;
+      }
+
+      .main-content > * {
+        width: 100%;
+        max-width: 900px;
       }
 
       header {
@@ -357,7 +381,7 @@
           padding: 24px;
         }
 
-        main {
+        .main-content {
           margin-left: 0;
           padding: 40px 24px;
         }
@@ -384,16 +408,6 @@
 
       .btn-primary:hover {
         transform: translateY(-2px);
-      }
-
-      footer {
-        padding: 40px 24px 64px;
-        text-align: center;
-        color: rgba(244, 244, 244, 0.55);
-        font-size: 0.85rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        border-top: 1px solid rgba(160, 172, 255, 0.1);
       }
 
       /* Lightbox */
@@ -483,7 +497,45 @@
     </style>
   </head>
   <body>
-    <header>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="profile-pic.png" alt="Collin Makwala" class="profile-image" />
+        <div class="sidebar-info">
+          <div class="sidebar-brand">Collin Makwala</div>
+          <div class="sidebar-subtitle" id="rotating-title">
+            Backend Developer
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html">⌂ Home</a>
+        <a href="experience.html">▸ Experience</a>
+        <a href="projects.html">◆ Projects</a>
+        <a href="stack.html">≡ Stack</a>
+        <a href="about.html">● About</a>
+        <a href="contact.html">✉ Contact</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <h4>Connect</h4>
+        <div class="social-links">
+          <a href="https://twitter.com/yourhandle" target="_blank"
+            >X (Twitter)</a
+          >
+          <a href="https://linkedin.com/in/yourprofile" target="_blank"
+            >LinkedIn</a
+          >
+          <a href="https://github.com/Collin-1" target="_blank">GitHub</a>
+          <a href="https://instagram.com/follow_collin" target="_blank"
+            >Instagram</a
+          >
+        </div>
+      </div>
+    </aside>
+
+    <header style="display: none">
       <div class="nav-bar">
         <a href="index.html" class="brand">Collin<span>.Dev</span></a>
         <nav class="nav-links">
@@ -494,151 +546,150 @@
       </div>
     </header>
 
-    <main>
-      <a href="index.html#work" class="back-link">← Back to Portfolio</a>
+    <main class="main-content">
+      <div>
+        <a href="projects.html" class="back-link">← Back to Projects</a>
 
-      <!-- Hero -->
-      <section class="hero-section">
-        <h1>FutureV Storefront</h1>
-        <div class="project-meta">
-          <span class="meta-tag">.NET 9</span>
-          <span class="meta-tag">ASP.NET Core MVC</span>
-          <span class="meta-tag">PostgreSQL</span>
-          <span class="meta-tag">Docker</span>
-          <span class="meta-tag">Clean Architecture</span>
-        </div>
-        <p style="max-width: 800px; margin: 0 auto 32px">
-          Architected and built a high-performance, scalable eCommerce platform
-          for futuristic vehicles using .NET 9 and Clean Architecture.
-          Engineered a robust backend featuring ASP.NET Core Identity for secure
-          role-based access, the Repository Pattern for decoupled data access,
-          and FluentValidation for strict data integrity.
-        </p>
-        <a
-          href="https://github.com/Collin-1/FutureV"
-          target="_blank"
-          class="btn-primary"
-          >View Repository</a
-        >
+        <!-- Hero -->
+        <section class="hero-section">
+          <h1>FutureV Storefront</h1>
+          <div class="project-meta">
+            <span class="meta-tag">.NET 9</span>
+            <span class="meta-tag">ASP.NET Core MVC</span>
+            <span class="meta-tag">PostgreSQL</span>
+            <span class="meta-tag">Docker</span>
+            <span class="meta-tag">Clean Architecture</span>
+          </div>
+          <p style="max-width: 800px; margin: 0 auto 32px">
+            Architected and built a high-performance, scalable eCommerce
+            platform for futuristic vehicles using .NET 9 and Clean
+            Architecture. Engineered a robust backend featuring ASP.NET Core
+            Identity for secure role-based access, the Repository Pattern for
+            decoupled data access, and FluentValidation for strict data
+            integrity.
+          </p>
+          <a
+            href="https://github.com/Collin-1/FutureV"
+            target="_blank"
+            class="btn-primary"
+            >View Repository</a
+          >
 
-        <img
-          src="futurev/futurev.onrender.com_.png"
-          alt="FutureV Home Page"
-          class="hero-image"
-        />
-      </section>
+          <img
+            src="futurev/futurev.onrender.com_.png"
+            alt="FutureV Home Page"
+            class="hero-image"
+          />
+        </section>
 
-      <!-- Technical Highlights -->
-      <section>
-        <h2>Technical Architecture</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <h3>Clean Architecture</h3>
-            <p>
-              Refactored a monolithic MVC application into a strictly layered
-              solution (Core, Data, App) to enforce separation of concerns.
-              Decoupled business logic from infrastructure for long-term
-              maintainability.
-            </p>
+        <!-- Technical Highlights -->
+        <section>
+          <h2>Technical Architecture</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Clean Architecture</h3>
+              <p>
+                Refactored a monolithic MVC application into a strictly layered
+                solution (Core, Data, App) to enforce separation of concerns.
+                Decoupled business logic from infrastructure for long-term
+                maintainability.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Repository Pattern</h3>
+              <p>
+                Abstracted Entity Framework Core logic behind interfaces,
+                allowing for flexible data source management and easier unit
+                testing without tight coupling to the database context.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Secure Identity</h3>
+              <p>
+                Integrated ASP.NET Core Identity to replace basic
+                authentication, implementing secure, role-based access control
+                for the admin dashboard with cookie-based sessions.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>FluentValidation</h3>
+              <p>
+                Replaced standard DataAnnotations with FluentValidation to
+                implement complex, strongly-typed validation rules, keeping
+                domain models clean and controller logic focused.
+              </p>
+            </div>
           </div>
-          <div class="feature-card">
-            <h3>Repository Pattern</h3>
-            <p>
-              Abstracted Entity Framework Core logic behind interfaces, allowing
-              for flexible data source management and easier unit testing
-              without tight coupling to the database context.
-            </p>
-          </div>
-          <div class="feature-card">
-            <h3>Secure Identity</h3>
-            <p>
-              Integrated ASP.NET Core Identity to replace basic authentication,
-              implementing secure, role-based access control for the admin
-              dashboard with cookie-based sessions.
-            </p>
-          </div>
-          <div class="feature-card">
-            <h3>FluentValidation</h3>
-            <p>
-              Replaced standard DataAnnotations with FluentValidation to
-              implement complex, strongly-typed validation rules, keeping domain
-              models clean and controller logic focused.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Challenge & Solution -->
-      <section class="challenge-section">
-        <h2>Problem Solving</h2>
-        <div class="challenge-grid">
-          <div>
-            <h3>The Challenge</h3>
-            <p>
-              The initial application was tightly coupled to the database
-              context, making unit testing difficult and refactoring risky.
-              Additionally, managing validation for complex vehicle data was
-              cluttering controller logic.
-            </p>
+        <!-- Challenge & Solution -->
+        <section class="challenge-section">
+          <h2>Problem Solving</h2>
+          <div class="challenge-grid">
+            <div>
+              <h3>The Challenge</h3>
+              <p>
+                The initial application was tightly coupled to the database
+                context, making unit testing difficult and refactoring risky.
+                Additionally, managing validation for complex vehicle data was
+                cluttering controller logic.
+              </p>
+            </div>
+            <div>
+              <h3>The Solution</h3>
+              <p>
+                I implemented the Repository Pattern to invert dependencies,
+                allowing the Application layer to depend on abstractions. I also
+                integrated FluentValidation to encapsulate rules in dedicated
+                classes, removing validation logic from models.
+              </p>
+            </div>
           </div>
-          <div>
-            <h3>The Solution</h3>
-            <p>
-              I implemented the Repository Pattern to invert dependencies,
-              allowing the Application layer to depend on abstractions. I also
-              integrated FluentValidation to encapsulate rules in dedicated
-              classes, removing validation logic from models.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Gallery -->
-      <section>
-        <h2>Interface Gallery</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img
-              src="futurev/futurev.onrender.com_discover.png"
-              alt="Discover Page"
-              loading="lazy"
-            />
+        <!-- Gallery -->
+        <section>
+          <h2>Interface Gallery</h2>
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <img
+                src="futurev/futurev.onrender.com_discover.png"
+                alt="Discover Page"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="futurev/futurev.onrender.com_catalog (1).png"
+                alt="Vehicle Catalog"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="futurev/futurev.onrender.com_cars.png"
+                alt="Cars Management"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="futurev/futurev.onrender.com_cars_edit_1.png"
+                alt="Edit Vehicle Interface"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="futurev/futurev.onrender.com_home_contact.png"
+                alt="Contact Page"
+                loading="lazy"
+              />
+            </div>
           </div>
-          <div class="gallery-item">
-            <img
-              src="futurev/futurev.onrender.com_catalog (1).png"
-              alt="Vehicle Catalog"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="futurev/futurev.onrender.com_cars.png"
-              alt="Cars Management"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="futurev/futurev.onrender.com_cars_edit_1.png"
-              alt="Edit Vehicle Interface"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="futurev/futurev.onrender.com_home_contact.png"
-              alt="Contact Page"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
-
-    <footer>
-      <p>&copy; 2025 Collin. All rights reserved.</p>
-    </footer>
 
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox">
@@ -701,6 +752,26 @@
           }
         }
       });
+
+      // Rotating subtitle
+      const titles = [
+        "Backend Developer",
+        "System Builder",
+        "API Architect",
+        "Data Engineer",
+        "Problem Solver",
+      ];
+      let titleIndex = 0;
+      const subtitleElement = document.getElementById("rotating-title");
+
+      setInterval(() => {
+        subtitleElement.style.opacity = "0";
+        setTimeout(() => {
+          titleIndex = (titleIndex + 1) % titles.length;
+          subtitleElement.textContent = titles[titleIndex];
+          subtitleElement.style.opacity = "1";
+        }, 300);
+      }, 3000);
     </script>
   </body>
 </html>
