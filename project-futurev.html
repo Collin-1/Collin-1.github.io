@@ -20,7 +20,7 @@
         --accent-soft: rgba(160, 172, 255, 0.1);
         --card: rgba(19, 19, 24, 0.6);
         --border: rgba(160, 172, 255, 0.22);
-        --max-width: 1120px;
+        --sidebar-width: 280px;
       }
 
       * {
@@ -33,8 +33,7 @@
         font-family: "Poppins", sans-serif;
         color: var(--fg);
         background: var(--bg);
-        position: relative;
-        overflow-x: hidden;
+        display: flex;
       }
 
       body::before {
@@ -60,24 +59,166 @@
         z-index: -2;
       }
 
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(160, 172, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(160, 172, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: -1;
+        pointer-events: none;
+      }
+
       a {
         color: inherit;
         text-decoration: none;
       }
 
-      main {
-        max-width: var(--max-width);
-        margin: 0 auto;
-        padding: 120px 24px 96px;
+      /* Sidebar Navigation */
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: var(--sidebar-width);
+        height: 100vh;
+        background: rgba(13, 13, 16, 0.7);
+        backdrop-filter: blur(20px);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        padding: 40px 24px;
+        z-index: 100;
+      }
+
+      .sidebar-header {
+        margin-bottom: 48px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .profile-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .sidebar-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .sidebar-brand {
+        font-family: "Space Mono", monospace;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+      }
+
+      .sidebar-subtitle {
+        font-size: 0.85rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+      }
+
+      .sidebar-nav {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .sidebar-nav a {
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sidebar-nav a i {
+        width: 14px;
+        font-size: 0.85rem;
+      }
+
+      .sidebar-nav a .nav-icon {
+        width: 14px;
+        font-size: 0.95rem;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .sidebar-nav a:hover {
+        background: rgba(160, 172, 255, 0.15);
+        color: var(--accent);
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        padding-top: 24px;
+        border-top: 1px solid rgba(160, 172, 255, 0.15);
+      }
+
+      .sidebar-footer h4 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+        margin: 0 0 16px;
+      }
+
+      .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .social-links a {
+        font-size: 0.9rem;
+        color: var(--muted);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social-links a i {
+        width: 16px;
+        font-size: 0.95rem;
+      }
+
+      .social-links a:hover {
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        display: flex;
+        justify-content: center;
+        padding: 80px 120px 96px 120px;
+      }
+
+      .main-content > * {
+        width: 100%;
+        max-width: 900px;
       }
 
       header {
-        position: sticky;
-        top: 0;
-        backdrop-filter: blur(14px);
-        background: rgba(3, 3, 4, 0.86);
-        border-bottom: 1px solid rgba(160, 172, 255, 0.18);
-        z-index: 20;
+        display: none;
       }
 
       .nav-bar {
@@ -257,10 +398,39 @@
         font-family: "Space Mono", monospace;
         margin-bottom: 40px;
         font-size: 0.9rem;
+        padding: 10px 20px;
+        border-radius: 999px;
+        background: rgba(160, 172, 255, 0.1);
+        border: 1px solid rgba(160, 172, 255, 0.3);
+        transition: all 0.3s ease;
       }
 
       .back-link:hover {
-        text-decoration: underline;
+        background: rgba(160, 172, 255, 0.2);
+        transform: translateX(-4px);
+      }
+
+      @media (max-width: 968px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+          padding: 24px;
+        }
+
+        .main-content {
+          margin-left: 0;
+          padding: 40px 24px;
+        }
+
+        body {
+          flex-direction: column;
+        }
+
+        .sidebar-nav {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
       }
 
       .btn-primary {
@@ -275,16 +445,6 @@
 
       .btn-primary:hover {
         transform: translateY(-2px);
-      }
-
-      footer {
-        padding: 40px 24px 64px;
-        text-align: center;
-        color: rgba(244, 244, 244, 0.55);
-        font-size: 0.85rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        border-top: 1px solid rgba(160, 172, 255, 0.1);
       }
 
       /* Lightbox */
@@ -374,7 +534,9 @@
     </style>
   </head>
   <body>
-    <header>
+    <!-- Sidebar will be injected by sidebar.js -->
+
+    <header style="display: none">
       <div class="nav-bar">
         <a href="index.html" class="brand">Collin<span>.Dev</span></a>
         <nav class="nav-links">
@@ -385,151 +547,150 @@
       </div>
     </header>
 
-    <main>
-      <a href="index.html#work" class="back-link">← Back to Portfolio</a>
+    <main class="main-content">
+      <div>
+        <a href="projects.html" class="back-link">← Back to Projects</a>
 
-      <!-- Hero -->
-      <section class="hero-section">
-        <h1>FutureV Storefront</h1>
-        <div class="project-meta">
-          <span class="meta-tag">.NET 9</span>
-          <span class="meta-tag">ASP.NET Core MVC</span>
-          <span class="meta-tag">PostgreSQL</span>
-          <span class="meta-tag">Docker</span>
-          <span class="meta-tag">Clean Architecture</span>
-        </div>
-        <p style="max-width: 800px; margin: 0 auto 32px">
-          Architected and built a high-performance, scalable eCommerce platform
-          for futuristic vehicles using .NET 9 and Clean Architecture.
-          Engineered a robust backend featuring ASP.NET Core Identity for secure
-          role-based access, the Repository Pattern for decoupled data access,
-          and FluentValidation for strict data integrity.
-        </p>
-        <a
-          href="https://github.com/Collin-1/FutureV"
-          target="_blank"
-          class="btn-primary"
-          >View Repository</a
-        >
+        <!-- Hero -->
+        <section class="hero-section">
+          <h1>FutureV Storefront</h1>
+          <div class="project-meta">
+            <span class="meta-tag">.NET 9</span>
+            <span class="meta-tag">ASP.NET Core MVC</span>
+            <span class="meta-tag">PostgreSQL</span>
+            <span class="meta-tag">Docker</span>
+            <span class="meta-tag">Clean Architecture</span>
+          </div>
+          <p style="max-width: 800px; margin: 0 auto 32px">
+            Architected and built a high-performance, scalable eCommerce
+            platform for futuristic vehicles using .NET 9 and Clean
+            Architecture. Engineered a robust backend featuring ASP.NET Core
+            Identity for secure role-based access, the Repository Pattern for
+            decoupled data access, and FluentValidation for strict data
+            integrity.
+          </p>
+          <a
+            href="https://github.com/Collin-1/FutureV"
+            target="_blank"
+            class="btn-primary"
+            >View Repository</a
+          >
 
-        <img
-          src="futurev/futurev.onrender.com_.png"
-          alt="FutureV Home Page"
-          class="hero-image"
-        />
-      </section>
+          <img
+            src="futurev/futurev.onrender.com_.png"
+            alt="FutureV Home Page"
+            class="hero-image"
+          />
+        </section>
 
-      <!-- Technical Highlights -->
-      <section>
-        <h2>Technical Architecture</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <h3>Clean Architecture</h3>
-            <p>
-              Refactored a monolithic MVC application into a strictly layered
-              solution (Core, Data, App) to enforce separation of concerns.
-              Decoupled business logic from infrastructure for long-term
-              maintainability.
-            </p>
+        <!-- Technical Highlights -->
+        <section>
+          <h2>Technical Architecture</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Clean Architecture</h3>
+              <p>
+                Refactored a monolithic MVC application into a strictly layered
+                solution (Core, Data, App) to enforce separation of concerns.
+                Decoupled business logic from infrastructure for long-term
+                maintainability.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Repository Pattern</h3>
+              <p>
+                Abstracted Entity Framework Core logic behind interfaces,
+                allowing for flexible data source management and easier unit
+                testing without tight coupling to the database context.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Secure Identity</h3>
+              <p>
+                Integrated ASP.NET Core Identity to replace basic
+                authentication, implementing secure, role-based access control
+                for the admin dashboard with cookie-based sessions.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>FluentValidation</h3>
+              <p>
+                Replaced standard DataAnnotations with FluentValidation to
+                implement complex, strongly-typed validation rules, keeping
+                domain models clean and controller logic focused.
+              </p>
+            </div>
           </div>
-          <div class="feature-card">
-            <h3>Repository Pattern</h3>
-            <p>
-              Abstracted Entity Framework Core logic behind interfaces, allowing
-              for flexible data source management and easier unit testing
-              without tight coupling to the database context.
-            </p>
-          </div>
-          <div class="feature-card">
-            <h3>Secure Identity</h3>
-            <p>
-              Integrated ASP.NET Core Identity to replace basic authentication,
-              implementing secure, role-based access control for the admin
-              dashboard with cookie-based sessions.
-            </p>
-          </div>
-          <div class="feature-card">
-            <h3>FluentValidation</h3>
-            <p>
-              Replaced standard DataAnnotations with FluentValidation to
-              implement complex, strongly-typed validation rules, keeping domain
-              models clean and controller logic focused.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Challenge & Solution -->
-      <section class="challenge-section">
-        <h2>Problem Solving</h2>
-        <div class="challenge-grid">
-          <div>
-            <h3>The Challenge</h3>
-            <p>
-              The initial application was tightly coupled to the database
-              context, making unit testing difficult and refactoring risky.
-              Additionally, managing validation for complex vehicle data was
-              cluttering controller logic.
-            </p>
+        <!-- Challenge & Solution -->
+        <section class="challenge-section">
+          <h2>Problem Solving</h2>
+          <div class="challenge-grid">
+            <div>
+              <h3>The Challenge</h3>
+              <p>
+                The initial application was tightly coupled to the database
+                context, making unit testing difficult and refactoring risky.
+                Additionally, managing validation for complex vehicle data was
+                cluttering controller logic.
+              </p>
+            </div>
+            <div>
+              <h3>The Solution</h3>
+              <p>
+                I implemented the Repository Pattern to invert dependencies,
+                allowing the Application layer to depend on abstractions. I also
+                integrated FluentValidation to encapsulate rules in dedicated
+                classes, removing validation logic from models.
+              </p>
+            </div>
           </div>
-          <div>
-            <h3>The Solution</h3>
-            <p>
-              I implemented the Repository Pattern to invert dependencies,
-              allowing the Application layer to depend on abstractions. I also
-              integrated FluentValidation to encapsulate rules in dedicated
-              classes, removing validation logic from models.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Gallery -->
-      <section>
-        <h2>Interface Gallery</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img
-              src="futurev/futurev.onrender.com_discover.png"
-              alt="Discover Page"
-              loading="lazy"
-            />
+        <!-- Gallery -->
+        <section>
+          <h2>Interface Gallery</h2>
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <img
+                src="futurev/futurev.onrender.com_discover.png"
+                alt="Discover Page"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="futurev/futurev.onrender.com_catalog (1).png"
+                alt="Vehicle Catalog"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="futurev/futurev.onrender.com_cars.png"
+                alt="Cars Management"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="futurev/futurev.onrender.com_cars_edit_1.png"
+                alt="Edit Vehicle Interface"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="futurev/futurev.onrender.com_home_contact.png"
+                alt="Contact Page"
+                loading="lazy"
+              />
+            </div>
           </div>
-          <div class="gallery-item">
-            <img
-              src="futurev/futurev.onrender.com_catalog (1).png"
-              alt="Vehicle Catalog"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="futurev/futurev.onrender.com_cars.png"
-              alt="Cars Management"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="futurev/futurev.onrender.com_cars_edit_1.png"
-              alt="Edit Vehicle Interface"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="futurev/futurev.onrender.com_home_contact.png"
-              alt="Contact Page"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
-
-    <footer>
-      <p>&copy; 2025 Collin. All rights reserved.</p>
-    </footer>
 
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox">
@@ -540,58 +701,60 @@
     </div>
 
     <script>
-      let currentSlideIndex = 0;
-      const images = document.querySelectorAll(".gallery-item img");
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImg = document.getElementById("lightbox-img");
-      const closeBtn = document.querySelector(".close");
+        let currentSlideIndex = 0;
+        const images = document.querySelectorAll(".gallery-item img");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const closeBtn = document.querySelector(".close");
 
-      // Open lightbox
-      images.forEach((img, index) => {
-        img.addEventListener("click", () => {
-          lightbox.style.display = "block";
-          lightboxImg.src = img.src;
-          currentSlideIndex = index;
-          document.body.style.overflow = "hidden";
+        // Open lightbox
+        images.forEach((img, index) => {
+          img.addEventListener("click", () => {
+            lightbox.style.display = "block";
+            lightboxImg.src = img.src;
+            currentSlideIndex = index;
+            document.body.style.overflow = "hidden";
+          });
         });
-      });
 
-      // Close lightbox
-      closeBtn.addEventListener("click", () => {
-        lightbox.style.display = "none";
-        document.body.style.overflow = "auto";
-      });
-
-      // Close on outside click
-      lightbox.addEventListener("click", (e) => {
-        if (e.target === lightbox) {
+        // Close lightbox
+        closeBtn.addEventListener("click", () => {
           lightbox.style.display = "none";
           document.body.style.overflow = "auto";
-        }
-      });
+        });
 
-      // Navigation
-      function changeSlide(n) {
-        currentSlideIndex += n;
-        if (currentSlideIndex >= images.length) {
-          currentSlideIndex = 0;
-        } else if (currentSlideIndex < 0) {
-          currentSlideIndex = images.length - 1;
-        }
-        lightboxImg.src = images[currentSlideIndex].src;
-      }
-
-      // Keyboard navigation
-      document.addEventListener("keydown", (e) => {
-        if (lightbox.style.display === "block") {
-          if (e.key === "ArrowLeft") changeSlide(-1);
-          if (e.key === "ArrowRight") changeSlide(1);
-          if (e.key === "Escape") {
+        // Close on outside click
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) {
             lightbox.style.display = "none";
             document.body.style.overflow = "auto";
           }
+        });
+
+        // Navigation
+        function changeSlide(n) {
+          currentSlideIndex += n;
+          if (currentSlideIndex >= images.length) {
+            currentSlideIndex = 0;
+          } else if (currentSlideIndex < 0) {
+            currentSlideIndex = images.length - 1;
+          }
+          lightboxImg.src = images[currentSlideIndex].src;
         }
-      });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (lightbox.style.display === "block") {
+            if (e.key === "ArrowLeft") changeSlide(-1);
+            if (e.key === "ArrowRight") changeSlide(1);
+            if (e.key === "Escape") {
+              lightbox.style.display = "none";
+              document.body.style.overflow = "auto";
+            }
+          }
+        });
+
+      <script src="sidebar.js">
     </script>
   </body>
 </html>

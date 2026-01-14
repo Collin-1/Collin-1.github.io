@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PNTMFLPC");
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects - Collin Makwala</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg: #030304;
+        --bg-secondary: #0d0d10;
+        --fg: #f4f4f4;
+        --muted: #8b8b8b;
+        --accent: #a0acff;
+        --accent-soft: rgba(160, 172, 255, 0.1);
+        --card: rgba(19, 19, 24, 0.6);
+        --border: rgba(160, 172, 255, 0.22);
+        --sidebar-width: 280px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+        color: var(--fg);
+        background: var(--bg);
+        display: flex;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -40vmax;
+        background: radial-gradient(
+            circle at 15% 20%,
+            rgba(160, 172, 255, 0.2),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 85% 30%,
+            rgba(160, 172, 255, 0.12),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(160, 172, 255, 0.16),
+            transparent 60%
+          );
+        filter: blur(42px) saturate(110%);
+        z-index: -2;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(160, 172, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            90deg,
+            rgba(160, 172, 255, 0.03) 1px,
+            transparent 1px
+          );
+        background-size: 50px 50px;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* Sidebar Navigation */
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: var(--sidebar-width);
+        height: 100vh;
+        background: rgba(13, 13, 16, 0.7);
+        backdrop-filter: blur(20px);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        padding: 40px 24px;
+        z-index: 100;
+      }
+
+      .sidebar-header {
+        margin-bottom: 48px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .profile-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .sidebar-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .sidebar-brand {
+        font-family: "Space Mono", monospace;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+      }
+
+      .sidebar-subtitle {
+        font-size: 0.85rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+        min-height: 1.2em;
+      }
+
+      .sidebar-nav {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .sidebar-nav a {
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sidebar-nav a i {
+        width: 14px;
+        font-size: 0.85rem;
+      }
+
+      .sidebar-nav a .nav-icon {
+        width: 14px;
+        font-size: 0.95rem;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active {
+        background: rgba(160, 172, 255, 0.15);
+        color: var(--accent);
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        padding-top: 24px;
+        border-top: 1px solid rgba(160, 172, 255, 0.15);
+      }
+
+      .sidebar-footer h4 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+        margin: 0 0 16px;
+      }
+
+      .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .social-links a {
+        font-size: 0.9rem;
+        color: var(--muted);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social-links a i {
+        width: 16px;
+        font-size: 0.95rem;
+      }
+
+      .social-links a:hover {
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        display: flex;
+        justify-content: center;
+        padding: 80px 60px;
+      }
+
+      .main-content > * {
+        width: 100%;
+        max-width: 900px;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        margin: 0 0 16px;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        font-weight: 700;
+      }
+
+      p {
+        line-height: 1.8;
+        color: var(--muted);
+        margin-bottom: 24px;
+        font-size: 1.05rem;
+      }
+
+      .page-intro {
+        margin-bottom: 64px;
+        color: var(--muted);
+        font-size: 1.1rem;
+        line-height: 1.9;
+      }
+
+      /* Projects Grid */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .project-card {
+        background: rgba(13, 13, 16, 0.5);
+        padding: 0;
+        border-radius: 12px;
+        border: 1px solid rgba(160, 172, 255, 0.15);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .project-card:hover {
+        border-color: rgba(160, 172, 255, 0.3);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+
+      .project-header {
+        position: relative;
+      }
+
+      .favorite-icon {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+      }
+
+      .favorite-icon:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+      }
+
+      .favorite-icon i {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+      }
+
+      .project-image {
+        width: 100%;
+        height: 160px;
+        overflow: hidden;
+        background: rgba(13, 13, 16, 0.9);
+      }
+
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .project-card:hover .project-image img {
+        transform: scale(1.08);
+      }
+
+      .project-content {
+        padding: 18px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project-status {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-family: "Space Mono", monospace;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 16px;
+        font-weight: 600;
+        width: fit-content;
+      }
+
+      .status-active {
+        background: rgba(0, 255, 136, 0.15);
+        color: #00ff88;
+        border: 1px solid rgba(0, 255, 136, 0.3);
+      }
+
+      .status-archived {
+        background: rgba(255, 193, 7, 0.15);
+        color: #ffc107;
+        border: 1px solid rgba(255, 193, 7, 0.3);
+      }
+
+      .project-card h3 {
+        font-size: 1.1rem;
+        margin: 0 0 8px;
+        font-weight: 600;
+        color: var(--fg);
+      }
+
+      .project-description {
+        color: var(--muted);
+        line-height: 1.55;
+        margin-bottom: 12px;
+        flex: 1;
+        font-size: 0.85rem;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+
+      .project-tag {
+        padding: 4px 10px;
+        border-radius: 4px;
+        background: rgba(160, 172, 255, 0.08);
+        border: 1px solid rgba(160, 172, 255, 0.15);
+        font-family: "Space Mono", monospace;
+        font-size: 0.7rem;
+        color: rgba(160, 172, 255, 0.9);
+        font-weight: 400;
+      }
+
+      .project-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .link-primary {
+        background: var(--accent);
+        color: #000;
+      }
+
+      .link-primary:hover {
+        background: rgba(160, 172, 255, 0.9);
+        transform: translateY(-1px);
+      }
+
+      .link-secondary {
+        background: rgba(160, 172, 255, 0.08);
+        border: 1px solid rgba(160, 172, 255, 0.25);
+        color: var(--fg);
+      }
+
+      .link-secondary:hover {
+        background: rgba(160, 172, 255, 0.15);
+        border-color: rgba(160, 172, 255, 0.4);
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 968px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+          padding: 24px;
+        }
+
+        .main-content {
+          margin-left: 0;
+          padding: 40px 24px;
+        }
+
+        body {
+          flex-direction: column;
+        }
+
+        .sidebar-nav {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Sidebar will be injected by sidebar.js -->
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div>
+        <h1>Projects</h1>
+        <p class="page-intro">
+          A collection of my work ranging from real-time multiplayer games to
+          production-grade backend systems. Each project showcases different
+          aspects of full-stack development with a focus on clean architecture and
+          scalable design.
+        </p>
+
+        <div class="projects-grid">
+        <!-- Moment -->
+        <article class="project-card">
+          <div class="project-header">
+            <div class="project-image">
+              <img src="moment/moment-uvdz.onrender.com_.png" alt="Moment chat interface" />
+            </div>
+            <div class="favorite-icon">
+              <i class="fa-regular fa-star"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>Moment</h3>
+            <p class="project-description">
+              A privacy-first messaging platform where rooms expire on a timer or
+              group vote. SignalR keeps conversations instant while in-memory
+              storage, rate limiting, and democratic shutdown flows guarantee
+              every discussion disappears without a trace.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">.NET 9</span>
+              <span class="project-tag">SignalR</span>
+              <span class="project-tag">Real-time</span>
+              <span class="project-tag">Ephemeral Chat</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-links">
+                <a href="project-moment.html" class="project-link link-primary">View</a>
+                <a href="https://github.com/Collin-1/Moment" target="_blank" class="project-link link-secondary">GitHub</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Swarm and Snack -->
+        <article class="project-card">
+          <div class="project-header">
+            <div class="project-image">
+              <img src="swarnandsnack/ongoing-game(main).png" alt="Swarm and Snack gameplay" />
+            </div>
+            <div class="favorite-icon">
+              <i class="fa-regular fa-star"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>Swarm and Snack</h3>
+            <p class="project-description">
+              A head-to-head arena game where each player commands a swarm of
+              underlings in a deterministic .NET 9 simulation. SignalR keeps 50 ms
+              ticks in sync while client-side prediction and Canvas 2D ensure the
+              action feels responsive in the browser.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">ASP.NET Core 9</span>
+              <span class="project-tag">SignalR</span>
+              <span class="project-tag">Multiplayer</span>
+              <span class="project-tag">Canvas 2D</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-links">
+                <a href="project-swarmandsnack.html" class="project-link link-primary">View</a>
+                <a href="https://github.com/Collin-1/swarmandsnack/pull/4" target="_blank" class="project-link link-secondary">GitHub</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- FutureV -->
+        <article class="project-card">
+          <div class="project-header">
+            <div class="project-image">
+              <img src="futurev/futurev.onrender.com_discover.png" alt="FutureV storefront" />
+            </div>
+            <div class="favorite-icon">
+              <i class="fa-regular fa-star"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>FutureV Storefront</h3>
+            <p class="project-description">
+              A speculative vehicle eCommerce experience pairing cinematic
+              storytelling with a lightweight admin deck. Passphrase-protected
+              CRUD flows manage multi-angle galleries while EF Core seeds the
+              catalog for fast demos and Render deployments.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">.NET 9 Razor Pages</span>
+              <span class="project-tag">EF Core</span>
+              <span class="project-tag">PostgreSQL</span>
+              <span class="project-tag">Bootstrap 5</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-links">
+                <a href="project-futurev.html" class="project-link link-primary">View</a>
+                <a href="https://github.com/Collin-1/FutureV" target="_blank" class="project-link link-secondary">GitHub</a>
+              </div>
+            </div>
+        </article>
+
+        <!-- Airflow ETL Pipelines -->
+        <article class="project-card">
+          <div class="project-content">
+            <h3>Airflow ETL Pipelines</h3>
+            <p class="project-description">
+              Automated workflows that communicate with GitHub API for pull
+              request hygiene and data validation. Built resilient ETL streams
+              across PostgreSQL and MongoDB backends with proper error handling
+              and monitoring.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Airflow</span>
+              <span class="project-tag">PostgreSQL</span>
+              <span class="project-tag">MongoDB</span>
+              <span class="project-tag">ETL</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-links">
+                <a href="https://github.com/Collin-1" target="_blank" class="project-link link-secondary">GitHub</a>
+              </div>
+            </div>
+        </article>
+
+        <!-- Marketing Automation APIs -->
+        <article class="project-card">
+          <div class="project-content">
+            <h3>Marketing Automation APIs</h3>
+            <p class="project-description">
+              RESTful services in C# and ASP.NET Core that power marketing
+              automation, campaign personalization, and CRM integrations. Built
+              with clean architecture principles and comprehensive test coverage.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">C#</span>
+              <span class="project-tag">ASP.NET Core</span>
+              <span class="project-tag">SQL Server</span>
+              <span class="project-tag">REST API</span>
+              <span class="project-tag">TDD</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-links">
+                <a href="contact.html" class="project-link link-secondary">Inquire</a>
+              </div>
+            </div>
+        </article>
+      </div>
+    </main>
+    <script src="sidebar.js"></script>
+  </body>
+</html>

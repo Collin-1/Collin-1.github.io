@@ -20,7 +20,7 @@
         --accent-soft: rgba(160, 172, 255, 0.1);
         --card: rgba(19, 19, 24, 0.6);
         --border: rgba(160, 172, 255, 0.22);
-        --max-width: 1120px;
+        --sidebar-width: 280px;
       }
 
       * {
@@ -33,8 +33,7 @@
         font-family: "Poppins", sans-serif;
         color: var(--fg);
         background: var(--bg);
-        position: relative;
-        overflow-x: hidden;
+        display: flex;
       }
 
       body::before {
@@ -60,24 +59,168 @@
         z-index: -2;
       }
 
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(160, 172, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(160, 172, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: -1;
+        pointer-events: none;
+      }
+
       a {
         color: inherit;
         text-decoration: none;
       }
 
-      main {
-        max-width: var(--max-width);
-        margin: 0 auto;
-        padding: 120px 24px 96px;
+      /* Sidebar Navigation */
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: var(--sidebar-width);
+        height: 100vh;
+        background: rgba(13, 13, 16, 0.7);
+        backdrop-filter: blur(20px);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        padding: 40px 24px;
+        z-index: 100;
+      }
+
+      .sidebar-header {
+        margin-bottom: 48px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .profile-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .sidebar-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .sidebar-brand {
+        font-family: "Space Mono", monospace;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+      }
+
+      .sidebar-subtitle {
+        font-size: 0.85rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+        min-height: 1.2em;
+      }
+
+      .sidebar-nav {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .sidebar-nav a {
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sidebar-nav a i {
+        width: 14px;
+        font-size: 0.85rem;
+      }
+
+      .sidebar-nav a .nav-icon {
+        width: 14px;
+        font-size: 0.95rem;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active {
+        background: rgba(160, 172, 255, 0.15);
+        color: var(--accent);
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        padding-top: 24px;
+        border-top: 1px solid rgba(160, 172, 255, 0.15);
+      }
+
+      .sidebar-footer h4 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+        margin: 0 0 16px;
+      }
+
+      .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .social-links a {
+        font-size: 0.9rem;
+        color: var(--muted);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social-links a i {
+        width: 16px;
+        font-size: 0.95rem;
+      }
+
+      .social-links a:hover {
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        display: flex;
+        justify-content: center;
+        padding: 80px 120px 96px 120px;
+      }
+
+      .main-content > * {
+        width: 100%;
+        max-width: 900px;
       }
 
       header {
-        position: sticky;
-        top: 0;
-        backdrop-filter: blur(14px);
-        background: rgba(3, 3, 4, 0.86);
-        border-bottom: 1px solid rgba(160, 172, 255, 0.18);
-        z-index: 20;
+        display: none;
       }
 
       .nav-bar {
@@ -257,10 +400,40 @@
         font-family: "Space Mono", monospace;
         margin-bottom: 40px;
         font-size: 0.9rem;
+        padding: 10px 20px;
+        border-radius: 999px;
+        background: rgba(160, 172, 255, 0.1);
+        border: 1px solid rgba(160, 172, 255, 0.3);
+        transition: all 0.3s ease;
       }
 
       .back-link:hover {
-        text-decoration: underline;
+        background: rgba(160, 172, 255, 0.2);
+        transform: translateX(-4px);
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 968px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+          padding: 24px;
+        }
+
+        .main-content {
+          margin-left: 0;
+          padding: 40px 24px;
+        }
+
+        body {
+          flex-direction: column;
+        }
+
+        .sidebar-nav {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
       }
 
       .btn-primary {
@@ -275,16 +448,6 @@
 
       .btn-primary:hover {
         transform: translateY(-2px);
-      }
-
-      footer {
-        padding: 40px 24px 64px;
-        text-align: center;
-        color: rgba(244, 244, 244, 0.55);
-        font-size: 0.85rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        border-top: 1px solid rgba(160, 172, 255, 0.1);
       }
 
       /* Lightbox */
@@ -374,127 +537,116 @@
     </style>
   </head>
   <body>
-    <header>
-      <div class="nav-bar">
-        <a href="index.html" class="brand">Collin<span>.Dev</span></a>
-        <nav class="nav-links">
-          <a href="index.html#work">Work</a>
-          <a href="index.html#about">About</a>
-          <a href="index.html#contact">Contact</a>
-        </nav>
+    <!-- Sidebar will be injected by sidebar.js -->
+
+    <main class="main-content">
+      <div>
+        <a href="projects.html" class="back-link">← Back to Projects</a>
+
+        <!-- Hero -->
+        <section class="hero-section">
+          <h1>Moment</h1>
+          <div class="project-meta">
+            <span class="meta-tag">.NET 9</span>
+            <span class="meta-tag">SignalR</span>
+            <span class="meta-tag">Ephemeral Chat</span>
+            <span class="meta-tag">Privacy-First</span>
+          </div>
+          <p style="max-width: 800px; margin: 0 auto 32px">
+            A privacy-first messaging platform where rooms expire on a timer or
+            group vote. SignalR keeps conversations instant while in-memory
+            storage, rate limiting, and democratic shutdown flows guarantee
+            every discussion disappears without a trace.
+          </p>
+          <a
+            href="https://github.com/Collin-1/Moment"
+            target="_blank"
+            class="btn-primary"
+            >View Repository</a
+          >
+
+          <img
+            src="moment/moment-uvdz.onrender.com_.png"
+            alt="Moment Home Page"
+            class="hero-image"
+          />
+        </section>
+
+        <!-- Key Features -->
+        <section>
+          <h2>Key Features</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Ephemeral by Design</h3>
+              <p>
+                Every room is temporary. Whether triggered by a pre-set timer or
+                a democratic vote by participants, once a room is closed, all
+                data is wiped from memory. No logs, no history, no trace.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Real-Time Communication</h3>
+              <p>
+                Built with SignalR on .NET 9, Moment delivers instant message
+                delivery and presence updates. The architecture ensures low
+                latency even as users join and leave rapidly.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Democratic Control</h3>
+              <p>
+                Users have agency over their privacy. The "Democratic Shutdown"
+                feature allows participants to vote to close the room
+                immediately if the conversation veers off course.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Security & Privacy</h3>
+              <p>
+                With in-memory storage, data never touches a persistent disk.
+                Rate limiting protects against abuse, ensuring the platform
+                remains a safe space for genuine ephemeral conversations.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gallery -->
+        <section>
+          <h2>Interface Gallery</h2>
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <img
+                src="moment/moment-uvdz.onrender.com_Room_Create.png"
+                alt="Create Room"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="moment/moment-uvdz.onrender.com_Room_Join.png"
+                alt="Join Room"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="moment/moment-uvdz.onrender.com_Room_roomCode=ERJZVN.png"
+                alt="Active Chat Room"
+                loading="lazy"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="moment/moment-uvdz.onrender.com_Room_SelectDisplay_roomCode=ERJZVN.png"
+                alt="Select Display Name"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
       </div>
-    </header>
-
-    <main>
-      <a href="index.html#work" class="back-link">← Back to Portfolio</a>
-
-      <!-- Hero -->
-      <section class="hero-section">
-        <h1>Moment</h1>
-        <div class="project-meta">
-          <span class="meta-tag">.NET 9</span>
-          <span class="meta-tag">SignalR</span>
-          <span class="meta-tag">Ephemeral Chat</span>
-          <span class="meta-tag">Privacy-First</span>
-        </div>
-        <p style="max-width: 800px; margin: 0 auto 32px">
-          A privacy-first messaging platform where rooms expire on a timer or
-          group vote. SignalR keeps conversations instant while in-memory
-          storage, rate limiting, and democratic shutdown flows guarantee every
-          discussion disappears without a trace.
-        </p>
-        <a
-          href="https://github.com/Collin-1/Moment"
-          target="_blank"
-          class="btn-primary"
-          >View Repository</a
-        >
-
-        <img
-          src="moment/moment-uvdz.onrender.com_.png"
-          alt="Moment Home Page"
-          class="hero-image"
-        />
-      </section>
-
-      <!-- Key Features -->
-      <section>
-        <h2>Key Features</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <h3>Ephemeral by Design</h3>
-            <p>
-              Every room is temporary. Whether triggered by a pre-set timer or a
-              democratic vote by participants, once a room is closed, all data
-              is wiped from memory. No logs, no history, no trace.
-            </p>
-          </div>
-          <div class="feature-card">
-            <h3>Real-Time Communication</h3>
-            <p>
-              Built with SignalR on .NET 9, Moment delivers instant message
-              delivery and presence updates. The architecture ensures low
-              latency even as users join and leave rapidly.
-            </p>
-          </div>
-          <div class="feature-card">
-            <h3>Democratic Control</h3>
-            <p>
-              Users have agency over their privacy. The "Democratic Shutdown"
-              feature allows participants to vote to close the room immediately
-              if the conversation veers off course.
-            </p>
-          </div>
-          <div class="feature-card">
-            <h3>Security & Privacy</h3>
-            <p>
-              With in-memory storage, data never touches a persistent disk. Rate
-              limiting protects against abuse, ensuring the platform remains a
-              safe space for genuine ephemeral conversations.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Gallery -->
-      <section>
-        <h2>Interface Gallery</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img
-              src="moment/moment-uvdz.onrender.com_Room_Create.png"
-              alt="Create Room"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="moment/moment-uvdz.onrender.com_Room_Join.png"
-              alt="Join Room"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="moment/moment-uvdz.onrender.com_Room_roomCode=ERJZVN.png"
-              alt="Active Chat Room"
-              loading="lazy"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="moment/moment-uvdz.onrender.com_Room_SelectDisplay_roomCode=ERJZVN.png"
-              alt="Select Display Name"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </section>
     </main>
-
-    <footer>
-      <p>&copy; 2025 Collin. All rights reserved.</p>
-    </footer>
 
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox">
@@ -558,5 +710,7 @@
         }
       });
     </script>
+
+    <script src="sidebar.js"></script>
   </body>
 </html>

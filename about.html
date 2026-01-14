@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PNTMFLPC");
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About - Collin Makwala</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg: #030304;
+        --bg-secondary: #0d0d10;
+        --fg: #f4f4f4;
+        --muted: #8b8b8b;
+        --accent: #a0acff;
+        --accent-soft: rgba(160, 172, 255, 0.1);
+        --card: rgba(19, 19, 24, 0.6);
+        --border: rgba(160, 172, 255, 0.22);
+        --sidebar-width: 280px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+        color: var(--fg);
+        background: var(--bg);
+        display: flex;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -40vmax;
+        background: radial-gradient(
+            circle at 15% 20%,
+            rgba(160, 172, 255, 0.2),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 85% 30%,
+            rgba(160, 172, 255, 0.12),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(160, 172, 255, 0.16),
+            transparent 60%
+          );
+        filter: blur(42px) saturate(110%);
+        z-index: -2;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(160, 172, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(160, 172, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* Sidebar Navigation */
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: var(--sidebar-width);
+        height: 100vh;
+        background: rgba(13, 13, 16, 0.7);
+        backdrop-filter: blur(20px);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        padding: 40px 24px;
+        z-index: 100;
+      }
+
+      .sidebar-header {
+        margin-bottom: 48px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .profile-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .sidebar-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .sidebar-brand {
+        font-family: "Space Mono", monospace;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+      }
+
+      .sidebar-subtitle {
+        font-size: 0.85rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+        min-height: 1.2em;
+      }
+
+      .sidebar-nav {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .sidebar-nav a {
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sidebar-nav a i {
+        width: 14px;
+        font-size: 0.85rem;
+      }
+
+      .sidebar-nav a .nav-icon {
+        width: 14px;
+        font-size: 0.95rem;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active {
+        background: rgba(160, 172, 255, 0.15);
+        color: var(--accent);
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        padding-top: 24px;
+        border-top: 1px solid rgba(160, 172, 255, 0.15);
+      }
+
+      .sidebar-footer h4 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+        margin: 0 0 16px;
+      }
+
+      .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .social-links a {
+        font-size: 0.9rem;
+        color: var(--muted);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social-links a i {
+        width: 16px;
+        font-size: 0.95rem;
+      }
+
+      .social-links a:hover {
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        display: flex;
+        justify-content: center;
+        padding: 80px 60px;
+      }
+
+      .main-content > * {
+        width: 100%;
+        max-width: 900px;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        margin: 0 0 32px;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        font-weight: 700;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+        margin: 48px 0 24px;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+        margin: 32px 0 16px;
+        font-weight: 600;
+      }
+
+      p {
+        line-height: 1.9;
+        color: var(--muted);
+        margin-bottom: 24px;
+        font-size: 1.1rem;
+      }
+
+      .about-content p strong {
+        color: var(--fg);
+      }
+
+      .skills-section {
+        margin-top: 48px;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 24px;
+        margin-top: 32px;
+      }
+
+      .skill-category {
+        background: rgba(13, 13, 16, 0.5);
+        padding: 24px;
+        border-radius: 12px;
+        border: 1px solid rgba(160, 172, 255, 0.2);
+      }
+
+      .skill-category h3 {
+        margin: 0 0 16px;
+        font-size: 1.1rem;
+        color: var(--accent);
+      }
+
+      .skill-category ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .skill-category li {
+        padding: 8px 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .skill-category li::before {
+        content: "▹ ";
+        color: var(--accent);
+        font-weight: bold;
+        margin-right: 8px;
+      }
+
+      .cta-section {
+        margin-top: 64px;
+        padding: 40px;
+        background: linear-gradient(
+          135deg,
+          rgba(160, 172, 255, 0.15),
+          rgba(13, 13, 16, 0.6)
+        );
+        border-radius: 16px;
+        border: 1px solid rgba(160, 172, 255, 0.3);
+      }
+
+      .cta-section h2 {
+        margin-top: 0;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #000;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(160, 172, 255, 0.4);
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 968px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+          padding: 24px;
+        }
+
+        .main-content {
+          margin-left: 0;
+          padding: 40px 24px;
+        }
+
+        body {
+          flex-direction: column;
+        }
+
+        .sidebar-nav {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Sidebar will be injected by sidebar.js -->
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div>
+        <h1>About Me</h1>
+
+        <div class="about-content">
+          <p>
+            <strong>Full-stack software developer</strong> with a proven track
+            record building production systems that scale. I started as a visual
+            artist before discovering that code lets me create with the same
+            creative energy—but with solutions I can ship, test, and iterate on.
+          </p>
+
+          <p>
+            After a formative stint in
+            <strong>B2B sales at Bearing Man Group</strong>, where I learned to
+            translate technical complexity into business value, I pivoted fully
+            into software development. That experience taught me how to
+            communicate with stakeholders, understand user needs, and deliver
+            solutions that solve real problems—skills that make me a stronger
+            engineer today.
+          </p>
+
+          <p>
+            I specialize in
+            <strong>full-stack development with a backend focus</strong>:
+            building RESTful APIs in .NET and Python, designing data pipelines
+            with Airflow, architecting SQL and NoSQL databases, and creating
+            responsive front-end experiences. Most recently at
+            <strong>Ogilvy South Africa</strong> (Mar 2025 - Dec 2025), I
+            developed ASP.NET Core services powering marketing automation,
+            campaign personalization, and CRM integrations—handling millions of
+            requests while maintaining sub-200ms response times.
+          </p>
+
+          <h2>What I Bring to Your Team</h2>
+          <p>
+            <strong>End-to-End Ownership:</strong> I can take a feature from
+            database schema to API endpoint to front-end integration, ensuring
+            consistency and quality at every layer.
+          </p>
+
+          <p>
+            <strong>Production-Ready Code:</strong> Every system I build
+            includes comprehensive testing, proper error handling,
+            observability, and documentation. I write code that teams can
+            maintain and extend, not just code that works.
+          </p>
+
+          <p>
+            <strong>Scalability & Performance:</strong> From optimizing SQL
+            queries to implementing caching strategies to designing event-driven
+            architectures, I build systems that grow with your business.
+          </p>
+
+          <p>
+            <strong>Team Collaboration:</strong> I've mentored junior
+            developers, led code reviews, and championed best practices. I
+            believe great software is built by great teams, and I actively
+            contribute to that culture.
+          </p>
+
+          <h2>Technical Expertise</h2>
+          <p>
+            <strong>Backend:</strong> C# / .NET Core, ASP.NET Core, Entity
+            Framework Core, SignalR, Python, FastAPI<br />
+            <strong>Data:</strong> SQL Server, PostgreSQL, MongoDB, Airflow, ETL
+            pipelines, data modeling<br />
+            <strong>Frontend:</strong> JavaScript, HTML/CSS, Razor Pages,
+            Bootstrap, responsive design<br />
+            <strong>DevOps:</strong> Docker, Git, CI/CD (Jenkins), Azure,
+            deployment automation<br />
+            <strong>Practices:</strong> Clean Architecture, TDD, SOLID
+            principles, Agile/Scrum
+          </p>
+
+          <h2>Why I'm Your Next Hire</h2>
+          <p>
+            I'm not just looking for a job—I'm looking to join a team where I
+            can make an impact. Whether it's reducing API response times by 40%,
+            automating manual processes, or mentoring teammates on best
+            practices, I bring a builder's mindset and an ownership mentality to
+            everything I touch.
+          </p>
+
+          <p>
+            I thrive in environments where quality matters, where code is
+            reviewed thoughtfully, and where continuous improvement is the norm.
+            If you're building something meaningful and need a developer who can
+            execute across the stack while keeping the big picture in mind,
+            let's talk.
+          </p>
+        </div>
+
+        <section class="cta-section">
+          <h2>Let's Build Something Together</h2>
+          <p>
+            I'm always interested in hearing about new opportunities,
+            collaborations, or just chatting about technology. Whether you have
+            a project in mind or just want to connect, feel free to reach out.
+          </p>
+          <div class="cta-buttons">
+            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+            <a
+              href="projects.html"
+              class="btn btn-primary"
+              style="
+                background: rgba(160, 172, 255, 0.15);
+                color: var(--fg);
+                border: 1px solid rgba(160, 172, 255, 0.3);
+              "
+              >View My Work</a
+            >
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="sidebar.js"></script>
+  </body>
+</html>
