@@ -23,6 +23,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <style>
       :root {
         --bg: #030304;
@@ -70,6 +74,24 @@
           );
         filter: blur(42px) saturate(110%);
         z-index: -2;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(160, 172, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            90deg,
+            rgba(160, 172, 255, 0.03) 1px,
+            transparent 1px
+          );
+        background-size: 50px 50px;
+        z-index: -1;
+        pointer-events: none;
       }
 
       a {
@@ -147,9 +169,16 @@
         gap: 12px;
       }
 
-      .sidebar-nav a::before {
-        content: attr(data-icon);
-        font-size: 1.1rem;
+      .sidebar-nav a i {
+        width: 14px;
+        font-size: 0.85rem;
+      }
+
+      .sidebar-nav a .nav-icon {
+        width: 14px;
+        font-size: 0.95rem;
+        display: inline-block;
+        text-align: center;
       }
 
       .sidebar-nav a:hover,
@@ -182,6 +211,14 @@
         font-size: 0.9rem;
         color: var(--muted);
         transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social-links a i {
+        width: 16px;
+        font-size: 0.95rem;
       }
 
       .social-links a:hover {
@@ -200,7 +237,7 @@
 
       .main-content > * {
         width: 100%;
-        max-width: 1000px;
+        max-width: 900px;
       }
 
       h1 {
@@ -228,24 +265,82 @@
       /* Projects Grid */
       .projects-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 32px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
       }
 
       .project-card {
-        background: rgba(13, 13, 16, 0.6);
-        padding: 32px;
-        border-radius: 16px;
-        border: 1px solid rgba(160, 172, 255, 0.2);
+        background: rgba(13, 13, 16, 0.5);
+        padding: 0;
+        border-radius: 12px;
+        border: 1px solid rgba(160, 172, 255, 0.15);
         transition: all 0.3s ease;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
+        position: relative;
       }
 
       .project-card:hover {
-        border-color: rgba(160, 172, 255, 0.4);
-        transform: translateY(-6px);
-        box-shadow: 0 12px 32px rgba(160, 172, 255, 0.15);
+        border-color: rgba(160, 172, 255, 0.3);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+
+      .project-header {
+        position: relative;
+      }
+
+      .favorite-icon {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+      }
+
+      .favorite-icon:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+      }
+
+      .favorite-icon i {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+      }
+
+      .project-image {
+        width: 100%;
+        height: 160px;
+        overflow: hidden;
+        background: rgba(13, 13, 16, 0.9);
+      }
+
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .project-card:hover .project-image img {
+        transform: scale(1.08);
+      }
+
+      .project-content {
+        padding: 18px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
       }
 
       .project-status {
@@ -274,55 +369,56 @@
       }
 
       .project-card h3 {
-        font-size: 1.4rem;
-        margin: 0 0 12px;
-        font-weight: 700;
-      }
-
-      .project-stats {
-        display: flex;
-        gap: 12px;
-        margin-bottom: 16px;
-        font-size: 0.85rem;
-        color: var(--muted);
+        font-size: 1.1rem;
+        margin: 0 0 8px;
+        font-weight: 600;
+        color: var(--fg);
       }
 
       .project-description {
         color: var(--muted);
-        line-height: 1.7;
-        margin-bottom: 20px;
+        line-height: 1.55;
+        margin-bottom: 12px;
         flex: 1;
+        font-size: 0.85rem;
       }
 
       .project-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 20px;
+        gap: 6px;
+        margin-bottom: 14px;
       }
 
       .project-tag {
-        padding: 5px 10px;
-        border-radius: 999px;
-        background: rgba(160, 172, 255, 0.1);
-        border: 1px solid rgba(160, 172, 255, 0.2);
+        padding: 4px 10px;
+        border-radius: 4px;
+        background: rgba(160, 172, 255, 0.08);
+        border: 1px solid rgba(160, 172, 255, 0.15);
         font-family: "Space Mono", monospace;
         font-size: 0.7rem;
-        color: var(--accent);
+        color: rgba(160, 172, 255, 0.9);
+        font-weight: 400;
+      }
+
+      .project-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
       }
 
       .project-links {
         display: flex;
-        gap: 12px;
-        margin-top: auto;
+        gap: 10px;
       }
 
       .project-link {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 10px 18px;
-        border-radius: 999px;
+        padding: 8px 16px;
+        border-radius: 6px;
         font-size: 0.85rem;
         font-weight: 600;
         transition: all 0.3s ease;
@@ -334,17 +430,19 @@
       }
 
       .link-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(160, 172, 255, 0.4);
+        background: rgba(160, 172, 255, 0.9);
+        transform: translateY(-1px);
       }
 
       .link-secondary {
-        background: rgba(160, 172, 255, 0.1);
-        border: 1px solid rgba(160, 172, 255, 0.3);
+        background: rgba(160, 172, 255, 0.08);
+        border: 1px solid rgba(160, 172, 255, 0.25);
+        color: var(--fg);
       }
 
       .link-secondary:hover {
-        background: rgba(160, 172, 255, 0.2);
+        background: rgba(160, 172, 255, 0.15);
+        border-color: rgba(160, 172, 255, 0.4);
       }
 
       /* Mobile Responsive */
@@ -378,43 +476,7 @@
   </head>
 
   <body>
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <img src="profile-pic.png" alt="Collin Makwala" class="profile-image" />
-        <div class="sidebar-info">
-          <div class="sidebar-brand">Collin Makwala</div>
-          <div class="sidebar-subtitle" id="rotating-title">
-            Backend Developer
-          </div>
-        </div>
-      </div>
-
-      <nav class="sidebar-nav">
-        <a href="index.html" data-icon="⌂">Home</a>
-        <a href="experience.html" data-icon="▸">Experience</a>
-        <a href="projects.html" class="active" data-icon="◆">Projects</a>
-        <a href="stack.html" data-icon="≡">Stack</a>
-        <a href="about.html" data-icon="●">About</a>
-        <a href="contact.html" data-icon="✉">Contact</a>
-      </nav>
-
-      <div class="sidebar-footer">
-        <h4>Connect</h4>
-        <div class="social-links">
-          <a href="https://twitter.com/yourhandle" target="_blank"
-            >X (Twitter)</a
-          >
-          <a href="https://linkedin.com/in/yourprofile" target="_blank"
-            >LinkedIn</a
-          >
-          <a href="https://github.com/Collin-1" target="_blank">GitHub</a>
-          <a href="https://instagram.com/follow_collin" target="_blank"
-            >Instagram</a
-          >
-        </div>
-      </div>
-    </aside>
+    <!-- Sidebar will be injected by sidebar.js -->
 
     <!-- Main Content -->
     <main class="main-content">
@@ -430,164 +492,150 @@
         <div class="projects-grid">
         <!-- Moment -->
         <article class="project-card">
-          <span class="project-status status-active">Active</span>
-          <h3>Moment</h3>
-          <p class="project-description">
-            A privacy-first messaging platform where rooms expire on a timer or
-            group vote. SignalR keeps conversations instant while in-memory
-            storage, rate limiting, and democratic shutdown flows guarantee
-            every discussion disappears without a trace.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">.NET 9</span>
-            <span class="project-tag">SignalR</span>
-            <span class="project-tag">Real-time</span>
-            <span class="project-tag">Ephemeral Chat</span>
+          <div class="project-header">
+            <div class="project-image">
+              <img src="moment/moment-uvdz.onrender.com_.png" alt="Moment chat interface" />
+            </div>
+            <div class="favorite-icon">
+              <i class="fa-regular fa-star"></i>
+            </div>
           </div>
-          <div class="project-links">
-            <a href="project-moment.html" class="project-link link-primary"
-              >View Project</a
-            >
-            <a
-              href="https://github.com/Collin-1/Moment"
-              target="_blank"
-              class="project-link link-secondary"
-              >GitHub</a
-            >
+          <div class="project-content">
+            <h3>Moment</h3>
+            <p class="project-description">
+              A privacy-first messaging platform where rooms expire on a timer or
+              group vote. SignalR keeps conversations instant while in-memory
+              storage, rate limiting, and democratic shutdown flows guarantee
+              every discussion disappears without a trace.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">.NET 9</span>
+              <span class="project-tag">SignalR</span>
+              <span class="project-tag">Real-time</span>
+              <span class="project-tag">Ephemeral Chat</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-links">
+                <a href="project-moment.html" class="project-link link-primary">View</a>
+                <a href="https://github.com/Collin-1/Moment" target="_blank" class="project-link link-secondary">GitHub</a>
+              </div>
+            </div>
           </div>
         </article>
 
         <!-- Swarm and Snack -->
         <article class="project-card">
-          <span class="project-status status-active">Active</span>
-          <h3>Swarm and Snack</h3>
-          <p class="project-description">
-            A head-to-head arena game where each player commands a swarm of
-            underlings in a deterministic .NET 9 simulation. SignalR keeps 50 ms
-            ticks in sync while client-side prediction and Canvas 2D ensure the
-            action feels responsive in the browser.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">ASP.NET Core 9</span>
-            <span class="project-tag">SignalR</span>
-            <span class="project-tag">Multiplayer</span>
-            <span class="project-tag">Canvas 2D</span>
+          <div class="project-header">
+            <div class="project-image">
+              <img src="swarnandsnack/ongoing-game(main).png" alt="Swarm and Snack gameplay" />
+            </div>
+            <div class="favorite-icon">
+              <i class="fa-regular fa-star"></i>
+            </div>
           </div>
-          <div class="project-links">
-            <a
-              href="project-swarmandsnack.html"
-              class="project-link link-primary"
-              >View Project</a
-            >
-            <a
-              href="https://github.com/Collin-1/swarmandsnack/pull/4"
-              target="_blank"
-              class="project-link link-secondary"
-              >GitHub</a
-            >
+          <div class="project-content">
+            <h3>Swarm and Snack</h3>
+            <p class="project-description">
+              A head-to-head arena game where each player commands a swarm of
+              underlings in a deterministic .NET 9 simulation. SignalR keeps 50 ms
+              ticks in sync while client-side prediction and Canvas 2D ensure the
+              action feels responsive in the browser.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">ASP.NET Core 9</span>
+              <span class="project-tag">SignalR</span>
+              <span class="project-tag">Multiplayer</span>
+              <span class="project-tag">Canvas 2D</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-links">
+                <a href="project-swarmandsnack.html" class="project-link link-primary">View</a>
+                <a href="https://github.com/Collin-1/swarmandsnack/pull/4" target="_blank" class="project-link link-secondary">GitHub</a>
+              </div>
+            </div>
           </div>
         </article>
 
         <!-- FutureV -->
         <article class="project-card">
-          <span class="project-status status-active">Active</span>
-          <h3>FutureV Storefront</h3>
-          <p class="project-description">
-            A speculative vehicle eCommerce experience pairing cinematic
-            storytelling with a lightweight admin deck. Passphrase-protected
-            CRUD flows manage multi-angle galleries while EF Core seeds the
-            catalog for fast demos and Render deployments.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">.NET 9 Razor Pages</span>
-            <span class="project-tag">EF Core</span>
-            <span class="project-tag">PostgreSQL</span>
-            <span class="project-tag">Bootstrap 5</span>
+          <div class="project-header">
+            <div class="project-image">
+              <img src="futurev/futurev.onrender.com_discover.png" alt="FutureV storefront" />
+            </div>
+            <div class="favorite-icon">
+              <i class="fa-regular fa-star"></i>
+            </div>
           </div>
-          <div class="project-links">
-            <a href="project-futurev.html" class="project-link link-primary"
-              >View Project</a
-            >
-            <a
-              href="https://github.com/Collin-1/FutureV"
-              target="_blank"
-              class="project-link link-secondary"
-              >GitHub</a
-            >
-          </div>
+          <div class="project-content">
+            <h3>FutureV Storefront</h3>
+            <p class="project-description">
+              A speculative vehicle eCommerce experience pairing cinematic
+              storytelling with a lightweight admin deck. Passphrase-protected
+              CRUD flows manage multi-angle galleries while EF Core seeds the
+              catalog for fast demos and Render deployments.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">.NET 9 Razor Pages</span>
+              <span class="project-tag">EF Core</span>
+              <span class="project-tag">PostgreSQL</span>
+              <span class="project-tag">Bootstrap 5</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-links">
+                <a href="project-futurev.html" class="project-link link-primary">View</a>
+                <a href="https://github.com/Collin-1/FutureV" target="_blank" class="project-link link-secondary">GitHub</a>
+              </div>
+            </div>
         </article>
 
-        <!-- Add more projects as needed -->
+        <!-- Airflow ETL Pipelines -->
         <article class="project-card">
-          <span class="project-status status-active">Active</span>
-          <h3>Airflow ETL Pipelines</h3>
-          <p class="project-description">
-            Automated workflows that communicate with GitHub API for pull
-            request hygiene and data validation. Built resilient ETL streams
-            across PostgreSQL and MongoDB backends with proper error handling
-            and monitoring.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">Python</span>
-            <span class="project-tag">Airflow</span>
-            <span class="project-tag">PostgreSQL</span>
-            <span class="project-tag">MongoDB</span>
-            <span class="project-tag">ETL</span>
-          </div>
-          <div class="project-links">
-            <a
-              href="https://github.com/Collin-1"
-              target="_blank"
-              class="project-link link-secondary"
-              >GitHub</a
-            >
-          </div>
+          <div class="project-content">
+            <h3>Airflow ETL Pipelines</h3>
+            <p class="project-description">
+              Automated workflows that communicate with GitHub API for pull
+              request hygiene and data validation. Built resilient ETL streams
+              across PostgreSQL and MongoDB backends with proper error handling
+              and monitoring.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Airflow</span>
+              <span class="project-tag">PostgreSQL</span>
+              <span class="project-tag">MongoDB</span>
+              <span class="project-tag">ETL</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-links">
+                <a href="https://github.com/Collin-1" target="_blank" class="project-link link-secondary">GitHub</a>
+              </div>
+            </div>
         </article>
 
+        <!-- Marketing Automation APIs -->
         <article class="project-card">
-          <span class="project-status status-active">Active</span>
-          <h3>Marketing Automation APIs</h3>
-          <p class="project-description">
-            RESTful services in C# and ASP.NET Core that power marketing
-            automation, campaign personalization, and CRM integrations. Built
-            with clean architecture principles and comprehensive test coverage.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">C#</span>
-            <span class="project-tag">ASP.NET Core</span>
-            <span class="project-tag">SQL Server</span>
-            <span class="project-tag">REST API</span>
-            <span class="project-tag">TDD</span>
-          </div>
-          <div class="project-links">
-            <a href="contact.html" class="project-link link-secondary"
-              >Inquire</a
-            >
-          </div>
+          <div class="project-content">
+            <h3>Marketing Automation APIs</h3>
+            <p class="project-description">
+              RESTful services in C# and ASP.NET Core that power marketing
+              automation, campaign personalization, and CRM integrations. Built
+              with clean architecture principles and comprehensive test coverage.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">C#</span>
+              <span class="project-tag">ASP.NET Core</span>
+              <span class="project-tag">SQL Server</span>
+              <span class="project-tag">REST API</span>
+              <span class="project-tag">TDD</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-links">
+                <a href="contact.html" class="project-link link-secondary">Inquire</a>
+              </div>
+            </div>
         </article>
       </div>
     </main>
-    <script>
-      const titles = [
-        "Backend Developer",
-        "System Builder",
-        "Data Engineer",
-        "Problem Solver",
-        ".NET Developer",
-      ];
-      let currentIndex = 0;
-      const subtitleElement = document.getElementById("rotating-title");
-
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % titles.length;
-        subtitleElement.style.opacity = "0";
-        setTimeout(() => {
-          subtitleElement.textContent = titles[currentIndex];
-          subtitleElement.style.opacity = "1";
-        }, 300);
-      }, 3000);
-
-      subtitleElement.style.transition = "opacity 0.3s ease";
-    </script>
+    <script src="sidebar.js"></script>
   </body>
 </html>

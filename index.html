@@ -24,6 +24,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <style>
       :root {
         --bg: #030304;
@@ -71,6 +75,20 @@
           );
         filter: blur(42px) saturate(110%);
         z-index: -2;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(160, 172, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(160, 172, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: -1;
+        pointer-events: none;
       }
 
       a {
@@ -148,9 +166,16 @@
         gap: 12px;
       }
 
-      .sidebar-nav a::before {
-        content: attr(data-icon);
-        font-size: 1.1rem;
+      .sidebar-nav a i {
+        width: 14px;
+        font-size: 0.85rem;
+      }
+
+      .sidebar-nav a .nav-icon {
+        width: 14px;
+        font-size: 0.95rem;
+        display: inline-block;
+        text-align: center;
       }
 
       .sidebar-nav a:hover,
@@ -183,6 +208,14 @@
         font-size: 0.9rem;
         color: var(--muted);
         transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social-links a i {
+        width: 16px;
+        font-size: 0.95rem;
       }
 
       .social-links a:hover {
@@ -387,84 +420,24 @@
   </head>
 
   <body>
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <img src="profile-pic.png" alt="Collin Makwala" class="profile-image" />
-        <div class="sidebar-info">
-          <div class="sidebar-brand">Collin Makwala</div>
-          <div class="sidebar-subtitle" id="rotating-title">
-            Backend Developer
-          </div>
-        </div>
-      </div>
-
-      <nav class="sidebar-nav">
-        <a href="index.html" class="active" data-icon="⌂">Home</a>
-        <a href="experience.html" data-icon="▸">Experience</a>
-        <a href="projects.html" data-icon="◆">Projects</a>
-        <a href="stack.html" data-icon="≡">Stack</a>
-        <a href="about.html" data-icon="●">About</a>
-        <a href="contact.html" data-icon="✉">Contact</a>
-      </nav>
-
-      <div class="sidebar-footer">
-        <h4>Connect</h4>
-        <div class="social-links">
-          <a href="https://twitter.com/yourhandle" target="_blank"
-            >X (Twitter)</a
-          >
-          <a href="https://linkedin.com/in/yourprofile" target="_blank"
-            >LinkedIn</a
-          >
-          <a href="https://github.com/Collin-1" target="_blank">GitHub</a>
-          <a href="https://instagram.com/follow_collin" target="_blank"
-            >Instagram</a
-          >
-        </div>
-      </div>
-    </aside>
-
-    <script>
-      // Rotating subtitle
-      const titles = [
-        "Backend Developer",
-        "System Builder",
-        "Data Engineer",
-        "Problem Solver",
-        ".NET Developer",
-      ];
-      let currentIndex = 0;
-      const subtitleElement = document.getElementById("rotating-title");
-
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % titles.length;
-        subtitleElement.style.opacity = "0";
-        setTimeout(() => {
-          subtitleElement.textContent = titles[currentIndex];
-          subtitleElement.style.opacity = "1";
-        }, 300);
-      }, 3000);
-
-      subtitleElement.style.transition = "opacity 0.3s ease";
-    </script>
+    <!-- Sidebar will be injected by sidebar.js -->
 
     <!-- Main Content -->
     <main class="main-content">
       <div>
         <section class="hero">
-          <p class="eyebrow">Software Developer</p>
+          <p class="eyebrow">Full-Stack Software Developer</p>
           <h1>
             Collin Makwala
-            <span class="highlight"
-              >builds resilient data-driven platforms.</span
-            >
+            <span class="highlight">builds end-to-end software solutions.</span>
           </h1>
 
           <p class="hero-description">
-            Engineering systems that blend .NET craftsmanship with data
-            engineering rigour, I help teams ship reliable platforms that scale
-            with creative ambition.
+            I architect full-stack applications from data pipelines to user
+            interfaces, specializing in backend systems that power creative
+            agencies and digital platforms. With expertise in .NET, Python, and
+            modern web technologies, I deliver scalable solutions that handle
+            complexity while enabling teams to ship fast.
           </p>
 
           <div class="tech-stack">
@@ -486,5 +459,7 @@
         </section>
       </div>
     </main>
+
+    <script src="sidebar.js"></script>
   </body>
 </html>

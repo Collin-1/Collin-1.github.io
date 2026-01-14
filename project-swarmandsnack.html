@@ -55,6 +55,19 @@
         filter: blur(42px) saturate(110%);
         z-index: -2;
       }
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(160, 172, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(160, 172, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: -1;
+        pointer-events: none;
+      }
       a {
         color: inherit;
         text-decoration: none;
@@ -124,6 +137,21 @@
         font-size: 0.95rem;
         transition: all 0.3s ease;
         font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sidebar-nav a i {
+        width: 14px;
+        font-size: 0.85rem;
+      }
+
+      .sidebar-nav a .nav-icon {
+        width: 14px;
+        font-size: 0.95rem;
+        display: inline-block;
+        text-align: center;
       }
 
       .sidebar-nav a:hover {
@@ -155,6 +183,14 @@
         font-size: 0.9rem;
         color: var(--muted);
         transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social-links a i {
+        width: 16px;
+        font-size: 0.95rem;
       }
 
       .social-links a:hover {
@@ -442,43 +478,7 @@
     </style>
   </head>
   <body>
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <img src="profile-pic.png" alt="Collin Makwala" class="profile-image" />
-        <div class="sidebar-info">
-          <div class="sidebar-brand">Collin Makwala</div>
-          <div class="sidebar-subtitle" id="rotating-title">
-            Backend Developer
-          </div>
-        </div>
-      </div>
-
-      <nav class="sidebar-nav">
-        <a href="index.html">⌂ Home</a>
-        <a href="experience.html">▸ Experience</a>
-        <a href="projects.html">◆ Projects</a>
-        <a href="stack.html">≡ Stack</a>
-        <a href="about.html">● About</a>
-        <a href="contact.html">✉ Contact</a>
-      </nav>
-
-      <div class="sidebar-footer">
-        <h4>Connect</h4>
-        <div class="social-links">
-          <a href="https://twitter.com/yourhandle" target="_blank"
-            >X (Twitter)</a
-          >
-          <a href="https://linkedin.com/in/yourprofile" target="_blank"
-            >LinkedIn</a
-          >
-          <a href="https://github.com/Collin-1" target="_blank">GitHub</a>
-          <a href="https://instagram.com/follow_collin" target="_blank"
-            >Instagram</a
-          >
-        </div>
-      </div>
-    </aside>
+    <!-- Sidebar will be injected by sidebar.js -->
 
     <main class="main-content">
       <div>
@@ -639,26 +639,8 @@
           }
         }
       });
-
-      // Rotating subtitle
-      const titles = [
-        "Backend Developer",
-        "System Builder",
-        "API Architect",
-        "Data Engineer",
-        "Problem Solver",
-      ];
-      let titleIndex = 0;
-      const subtitleElement = document.getElementById("rotating-title");
-
-      setInterval(() => {
-        subtitleElement.style.opacity = "0";
-        setTimeout(() => {
-          titleIndex = (titleIndex + 1) % titles.length;
-          subtitleElement.textContent = titles[titleIndex];
-          subtitleElement.style.opacity = "1";
-        }, 300);
-      }, 3000);
     </script>
+
+    <script src="sidebar.js"></script>
   </body>
 </html>
