@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <!-- Google Tag Manager -->
@@ -57,7 +57,8 @@
         content: "";
         position: fixed;
         inset: -40vmax;
-        background: radial-gradient(
+        background:
+          radial-gradient(
             circle at 15% 20%,
             rgba(160, 172, 255, 0.2),
             transparent 58%
@@ -74,6 +75,18 @@
           );
         filter: blur(42px) saturate(110%);
         z-index: -2;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(160, 172, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(160, 172, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: -1;
+        pointer-events: none;
       }
 
       a {
