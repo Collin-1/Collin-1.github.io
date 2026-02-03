@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Otaku Shelf - Collin's Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg: #030304;
+        --bg-secondary: #0d0d10;
+        --fg: #f4f4f4;
+        --muted: #8b8b8b;
+        --accent: #a0acff;
+        --accent-soft: rgba(160, 172, 255, 0.1);
+        --card: rgba(19, 19, 24, 0.6);
+        --border: rgba(160, 172, 255, 0.22);
+        --sidebar-width: 280px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+        color: var(--fg);
+        background: var(--bg);
+        display: flex;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -40vmax;
+        background:
+          radial-gradient(
+            circle at 15% 20%,
+            rgba(160, 172, 255, 0.2),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 85% 30%,
+            rgba(160, 172, 255, 0.12),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(160, 172, 255, 0.16),
+            transparent 60%
+          );
+        filter: blur(42px) saturate(110%);
+        z-index: -2;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(160, 172, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(160, 172, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* Sidebar Navigation */
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: var(--sidebar-width);
+        height: 100vh;
+        background: rgba(13, 13, 16, 0.7);
+        backdrop-filter: blur(20px);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        padding: 40px 24px;
+        z-index: 100;
+      }
+
+      .sidebar-header {
+        margin-bottom: 48px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .profile-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .sidebar-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .sidebar-brand {
+        font-family: "Space Mono", monospace;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+      }
+
+      .sidebar-subtitle {
+        font-size: 0.85rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+        min-height: 1.2em;
+      }
+
+      .sidebar-nav {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .sidebar-nav a {
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sidebar-nav a i {
+        width: 14px;
+        font-size: 0.85rem;
+      }
+
+      .sidebar-nav a .nav-icon {
+        width: 14px;
+        font-size: 0.95rem;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active {
+        background: rgba(160, 172, 255, 0.15);
+        color: var(--accent);
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        padding-top: 24px;
+        border-top: 1px solid rgba(160, 172, 255, 0.15);
+      }
+
+      .sidebar-footer h4 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+        margin: 0 0 16px;
+      }
+
+      .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .social-links a {
+        font-size: 0.9rem;
+        color: var(--muted);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social-links a i {
+        width: 16px;
+        font-size: 0.95rem;
+      }
+
+      .social-links a:hover {
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        display: flex;
+        justify-content: center;
+        padding: 80px 120px 96px 120px;
+      }
+
+      .main-content > * {
+        width: 100%;
+        max-width: 900px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-weight: 700;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        line-height: 1.1;
+        margin-bottom: 24px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 32px;
+        color: var(--accent);
+        font-family: "Space Mono", monospace;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-bottom: 12px;
+        color: var(--fg);
+      }
+
+      p {
+        line-height: 1.7;
+        color: var(--muted);
+        margin-bottom: 24px;
+        font-size: 1.05rem;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--fg);
+        font-family: "Space Mono", monospace;
+        margin-bottom: 40px;
+        font-size: 0.9rem;
+        padding: 10px 20px;
+        border-radius: 999px;
+        background: rgba(160, 172, 255, 0.1);
+        border: 1px solid rgba(160, 172, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .back-link:hover {
+        background: rgba(160, 172, 255, 0.2);
+        transform: translateX(-4px);
+      }
+
+      .hero-section {
+        margin-bottom: 72px;
+      }
+
+      .project-meta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+
+      .meta-tag {
+        padding: 6px 14px;
+        background: rgba(160, 172, 255, 0.1);
+        border: 1px solid rgba(160, 172, 255, 0.2);
+        border-radius: 6px;
+        font-family: "Space Mono", monospace;
+        font-size: 0.8rem;
+        color: var(--accent);
+      }
+
+      .btn-primary {
+        display: inline-block;
+        padding: 14px 32px;
+        background: var(--accent);
+        color: #000;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin: 24px 0;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(160, 172, 255, 0.4);
+      }
+
+      .hero-image {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid rgba(160, 172, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        margin-top: 32px;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-bottom: 64px;
+      }
+
+      .feature-card {
+        background: rgba(13, 13, 16, 0.5);
+        padding: 28px;
+        border-radius: 12px;
+        border: 1px solid rgba(160, 172, 255, 0.15);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        border-color: rgba(160, 172, 255, 0.3);
+        transform: translateY(-4px);
+      }
+
+      .feature-card h3 {
+        color: var(--accent);
+        margin-bottom: 16px;
+      }
+
+      .feature-card p {
+        font-size: 0.95rem;
+        margin: 0;
+      }
+
+      .tech-section {
+        margin-bottom: 64px;
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+      }
+
+      .tech-item {
+        background: rgba(13, 13, 16, 0.4);
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid rgba(160, 172, 255, 0.15);
+        font-family: "Space Mono", monospace;
+        font-size: 0.9rem;
+      }
+
+      .tech-item strong {
+        color: var(--accent);
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .code-block {
+        background: rgba(13, 13, 16, 0.8);
+        border: 1px solid rgba(160, 172, 255, 0.15);
+        border-radius: 8px;
+        padding: 24px;
+        margin: 24px 0;
+        overflow-x: auto;
+      }
+
+      .code-block pre {
+        margin: 0;
+        font-family: "Space Mono", monospace;
+        font-size: 0.85rem;
+        color: #a0acff;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 968px) {
+        .main-content {
+          margin-left: 0;
+          padding: 40px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar will be injected by sidebar.js -->
+
+    <main class="main-content">
+      <div>
+        <a href="projects.html" class="back-link">← Back to Projects</a>
+
+        <!-- Hero -->
+        <section class="hero-section">
+          <h1>Otaku Shelf</h1>
+          <div class="project-meta">
+            <span class="meta-tag">React 18</span>
+            <span class="meta-tag">Vite</span>
+            <span class="meta-tag">GraphQL</span>
+            <span class="meta-tag">Context API</span>
+          </div>
+          <p>
+            A modern, responsive anime discovery platform inspired by Netflix's
+            browsing experience. Built with React and powered by the AniList
+            GraphQL API, it offers a seamless way to discover, search, and
+            curate anime lists with a stunning Cyberpunk / Neo-Tokyo aesthetic.
+          </p>
+          <a
+            href="https://adorable-meringue-e6c244.netlify.app/"
+            target="_blank"
+            class="btn-primary"
+            >View Live Demo</a
+          >
+
+          <img
+            src="otaku shelf/otaku shelf.png"
+            alt="Otaku Shelf Platform"
+            class="hero-image"
+          />
+        </section>
+
+        <!-- Key Features -->
+        <section>
+          <h2>Key Features</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Immersive UI Design</h3>
+              <p>
+                Features a dynamic Hero Banner and horizontal scrolling
+                carousels showcasing Trending, Popular, and Upcoming anime. The
+                Cyberpunk / Neo-Tokyo aesthetic with deep midnight blues and
+                neon cyan accents creates an engaging browsing experience.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Smart Search</h3>
+              <p>
+                Real-time search functionality accessible directly from the
+                navbar with URL synchronization for easy sharing. Find any anime
+                instantly with responsive autocomplete suggestions.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Persistent Watchlist</h3>
+              <p>
+                Build and manage a personal watchlist that persists across
+                sessions using LocalStorage. The "My List" feature ensures your
+                curated collection is always available, even offline.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Rich Detail Modals</h3>
+              <p>
+                Clicking any anime opens a detailed modal with trailers,
+                synopsis, and comprehensive metadata without navigating away
+                from the browsing context. Seamless user experience maintained
+                throughout.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Theme System</h3>
+              <p>
+                Built with a robust CSS variable architecture that allows for
+                instant theme switching. Currently features Cyberpunk styling,
+                with the foundation ready for additional themes like Light Mode,
+                Sakura, or Manga Ink.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Fully Responsive</h3>
+              <p>
+                Mobile-optimized layout ensures a smooth experience across all
+                devices. From desktop browsing to mobile scrolling, the
+                interface adapts seamlessly to any screen size.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Technical Highlights -->
+        <section class="tech-section">
+          <h2>Technical Implementation</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Custom CSS Architecture</h3>
+              <p>
+                Built without heavy UI libraries, using pure CSS3 with a
+                comprehensive variable system for granular design control.
+                Dynamic theme variables enable easy customization and future
+                theme additions.
+              </p>
+              <div class="code-block">
+                <pre>
+:root {
+  --color-bg-primary: #050510;
+  --color-accent: #00f3ff;
+  --navbar-height: 60px;
+}</pre
+                >
+              </div>
+            </div>
+            <div class="feature-card">
+              <h3>GraphQL Integration</h3>
+              <p>
+                Efficient data fetching from AniList's GraphQL API using modern
+                fetch patterns. Demonstrates proper error handling, loading
+                states, and optimized queries for external API consumption.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>React Best Practices</h3>
+              <p>
+                Implements custom hooks for data fetching, Context API for
+                global state management, and component composition for modular
+                architecture. Clean separation of concerns with Cards, Modals,
+                and Carousels.
+              </p>
+            </div>
+          </div>
+
+          <h2 style="margin-top: 48px">Tech Stack</h2>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <strong>Frontend</strong>
+              React 18, React Router v6
+            </div>
+            <div class="tech-item">
+              <strong>Build Tool</strong>
+              Vite
+            </div>
+            <div class="tech-item">
+              <strong>Styling</strong>
+              CSS3, CSS Variables
+            </div>
+            <div class="tech-item">
+              <strong>Data</strong>
+              AniList GraphQL API
+            </div>
+            <div class="tech-item">
+              <strong>State</strong>
+              Context API, LocalStorage
+            </div>
+            <div class="tech-item">
+              <strong>Deployment</strong>
+              Netlify
+            </div>
+          </div>
+        </section>
+
+    <script src="sidebar.js"></script>
+    <script src="grid-hover.js"></script>
+  </body>
+</html>

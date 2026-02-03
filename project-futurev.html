@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,6 +9,10 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <style>
       :root {
@@ -40,7 +44,8 @@
         content: "";
         position: fixed;
         inset: -40vmax;
-        background: radial-gradient(
+        background:
+          radial-gradient(
             circle at 15% 20%,
             rgba(160, 172, 255, 0.2),
             transparent 58%
@@ -63,10 +68,8 @@
         content: "";
         position: fixed;
         inset: 0;
-        background-image: linear-gradient(
-            rgba(160, 172, 255, 0.03) 1px,
-            transparent 1px
-          ),
+        background-image:
+          linear-gradient(rgba(160, 172, 255, 0.03) 1px, transparent 1px),
           linear-gradient(90deg, rgba(160, 172, 255, 0.03) 1px, transparent 1px);
         background-size: 50px 50px;
         z-index: -1;
@@ -701,61 +704,60 @@
     </div>
 
     <script>
-        let currentSlideIndex = 0;
-        const images = document.querySelectorAll(".gallery-item img");
-        const lightbox = document.getElementById("lightbox");
-        const lightboxImg = document.getElementById("lightbox-img");
-        const closeBtn = document.querySelector(".close");
+      let currentSlideIndex = 0;
+      const images = document.querySelectorAll(".gallery-item img");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const closeBtn = document.querySelector(".close");
 
-        // Open lightbox
-        images.forEach((img, index) => {
-          img.addEventListener("click", () => {
-            lightbox.style.display = "block";
-            lightboxImg.src = img.src;
-            currentSlideIndex = index;
-            document.body.style.overflow = "hidden";
-          });
+      // Open lightbox
+      images.forEach((img, index) => {
+        img.addEventListener("click", () => {
+          lightbox.style.display = "block";
+          lightboxImg.src = img.src;
+          currentSlideIndex = index;
+          document.body.style.overflow = "hidden";
         });
+      });
 
-        // Close lightbox
-        closeBtn.addEventListener("click", () => {
+      // Close lightbox
+      closeBtn.addEventListener("click", () => {
+        lightbox.style.display = "none";
+        document.body.style.overflow = "auto";
+      });
+
+      // Close on outside click
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
           lightbox.style.display = "none";
           document.body.style.overflow = "auto";
-        });
+        }
+      });
 
-        // Close on outside click
-        lightbox.addEventListener("click", (e) => {
-          if (e.target === lightbox) {
+      // Navigation
+      function changeSlide(n) {
+        currentSlideIndex += n;
+        if (currentSlideIndex >= images.length) {
+          currentSlideIndex = 0;
+        } else if (currentSlideIndex < 0) {
+          currentSlideIndex = images.length - 1;
+        }
+        lightboxImg.src = images[currentSlideIndex].src;
+      }
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (lightbox.style.display === "block") {
+          if (e.key === "ArrowLeft") changeSlide(-1);
+          if (e.key === "ArrowRight") changeSlide(1);
+          if (e.key === "Escape") {
             lightbox.style.display = "none";
             document.body.style.overflow = "auto";
           }
-        });
-
-        // Navigation
-        function changeSlide(n) {
-          currentSlideIndex += n;
-          if (currentSlideIndex >= images.length) {
-            currentSlideIndex = 0;
-          } else if (currentSlideIndex < 0) {
-            currentSlideIndex = images.length - 1;
-          }
-          lightboxImg.src = images[currentSlideIndex].src;
         }
-
-        // Keyboard navigation
-        document.addEventListener("keydown", (e) => {
-          if (lightbox.style.display === "block") {
-            if (e.key === "ArrowLeft") changeSlide(-1);
-            if (e.key === "ArrowRight") changeSlide(1);
-            if (e.key === "Escape") {
-              lightbox.style.display = "none";
-              document.body.style.overflow = "auto";
-            }
-          }
-        });
-
-      <script src="sidebar.js">
+      });
     </script>
+    <script src="sidebar.js"></script>
     <script src="grid-hover.js"></script>
   </body>
 </html>
