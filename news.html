@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Startup Raises $50M in Series A Funding - Tech News</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg: #030304;
+        --bg-secondary: #0d0d10;
+        --fg: #f4f4f4;
+        --muted: #8b8b8b;
+        --accent: #a0acff;
+        --accent-soft: rgba(160, 172, 255, 0.1);
+        --card: rgba(19, 19, 24, 0.6);
+        --border: rgba(160, 172, 255, 0.22);
+        --sidebar-width: 280px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+        color: var(--fg);
+        background: var(--bg);
+        display: flex;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -40vmax;
+        background:
+          radial-gradient(
+            circle at 15% 20%,
+            rgba(160, 172, 255, 0.2),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 85% 30%,
+            rgba(160, 172, 255, 0.12),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(160, 172, 255, 0.16),
+            transparent 60%
+          );
+        filter: blur(42px) saturate(110%);
+        z-index: -2;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(160, 172, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(160, 172, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* Sidebar Navigation */
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: var(--sidebar-width);
+        height: 100vh;
+        background: rgba(13, 13, 16, 0.7);
+        backdrop-filter: blur(20px);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        padding: 40px 24px;
+        z-index: 100;
+      }
+
+      .sidebar-header {
+        margin-bottom: 48px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .profile-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .sidebar-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .sidebar-brand {
+        font-family: "Space Mono", monospace;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+      }
+
+      .sidebar-subtitle {
+        font-size: 0.85rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+        min-height: 1.2em;
+      }
+
+      .sidebar-nav {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .sidebar-nav a {
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sidebar-nav a i {
+        width: 14px;
+        font-size: 0.85rem;
+      }
+
+      .sidebar-nav a .nav-icon {
+        width: 14px;
+        font-size: 0.95rem;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active {
+        background: rgba(160, 172, 255, 0.15);
+        color: var(--accent);
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        padding-top: 24px;
+        border-top: 1px solid rgba(160, 172, 255, 0.15);
+      }
+
+      .sidebar-footer h4 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+        margin: 0 0 16px;
+      }
+
+      .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .social-links a {
+        font-size: 0.9rem;
+        color: var(--muted);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social-links a i {
+        width: 16px;
+        font-size: 0.95rem;
+      }
+
+      .social-links a:hover {
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        display: flex;
+        justify-content: center;
+        padding: 80px 120px 96px 120px;
+      }
+
+      .main-content > * {
+        width: 100%;
+        max-width: 800px;
+      }
+
+      /* Article Styles */
+      .article-category {
+        display: inline-block;
+        padding: 6px 14px;
+        background: rgba(160, 172, 255, 0.1);
+        border: 1px solid rgba(160, 172, 255, 0.2);
+        border-radius: 6px;
+        font-family: "Space Mono", monospace;
+        font-size: 0.8rem;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        line-height: 1.2;
+        margin: 0 0 24px 0;
+        font-weight: 700;
+        color: var(--fg);
+      }
+
+      .article-meta {
+        display: flex;
+        gap: 24px;
+        padding: 16px 0;
+        border-top: 1px solid rgba(160, 172, 255, 0.15);
+        border-bottom: 1px solid rgba(160, 172, 255, 0.15);
+        margin-bottom: 40px;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .article-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .article-meta-item i {
+        color: var(--accent);
+      }
+
+      .article-lead {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: var(--fg);
+        margin-bottom: 32px;
+        font-weight: 400;
+      }
+
+      .article-image {
+        width: 100%;
+        border-radius: 12px;
+        margin: 32px 0;
+        border: 1px solid rgba(160, 172, 255, 0.2);
+      }
+
+      .article-content p {
+        line-height: 1.8;
+        color: var(--muted);
+        margin-bottom: 24px;
+        font-size: 1.05rem;
+      }
+
+      .article-content h2 {
+        font-size: 1.6rem;
+        color: var(--accent);
+        margin: 48px 0 24px 0;
+        font-weight: 700;
+      }
+
+      .article-content blockquote {
+        border-left: 4px solid var(--accent);
+        padding: 24px;
+        margin: 32px 0;
+        background: rgba(160, 172, 255, 0.08);
+        border-radius: 8px;
+        font-style: italic;
+        color: var(--fg);
+      }
+
+      .article-content ul {
+        color: var(--muted);
+        line-height: 1.8;
+        margin: 24px 0;
+        padding-left: 24px;
+      }
+
+      .article-content ul li {
+        margin-bottom: 12px;
+      }
+
+      .highlight-box {
+        background: rgba(160, 172, 255, 0.08);
+        border: 1px solid rgba(160, 172, 255, 0.2);
+        padding: 24px;
+        border-radius: 8px;
+        margin: 32px 0;
+      }
+
+      .highlight-box h3 {
+        color: var(--accent);
+        margin-top: 0;
+        margin-bottom: 16px;
+        font-size: 1.3rem;
+      }
+
+      @media (max-width: 1024px) {
+        .sidebar {
+          width: 220px;
+        }
+        --sidebar-width: 220px;
+        .main-content {
+          padding: 60px 80px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          display: none;
+        }
+        .main-content {
+          margin-left: 0;
+          width: 100vw;
+          padding: 40px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img
+          src="https://avatars.githubusercontent.com/u/68251018?v=4"
+          alt="Collin Profile"
+          class="profile-image"
+        />
+        <div class="sidebar-info">
+          <div class="sidebar-brand">COLLIN</div>
+          <div class="sidebar-subtitle">Backend Developer</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="projects.html"
+          ><i class="fa-solid fa-briefcase"></i> Projects</a
+        >
+        <a href="experience.html"
+          ><i class="fa-solid fa-building"></i> Experience</a
+        >
+        <a href="stack.html"><i class="fa-solid fa-layer-group"></i> Stack</a>
+        <a href="about.html"><i class="fa-solid fa-user"></i> About</a>
+        <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <h4>Connect</h4>
+        <div class="social-links">
+          <a
+            href="https://github.com/Collin-1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/collinsm/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <article>
+        <span class="article-category">Technology</span>
+
+        <h1>
+          AI-Powered Safety Platform Secures $50M Series A Funding Led by
+          Sequoia Capital
+        </h1>
+
+        <div class="article-meta">
+          <div class="article-meta-item">
+            <i class="fa-solid fa-calendar"></i>
+            <span>February 21, 2026</span>
+          </div>
+          <div class="article-meta-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Sarah Mitchell</span>
+          </div>
+          <div class="article-meta-item">
+            <i class="fa-solid fa-clock"></i>
+            <span>5 min read</span>
+          </div>
+        </div>
+
+        <p class="article-lead">
+          SafeTech AI, a revolutionary safety and emergency response platform
+          leveraging artificial intelligence and real-time data analytics,
+          announced today it has raised $50 million in Series A funding led by
+          Sequoia Capital, with participation from Andreessen Horowitz and
+          notable angel investors.
+        </p>
+
+        <div class="article-content">
+          <p>
+            The Cape Town-based startup, which launched its flagship product
+            "Safe Spaces" in early 2025, has seen explosive growth with over
+            500,000 active users across South Africa. The platform combines
+            verified safe zones, real-time crime tracking, and AI-powered
+            emergency response coordination to address the country's persistent
+            public safety challenges.
+          </p>
+
+          <p>
+            "This funding validates our mission to democratize safety through
+            technology," said CEO Thembi Nkosi in an exclusive interview. "We're
+            not just building an app—we're creating a safety infrastructure that
+            empowers communities and saves lives."
+          </p>
+
+          <h2>Breaking New Ground in Public Safety Tech</h2>
+
+          <p>
+            SafeTech AI's innovative approach has caught the attention of
+            investors and law enforcement agencies alike. The company's
+            proprietary crime-tracking API—the first of its kind in South
+            Africa—provides real-time data that helps users avoid high-risk
+            areas and assists police in optimizing response times.
+          </p>
+
+          <div class="highlight-box">
+            <h3>Key Metrics</h3>
+            <ul>
+              <li>
+                <strong>500,000+</strong> active users across South Africa
+              </li>
+              <li><strong>2,500+</strong> verified safe zones registered</li>
+              <li>
+                <strong>15,000+</strong> emergency alerts processed monthly
+              </li>
+              <li>
+                <strong>40%</strong> reduction in average emergency response
+                time
+              </li>
+              <li><strong>92%</strong> user satisfaction rating</li>
+            </ul>
+          </div>
+
+          <p>
+            The platform's voice-activated panic button, triggered by a secret
+            passphrase, has been particularly praised for its accessibility
+            during emergencies when physical interaction with a device may not
+            be possible.
+          </p>
+
+          <h2>Strategic Partnerships and Growth Plans</h2>
+
+          <p>
+            SafeTech AI has secured partnerships with major South African
+            retailers, shopping centers, and transportation hubs to expand its
+            network of verified safe zones. The company recently signed
+            agreements with Pick n Pay, Woolworths, and the Gautrain Management
+            Agency to designate their locations as official safe zones.
+          </p>
+
+          <blockquote>
+            "SafeTech AI represents the kind of African innovation that has
+            global implications. Their technology addresses real problems with
+            elegant, scalable solutions. We're thrilled to support their
+            mission."
+            <br /><br />
+            <strong>— Michael Chen, Partner at Sequoia Capital</strong>
+          </blockquote>
+
+          <p>
+            The fresh capital will fuel the company's expansion into neighboring
+            countries including Kenya, Nigeria, and Ghana, where public safety
+            concerns present similar challenges. SafeTech AI also plans to
+            enhance its AI capabilities, adding predictive crime analytics and
+            machine learning models to forecast high-risk areas with
+            unprecedented accuracy.
+          </p>
+
+          <h2>Recognition and Industry Impact</h2>
+
+          <p>
+            Safe Spaces was recently named a finalist for the FNB App of the
+            Year 2025, competing against over 500 applications. The recognition
+            underscores the platform's impact on South Africa's tech ecosystem
+            and its potential to transform public safety infrastructure across
+            the continent.
+          </p>
+
+          <p>
+            Industry analysts project the global public safety technology market
+            to reach $850 billion by 2030, with AI-powered solutions capturing
+            an increasing share. SafeTech AI's early traction positions it as a
+            potential leader in this emerging category.
+          </p>
+
+          <div class="highlight-box">
+            <h3>What's Next for SafeTech AI</h3>
+            <ul>
+              <li>Launch in Kenya, Nigeria, and Ghana by Q3 2026</li>
+              <li>
+                Integration with major ride-sharing platforms for enhanced
+                safety
+              </li>
+              <li>
+                Development of enterprise safety solutions for corporate
+                campuses
+              </li>
+              <li>Expansion of AI crime prediction capabilities</li>
+              <li>Partnership with national police services across Africa</li>
+            </ul>
+          </div>
+
+          <p>
+            With violence against women and children remaining a critical issue
+            across the continent, SafeTech AI's technology offers a practical
+            tool for individuals seeking immediate help during emergencies. The
+            platform's cloud-based evidence recording system has already
+            assisted law enforcement in dozens of criminal investigations.
+          </p>
+
+          <p>
+            As SafeTech AI scales its operations with the new funding, the
+            company faces the challenge of maintaining its community-driven
+            ethos while expanding across diverse regulatory environments.
+            However, early indicators suggest strong market demand and
+            regulatory support for safety innovation.
+          </p>
+
+          <p>
+            The Series A round brings SafeTech AI's total funding to $60
+            million, following a $10 million seed round in 2024 led by TLcom
+            Capital. The company plans to triple its engineering team and
+            establish regional offices in Nairobi and Lagos by year-end.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <script src="sidebar.js"></script>
+  </body>
+</html>
