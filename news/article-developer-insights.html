@@ -347,6 +347,89 @@
         font-size: 1.3rem;
       }
 
+      /* Advertisement Placeholders */
+      .ad-banner {
+        background: linear-gradient(
+          135deg,
+          rgba(160, 172, 255, 0.08),
+          rgba(160, 172, 255, 0.12)
+        );
+        border: 1px solid rgba(160, 172, 255, 0.2);
+        border-radius: 8px;
+        padding: 40px;
+        margin: 32px 0;
+        text-align: center;
+        position: relative;
+      }
+
+      .ad-label {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        font-size: 0.7rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.6;
+      }
+
+      .ad-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .ad-banner h3 {
+        font-size: 1.4rem;
+        color: var(--fg);
+        margin: 0;
+      }
+
+      .ad-banner p {
+        color: var(--muted);
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      .ad-cta {
+        display: inline-block;
+        padding: 10px 24px;
+        background: rgba(160, 172, 255, 0.2);
+        border: 1px solid var(--accent);
+        border-radius: 6px;
+        color: var(--accent);
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-top: 8px;
+      }
+
+      .ad-small {
+        background: rgba(160, 172, 255, 0.05);
+        border: 1px solid rgba(160, 172, 255, 0.15);
+        border-radius: 6px;
+        padding: 20px;
+        margin: 40px 0;
+        text-align: center;
+        position: relative;
+      }
+
+      .ad-small .ad-content {
+        gap: 8px;
+      }
+
+      .ad-small h4 {
+        font-size: 1rem;
+        color: var(--fg);
+        margin: 0;
+      }
+
+      .ad-small p {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin: 0;
+      }
+
       @media (max-width: 1024px) {
         .sidebar {
           width: 220px;
@@ -459,6 +542,19 @@
           understand where the industry is heading.
         </p>
 
+        <!-- Ad Banner -->
+        <div class="ad-banner">
+          <span class="ad-label">Advertisement</span>
+          <div class="ad-content">
+            <h3>⚡ DeployFast - Ship Code Faster</h3>
+            <p>
+              Production-ready infrastructure in minutes. From zero to deployed
+              with a single command.
+            </p>
+            <span class="ad-cta">Start Free Trial →</span>
+          </div>
+        </div>
+
         <div class="article-content">
           <p>
             The backend development landscape has transformed dramatically over
@@ -492,6 +588,18 @@
             Edge Functions enabling developers to deploy code globally with
             minimal configuration.
           </p>
+
+          <!-- In-Content Ad -->
+          <div class="ad-small">
+            <span class="ad-label">Sponsored</span>
+            <div class="ad-content">
+              <h4>📚 Master System Design in 30 Days</h4>
+              <p>
+                Interactive course from ex-FAANG engineers. 40% off with code
+                BACKEND2026
+              </p>
+            </div>
+          </div>
 
           <div class="highlight-box">
             <h3>Key Technologies Driving Backend Innovation</h3>
