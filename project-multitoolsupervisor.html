@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-Tool Supervisor AI Assistant (RAG) - Collin's Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg: #030304;
+        --bg-secondary: #0d0d10;
+        --fg: #f4f4f4;
+        --muted: #8b8b8b;
+        --accent: #a0acff;
+        --accent-soft: rgba(160, 172, 255, 0.1);
+        --card: rgba(19, 19, 24, 0.6);
+        --border: rgba(160, 172, 255, 0.22);
+        --sidebar-width: 280px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+        color: var(--fg);
+        background: var(--bg);
+        display: flex;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -40vmax;
+        background:
+          radial-gradient(
+            circle at 15% 20%,
+            rgba(160, 172, 255, 0.2),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 85% 30%,
+            rgba(160, 172, 255, 0.12),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 50% 90%,
+            rgba(160, 172, 255, 0.16),
+            transparent 60%
+          );
+        filter: blur(42px) saturate(110%);
+        z-index: -2;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(160, 172, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(160, 172, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        display: flex;
+        justify-content: center;
+        padding: 80px 120px 96px 120px;
+      }
+
+      .main-content > * {
+        width: 100%;
+        max-width: 900px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-weight: 700;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        line-height: 1.1;
+        margin-bottom: 24px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 32px;
+        color: var(--accent);
+        font-family: "Space Mono", monospace;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-bottom: 12px;
+        color: var(--fg);
+      }
+
+      p {
+        line-height: 1.7;
+        color: var(--muted);
+        margin-bottom: 24px;
+        font-size: 1.05rem;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--fg);
+        font-family: "Space Mono", monospace;
+        margin-bottom: 40px;
+        font-size: 0.9rem;
+        padding: 10px 20px;
+        border-radius: 999px;
+        background: rgba(160, 172, 255, 0.1);
+        border: 1px solid rgba(160, 172, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .back-link:hover {
+        background: rgba(160, 172, 255, 0.2);
+        transform: translateX(-4px);
+      }
+
+      .hero-section {
+        margin-bottom: 72px;
+      }
+
+      .project-meta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+
+      .meta-tag {
+        padding: 6px 14px;
+        background: rgba(160, 172, 255, 0.1);
+        border: 1px solid rgba(160, 172, 255, 0.2);
+        border-radius: 6px;
+        font-family: "Space Mono", monospace;
+        font-size: 0.8rem;
+        color: var(--accent);
+      }
+
+      .hero-image {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid rgba(160, 172, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        margin-top: 32px;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-bottom: 64px;
+      }
+
+      .feature-card {
+        background: rgba(13, 13, 16, 0.5);
+        padding: 28px;
+        border-radius: 12px;
+        border: 1px solid rgba(160, 172, 255, 0.15);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        border-color: rgba(160, 172, 255, 0.3);
+        transform: translateY(-4px);
+      }
+
+      .feature-card h3 {
+        color: var(--accent);
+        margin-bottom: 16px;
+      }
+
+      .feature-card p {
+        font-size: 0.95rem;
+        margin: 0;
+      }
+
+      .tech-section {
+        margin-bottom: 64px;
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+      }
+
+      .tech-item {
+        background: rgba(13, 13, 16, 0.4);
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid rgba(160, 172, 255, 0.15);
+        font-family: "Space Mono", monospace;
+        font-size: 0.9rem;
+      }
+
+      .tech-item strong {
+        color: var(--accent);
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      ul {
+        color: var(--muted);
+        line-height: 1.8;
+        margin-bottom: 24px;
+      }
+
+      ul li {
+        margin-bottom: 8px;
+      }
+
+      @media (max-width: 968px) {
+        .main-content {
+          margin-left: 0;
+          padding: 40px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar will be injected by sidebar.js -->
+
+    <main class="main-content">
+      <div>
+        <a href="projects.html" class="back-link">← Back to Projects</a>
+
+        <section class="hero-section">
+          <h1>Multi-Tool Supervisor AI Assistant (with RAG)</h1>
+          <div class="project-meta">
+            <span class="meta-tag">Supervisor Agent</span>
+            <span class="meta-tag">RAG</span>
+            <span class="meta-tag">Groq Chat Model</span>
+            <span class="meta-tag">OpenAI Embeddings</span>
+            <span class="meta-tag">SerpAPI</span>
+          </div>
+          <p>
+            A centralized, chat-driven AI agent capable of autonomous reasoning
+            and tool use. It dynamically decides whether to search the web,
+            query an internal RAG knowledge base, or execute administrative
+            actions via API integrations (email, contacts, calendar, writing).
+          </p>
+
+          <img
+            src="n8n/multi-agent.png"
+            alt="Multi-Tool Supervisor AI Assistant workflow"
+            class="hero-image"
+            loading="lazy"
+          />
+        </section>
+
+        <section>
+          <h2>Key Capabilities</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Supervisor Orchestration</h3>
+              <p>
+                An AI Agent node evaluates intent and delegates tasks across a
+                toolset—deciding when to retrieve knowledge, browse the web, or
+                trigger ops actions.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Memory for Multi-Turn Chats</h3>
+              <p>
+                Maintains conversational context using a Window Buffer Memory so
+                follow-ups, preferences, and partial tasks stay coherent.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Internal Knowledge via RAG</h3>
+              <p>
+                Uses a Knowledge Base tool powered by OpenAI embeddings to
+                retrieve grounded answers from internal documentation.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>External Knowledge Search</h3>
+              <p>
+                Fetches real-time web information through Google Search
+                (SerpAPI), then summarizes or routes results into follow-on
+                actions.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Ops Automation Tools</h3>
+              <p>
+                Connects API-driven tools (email, calendar, contacts, writer) to
+                draft messages, schedule meetings, and execute admin tasks.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Agentic Prompt Patterns</h3>
+              <p>
+                Uses ReAct-style reasoning/acting patterns so the agent selects
+                the right tools based on context, not a fixed script.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="tech-section">
+          <h2>Workflow Logic Map</h2>
+          <ul>
+            <li>
+              <strong>1) Event Trigger:</strong> A chat interface listens for
+              incoming natural language requests.
+            </li>
+            <li>
+              <strong>2) Supervisor Orchestration:</strong> The AI Agent node
+              evaluates intent and plans tool usage.
+            </li>
+            <li>
+              <strong>3) Cognitive Engine &amp; Memory:</strong> A Groq chat
+              model powers fast reasoning, with Window Buffer Memory for
+              continuity.
+            </li>
+            <li>
+              <strong>4) Dynamic Tool Execution:</strong> Routes to RAG, web
+              search, or ops automation APIs—sometimes chaining multiple tools.
+            </li>
+          </ul>
+        </section>
+
+        <section class="tech-section">
+          <h2>Outcomes &amp; Job Alignment</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Advanced RAG Implementation</h3>
+              <p>
+                Demonstrates retrieval-augmented generation with vector
+                embeddings, grounding answers in internal knowledge instead of
+                relying on baseline model behavior.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Complex Agentic Workflows</h3>
+              <p>
+                Shows multi-tool planning and orchestration using ReAct prompt
+                patterns and dynamic delegation.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>API + Ops Automation</h3>
+              <p>
+                Integrates multiple external APIs (Search, Email, Calendar,
+                OpenAI, Groq) into one workflow to reduce operational friction.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="tech-section">
+          <h2>Tech Stack</h2>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <strong>Orchestration</strong>
+              n8n
+            </div>
+            <div class="tech-item">
+              <strong>Reasoning Model</strong>
+              Groq Chat Model
+            </div>
+            <div class="tech-item">
+              <strong>Memory</strong>
+              Window Buffer Memory
+            </div>
+            <div class="tech-item">
+              <strong>RAG</strong>
+              Knowledge Base tool + OpenAI embeddings
+            </div>
+            <div class="tech-item">
+              <strong>Web Search</strong>
+              GoogleSearch (SerpAPI)
+            </div>
+            <div class="tech-item">
+              <strong>Ops Tools</strong>
+              Email + Contacts + Calendar + Writer (API integrations)
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="sidebar.js"></script>
+    <script src="grid-hover.js"></script>
+  </body>
+</html>
