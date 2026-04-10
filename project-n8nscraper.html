@@ -438,16 +438,16 @@
         <section class="hero-section">
           <h1>n8n Automated Scraper</h1>
           <div class="project-meta">
-            <span class="meta-tag">Python 3.10+</span>
-            <span class="meta-tag">Playwright</span>
             <span class="meta-tag">n8n</span>
-            <span class="meta-tag">Docker</span>
+            <span class="meta-tag">Python + Playwright</span>
+            <span class="meta-tag">LLM Structuring</span>
+            <span class="meta-tag">Google Sheets</span>
           </div>
           <p>
-            Automated HTML scraper designed to run inside an n8n workflow or as
-            a standalone CLI utility. Built with Playwright and Chromium,
-            featuring manual anti-bot evasion and pagination support for
-            capturing content from multi-page flows.
+            An end-to-end operational automation that bypasses common anti-bot
+            protections, scrapes dynamic multi-page e-commerce product data, and
+            uses an LLM to convert raw HTML into a clean, standardized product
+            catalog stored in a spreadsheet.
           </p>
           <a
             href="https://n8nscraper.onrender.com/workflow/MsugX1lrY9pTJtVnwoivQ"
@@ -474,116 +474,123 @@
           <h2>Key Features</h2>
           <div class="features-grid">
             <div class="feature-card">
-              <h3>Headless Chromium Scraping</h3>
+              <h3>Dynamic Rendering + Pagination</h3>
               <p>
-                Utilizes Playwright's async API with Chromium for reliable,
-                headless browser automation. Handles dynamic content and
-                JavaScript-rendered pages with ease.
-              </p>
-            </div>
-            <div class="feature-card">
-              <h3>Intelligent Pagination</h3>
-              <p>
-                Optional pagination support by clicking Next buttons via CSS
-                selectors. Configurable max page limits prevent runaway scraping
-                on large sites.
+                Uses Playwright + Chromium to render JavaScript-heavy pages,
+                follow "Next" flows, and capture multi-page product listings
+                reliably.
               </p>
             </div>
             <div class="feature-card">
               <h3>Anti-Bot Evasion</h3>
               <p>
-                Implements manual anti-bot flags and playwright-stealth to
-                bypass common detection mechanisms, ensuring successful data
-                capture.
+                Supports manual anti-bot evasion to get past challenges that
+                break traditional request-based scrapers.
               </p>
             </div>
             <div class="feature-card">
-              <h3>JSON Output</h3>
+              <h3>HTML Pre-processing</h3>
               <p>
-                Emits structured JSON on stdout for seamless integration with
-                n8n workflows or other automation tooling. Clean success/error
-                handling included.
+                Cleans, sanitizes, and splits raw HTML using low-code JavaScript
+                inside n8n so the payload stays within model context limits.
               </p>
             </div>
             <div class="feature-card">
-              <h3>Docker Ready</h3>
+              <h3>LLM → Strict JSON Schema</h3>
               <p>
-                Includes a Dockerfile that bundles n8n, Python, Playwright, and
-                all system dependencies for easy deployment and consistent
-                runtime environments.
+                Applies constraint-based prompt patterns to extract product
+                details from messy markup and return standardized JSON.
               </p>
             </div>
             <div class="feature-card">
-              <h3>CLI & Workflow Integration</h3>
+              <h3>Validation + Parsing</h3>
               <p>
-                Works as a standalone CLI utility or integrates directly into
-                n8n Execute Command nodes for workflow automation scenarios.
+                Validates and parses the model output in JavaScript to enforce
+                data integrity before storage.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Spreadsheet Output</h3>
+              <p>
+                Writes the finalized structured payload into Google Sheets as a
+                product catalog—ready for market research, pricing analysis, or
+                inventory monitoring.
               </p>
             </div>
           </div>
         </section>
 
-        <!-- Usage -->
+        <!-- Logic Map -->
         <section class="tech-section">
-          <h2>CLI Usage</h2>
-          <p>Run the scraper from the command line with flexible options:</p>
-          <div class="code-block">
-            <pre>
-python scraper.py &lt;url&gt; [--selector ".next-button"] [--max 5]</pre
-            >
-          </div>
+          <h2>Workflow Logic Map</h2>
+          <p>
+            This automation is designed as a hybrid low-code + code pipeline:
+            n8n orchestrates the run, while Python and JavaScript handle the
+            heavy lifting.
+          </p>
           <ul>
-            <li><strong>url</strong>: Starting page to load (required)</li>
             <li>
-              <strong>--selector</strong>: CSS selector for the Next button or
-              link (optional)
+              <strong>1) Manual Trigger &amp; Configuration:</strong> A manual
+              trigger starts the run and an Edit Fields node sets the target URL
+              and parameters.
             </li>
             <li>
-              <strong>--max</strong>: Maximum number of pages to capture
-              (default: 1)
+              <strong>2) Python Script Execution:</strong> An Execute Command
+              node runs a custom Python CLI that uses Playwright + Chromium for
+              dynamic rendering, pagination, and anti-bot handling.
+            </li>
+            <li>
+              <strong>3) Data Pre-processing:</strong> A JavaScript Code node
+              cleans/sanitizes the HTML and chunks it to fit the model context
+              window.
+            </li>
+            <li>
+              <strong>4) AI Structuring:</strong> A “Message a model” node
+              extracts relevant fields and returns strict JSON using
+              constraint-based prompts.
+            </li>
+            <li>
+              <strong>5) JSON Parsing:</strong> A second JavaScript Code node
+              validates and parses the JSON to ensure integrity.
+            </li>
+            <li>
+              <strong>6) Data Storage:</strong> A Google Sheets node appends or
+              updates rows, producing a clean product catalog.
             </li>
           </ul>
-
-          <h3 style="margin-top: 40px; margin-bottom: 16px">Example Output</h3>
-          <p>Success payload:</p>
-          <div class="code-block">
-            <pre>
-{"status": "success", "pages": ["&lt;html&gt;...&lt;/html&gt;", "&lt;html&gt;...&lt;/html&gt;"]}</pre
-            >
-          </div>
-          <p>Error payload:</p>
-          <div class="code-block">
-            <pre>
-{"status": "error", "message": "Timeout 60000ms exceeded."}</pre
-            >
-          </div>
         </section>
 
-        <!-- Setup -->
+        <!-- Notes -->
         <section class="tech-section">
-          <h2>Local Setup</h2>
-          <div class="code-block">
-            <pre>
-python -m venv venv
-venv\Scripts\activate          # Windows
-pip install playwright playwright-stealth
-playwright install chromium</pre
-            >
-          </div>
-
-          <h2 style="margin-top: 48px">Docker Deployment</h2>
-          <p>Build and run the containerized version:</p>
-          <div class="code-block">
-            <pre>
-docker build -t n8n-scraper .
-docker run -p 5678:5678 n8n-scraper</pre
-            >
-          </div>
+          <h2>Implementation Notes</h2>
           <p>
-            The Dockerfile extends node:20-bullseye, installs n8n globally, sets
-            up Playwright with OS-level dependencies, and copies scraper.py into
-            the container under a non-root user.
+            The design focus is reliability in real operational conditions:
+            dynamic pages, anti-bot friction, and messy markup.
           </p>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Cross-Environment Integration</h3>
+              <p>
+                n8n triggers the Python scraper via CLI, then continues the
+                pipeline using JavaScript nodes for text processing and JSON
+                validation.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Grounded Extraction</h3>
+              <p>
+                The LLM is forced into a stable output format with strict
+                constraints so downstream storage stays predictable.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Operational Output</h3>
+              <p>
+                Final results land in Google Sheets so non-technical users can
+                review, filter, and analyze the catalog immediately.
+              </p>
+            </div>
+          </div>
         </section>
 
         <!-- Tech Stack -->
@@ -592,59 +599,62 @@ docker run -p 5678:5678 n8n-scraper</pre
           <div class="tech-grid">
             <div class="tech-item">
               <strong>Language</strong>
-              Python 3.10+
+              Python (Playwright CLI) + JavaScript (n8n)
             </div>
             <div class="tech-item">
               <strong>Browser Automation</strong>
-              Playwright, playwright-stealth
-            </div>
-            <div class="tech-item">
-              <strong>Browser</strong>
-              Chromium (headless)
+              Playwright + Chromium
             </div>
             <div class="tech-item">
               <strong>Workflow Platform</strong>
-              n8n
+              n8n (Trigger → Execute Command → Code → AI → Sheets)
             </div>
             <div class="tech-item">
-              <strong>Containerization</strong>
-              Docker (node:20-bullseye)
+              <strong>LLM Structuring</strong>
+              Constraint-based prompting → JSON schema
+            </div>
+            <div class="tech-item">
+              <strong>Storage</strong>
+              Google Sheets
             </div>
             <div class="tech-item">
               <strong>Output Format</strong>
-              JSON (stdout)
+              Standardized JSON → spreadsheet rows
             </div>
           </div>
         </section>
 
-        <!-- Troubleshooting -->
+        <!-- Outcomes -->
         <section>
-          <h2>Troubleshooting Tips</h2>
+          <h2>Outcomes &amp; Job Alignment</h2>
           <div class="features-grid">
             <div class="feature-card">
-              <h3>Chromium Installation</h3>
+              <h3>Operational Efficiency</h3>
               <p>
-                Ensure Chromium binaries are installed via
-                <code style="color: var(--accent)"
-                  >playwright install chromium</code
-                >
-                before running the scraper locally.
+                Replaces hours of manual data entry with a scalable automated
+                pipeline.
               </p>
             </div>
             <div class="feature-card">
-              <h3>Pagination Limits</h3>
+              <h3>Cross-Environment Scripting</h3>
               <p>
-                Increase
-                <code style="color: var(--accent)">--max</code> gradually. Some
-                sites detect rapid pagination and may block requests.
+                Bridges traditional code and low-code orchestration by executing
+                a Python scraper from n8n and transforming outputs with inline
+                JavaScript.
               </p>
             </div>
             <div class="feature-card">
-              <h3>Selector Precision</h3>
+              <h3>AI Grounding &amp; Constraints</h3>
               <p>
-                Use <code style="color: var(--accent)">--selector</code> values
-                that uniquely match the Next button. Ambiguous selectors can
-                cause click failures.
+                Uses strict prompt constraints to reliably force valid JSON
+                outputs from messy, unstructured HTML.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Commercial Application</h3>
+              <p>
+                Turns unstructured e-commerce pages into structured datasets for
+                pricing analysis, inventory monitoring, and market research.
               </p>
             </div>
           </div>
