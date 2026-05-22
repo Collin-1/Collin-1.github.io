@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -37,7 +37,8 @@
         content: "";
         position: fixed;
         inset: -40vmax;
-        background: radial-gradient(
+        background:
+          radial-gradient(
             circle at 15% 20%,
             rgba(160, 172, 255, 0.2),
             transparent 58%
@@ -59,10 +60,8 @@
         content: "";
         position: fixed;
         inset: 0;
-        background-image: linear-gradient(
-            rgba(160, 172, 255, 0.03) 1px,
-            transparent 1px
-          ),
+        background-image:
+          linear-gradient(rgba(160, 172, 255, 0.03) 1px, transparent 1px),
           linear-gradient(90deg, rgba(160, 172, 255, 0.03) 1px, transparent 1px);
         background-size: 50px 50px;
         z-index: -1;
@@ -497,12 +496,29 @@
             ticks in sync while client-side prediction and Canvas 2D ensure the
             action feels responsive in the browser.
           </p>
-          <a
-            href="https://github.com/Collin-1/swarmandsnack"
-            target="_blank"
-            class="btn-primary"
-            >Explore the build</a
+          <div
+            style="
+              display: flex;
+              gap: 12px;
+              justify-content: center;
+              flex-wrap: wrap;
+            "
           >
+            <a
+              href="https://github.com/Collin-1/swarmandsnack"
+              target="_blank"
+              rel="noreferrer"
+              class="btn-primary"
+              >Explore the build</a
+            >
+            <a
+              href="https://swarmandsnack-dwdzenc4c9a4g4c8.southafricanorth-01.azurewebsites.net"
+              target="_blank"
+              rel="noreferrer"
+              class="btn-primary"
+              >Open deployed app</a
+            >
+          </div>
 
           <img
             src="swarnandsnack/ongoing-game(main).png"
