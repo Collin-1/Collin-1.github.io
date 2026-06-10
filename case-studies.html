@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PNTMFLPC");
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Case Studies - Collin Makwala</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Main Content — narrower reading column for long-form narrative */
+      .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        display: flex;
+        justify-content: center;
+        padding: 90px 60px 60px;
+      }
+
+      .main-content > * {
+        width: 100%;
+        max-width: 760px;
+      }
+
+      /* ---- hero ---- */
+      .hero {
+        margin-bottom: 8px;
+      }
+
+      .eyebrow {
+        font-family: "Space Mono", monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 5vw, 3.4rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin: 0 0 24px;
+        font-weight: 700;
+        color: var(--fg);
+      }
+
+      h1 .highlight {
+        color: rgba(160, 172, 255, 0.85);
+        font-weight: 600;
+      }
+
+      .lede {
+        font-size: 1.15rem;
+        color: rgba(139, 139, 139, 0.95);
+        line-height: 1.7;
+        max-width: 62ch;
+      }
+
+      .lede strong {
+        color: var(--fg);
+        font-weight: 600;
+      }
+
+      /* ---- index list ---- */
+      .case-index {
+        margin: 48px 0 8px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .case-index a {
+        display: flex;
+        align-items: baseline;
+        gap: 18px;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(160, 172, 255, 0.12);
+        transition: padding-left 0.25s ease, color 0.2s;
+      }
+
+      .case-index a:hover {
+        padding-left: 10px;
+        color: var(--accent);
+      }
+
+      .case-index .num {
+        font-family: "Space Mono", monospace;
+        font-size: 0.8rem;
+        color: var(--muted);
+        min-width: 28px;
+      }
+
+      .case-index .ttl {
+        font-size: 1.05rem;
+        font-weight: 600;
+        flex: 1;
+        color: var(--fg);
+        transition: color 0.2s;
+      }
+
+      .case-index a:hover .ttl {
+        color: var(--accent);
+      }
+
+      .case-index .tag {
+        font-family: "Space Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+
+      @media (max-width: 540px) {
+        .case-index .tag {
+          display: none;
+        }
+      }
+
+      /* ---- case study blocks ---- */
+      .case {
+        padding: 70px 0 10px;
+        border-top: 1px solid rgba(160, 172, 255, 0.12);
+      }
+
+      .case:first-of-type {
+        border-top: none;
+      }
+
+      .kicker {
+        font-family: "Space Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 14px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .kicker .dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      .case h2 {
+        font-size: clamp(1.6rem, 4.5vw, 2.1rem);
+        line-height: 1.15;
+        letter-spacing: -0.015em;
+        margin-bottom: 14px;
+        font-weight: 600;
+        color: var(--fg);
+      }
+
+      .role {
+        font-family: "Space Mono", monospace;
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 30px;
+      }
+
+      /* situation / action / outcome rhythm */
+      .beat {
+        margin-bottom: 26px;
+      }
+
+      .beat .label {
+        font-family: "Space Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+
+      .beat p {
+        color: rgba(139, 139, 139, 0.95);
+        line-height: 1.75;
+        margin: 0;
+      }
+
+      .beat p strong {
+        color: var(--fg);
+        font-weight: 600;
+      }
+
+      /* the outcome gets weight */
+      .outcome {
+        background: var(--accent-soft);
+        border-left: 3px solid var(--accent);
+        padding: 20px 24px;
+        margin: 30px 0 26px;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .outcome .label {
+        font-family: "Space Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+
+      .outcome p {
+        color: var(--fg);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      /* the one human beat, used sparingly */
+      .human {
+        font-style: italic;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        color: var(--fg);
+        border-left: 3px solid var(--accent);
+        padding: 4px 0 4px 22px;
+        margin: 30px 0;
+      }
+
+      .stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 26px;
+      }
+
+      .stack span {
+        font-family: "Space Mono", monospace;
+        font-size: 0.72rem;
+        color: rgba(160, 172, 255, 0.9);
+        border: 1px solid rgba(160, 172, 255, 0.2);
+        background: rgba(160, 172, 255, 0.06);
+        padding: 5px 12px;
+        border-radius: 100px;
+      }
+
+      /* ---- closing ---- */
+      .close {
+        padding: 70px 0 28px;
+        border-top: 1px solid var(--border);
+        margin-top: 50px;
+      }
+
+      .close h2 {
+        font-size: 1.6rem;
+        margin-bottom: 16px;
+        font-weight: 600;
+        color: var(--fg);
+      }
+
+      .close p {
+        color: rgba(139, 139, 139, 0.95);
+        max-width: 60ch;
+        margin-bottom: 26px;
+        line-height: 1.75;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--accent);
+        color: #000;
+        padding: 13px 26px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.92rem;
+        transition: all 0.2s ease;
+      }
+
+      .cta:hover {
+        background: rgba(160, 172, 255, 0.9);
+        transform: translateY(-1px);
+      }
+
+      .page-footer {
+        padding: 40px 0 20px;
+        font-family: "Space Mono", monospace;
+        font-size: 0.78rem;
+        color: var(--muted);
+        border-top: 1px solid rgba(160, 172, 255, 0.1);
+        margin-top: 30px;
+      }
+
+      /* gentle load-in */
+      .fade {
+        opacity: 0;
+        transform: translateY(12px);
+        animation: rise 0.7s ease forwards;
+      }
+
+      .fade:nth-child(2) {
+        animation-delay: 0.08s;
+      }
+
+      .fade:nth-child(3) {
+        animation-delay: 0.16s;
+      }
+
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .fade {
+          opacity: 1;
+          transform: none;
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Sidebar will be injected by sidebar.js -->
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div>
+        <header class="hero">
+          <p class="eyebrow fade">Selected work · customer impact</p>
+          <h1 class="fade">
+            I build software that takes weight
+            <span class="highlight">off the people using it.</span>
+          </h1>
+          <p class="lede fade">
+            A backend developer by training, but the work I'm proudest of is
+            measured the same way good support is:
+            <strong
+              >time given back, friction removed, and a frustrated user turned
+              into a confident one.</strong
+            >
+            Here are four projects, told through what changed for the people on
+            the other side.
+          </p>
+        </header>
+
+        <nav class="case-index" aria-label="Case studies">
+          <a href="#meeting-notes">
+            <span class="num">01</span>
+            <span class="ttl">Killing the meeting-notes tax</span>
+            <span class="tag">Automation · Ogilvy</span>
+          </a>
+          <a href="#observability">
+            <span class="num">02</span>
+            <span class="ttl">Catching problems before users felt them</span>
+            <span class="tag">Support · Ogilvy</span>
+          </a>
+          <a href="#safe-spaces">
+            <span class="num">03</span>
+            <span class="ttl">Safe Spaces, built in 48 hours</span>
+            <span class="tag">MVP · Hackathon</span>
+          </a>
+          <a href="#mentoring">
+            <span class="num">04</span>
+            <span class="ttl">Turning stuck developers into shipping ones</span>
+            <span class="tag">Enablement · Umuzi</span>
+          </a>
+        </nav>
+
+        <!-- CASE 01 -->
+        <section class="case" id="meeting-notes">
+          <p class="kicker"><span class="dot"></span> Case 01 · Automation</p>
+          <h2>Killing the meeting-notes tax</h2>
+          <p class="role">
+            Junior Software Developer / Tech Lead · Ogilvy South Africa &amp;
+            Umuzi
+          </p>
+
+          <div class="beat">
+            <p class="label">Situation</p>
+            <p>
+              After every Microsoft Teams meeting, someone had to write up notes
+              and hand-create the follow-up tasks in Jira. It was the kind of
+              small, repeated admin that quietly eats a team's week — easy to do
+              badly, easy to forget, and nobody's favourite job.
+            </p>
+          </div>
+
+          <div class="beat">
+            <p class="label">What I did</p>
+            <p>
+              I built an internal tool that captured the meeting notes
+              automatically and synced the resulting action items straight into
+              the right Jira boards. I focused on the handoff most likely to
+              break — making sure a task landed where the owner would actually
+              see it — rather than just dumping a transcript somewhere.
+            </p>
+          </div>
+
+          <div class="outcome">
+            <p class="label">Outcome</p>
+            <p>
+              The team stopped doing the write-up by hand. Action items stopped
+              slipping through the gaps between a meeting ending and someone
+              remembering to log them — the follow-through got more reliable,
+              not just faster.
+            </p>
+          </div>
+
+          <p class="human">
+            The win wasn't the automation. It was that people stopped dreading
+            the ten minutes after every call.
+          </p>
+
+          <div class="stack">
+            <span>Python</span><span>Microsoft Teams API</span
+            ><span>Jira API</span><span>Workflow automation</span>
+          </div>
+        </section>
+
+        <!-- CASE 02 -->
+        <section class="case" id="observability">
+          <p class="kicker">
+            <span class="dot"></span> Case 02 · Proactive support
+          </p>
+          <h2>Catching problems before users felt them</h2>
+          <p class="role">Junior Software Developer · Ogilvy South Africa</p>
+
+          <div class="beat">
+            <p class="label">Situation</p>
+            <p>
+              I supported production backend services that real teams depended
+              on daily. When something broke, the first anyone usually knew was
+              a user reporting it — which meant the problem had already reached
+              the person it was going to inconvenience.
+            </p>
+          </div>
+
+          <div class="beat">
+            <p class="label">What I did</p>
+            <p>
+              I added logging, monitoring, and performance instrumentation
+              across the services so issues surfaced as signals we could see,
+              not as complaints we had to wait for. When something did go wrong,
+              I worked the incident to root cause and wrote up troubleshooting
+              guides so the next person — including teammates on other shifts —
+              could resolve it without starting from scratch.
+            </p>
+          </div>
+
+          <div class="outcome">
+            <p class="label">Outcome</p>
+            <p>
+              User-reported incidents dropped, because more were caught and
+              fixed before users hit them. The documentation meant a problem
+              solved once stayed solved, instead of being rediscovered by
+              whoever was on next.
+            </p>
+          </div>
+
+          <div class="stack">
+            <span>.NET</span><span>Python</span><span>Monitoring &amp; logging</span
+            ><span>Root-cause analysis</span><span>Runbooks</span>
+          </div>
+        </section>
+
+        <!-- CASE 03 -->
+        <section class="case" id="safe-spaces">
+          <p class="kicker">
+            <span class="dot"></span> Case 03 · Build under pressure
+          </p>
+          <h2>Safe Spaces, built in 48 hours</h2>
+          <p class="role">FNB App of the Year Hackathon · MVP</p>
+
+          <div class="beat">
+            <p class="label">Situation</p>
+            <p>
+              A 48-hour hackathon brief: build something genuinely useful, end
+              to end, with a real user in mind — and have it working, not just
+              designed, by the deadline.
+            </p>
+          </div>
+
+          <div class="beat">
+            <p class="label">What I did</p>
+            <p>
+              My team built Safe Spaces, a real-time safety-mapping web app. I
+              designed the backend APIs handling geolocation data, user
+              submissions, and reporting, and built modular front-end components
+              so we could move fast without the UI falling apart under change.
+              The constraint that mattered most was time, so I prioritised the
+              few features a user would actually touch and cut everything that
+              wouldn't show in a demo.
+            </p>
+          </div>
+
+          <div class="outcome">
+            <p class="label">Outcome</p>
+            <p>
+              We shipped a working MVP inside the window — a live, usable
+              product rather than a slide deck. It's the clearest evidence I can
+              offer of working fast and calm when the clock is the hardest part
+              of the problem.
+            </p>
+          </div>
+
+          <div class="stack">
+            <span>React</span><span>JavaScript</span><span>Node.js</span
+            ><span>PostgreSQL</span><span>Google Maps API</span>
+          </div>
+        </section>
+
+        <!-- CASE 04 -->
+        <section class="case" id="mentoring">
+          <p class="kicker"><span class="dot"></span> Case 04 · Enablement</p>
+          <h2>Turning stuck developers into shipping ones</h2>
+          <p class="role">Junior Tech Lead · Umuzi.org</p>
+
+          <div class="beat">
+            <p class="label">Situation</p>
+            <p>
+              I led a squad of junior developers. The recurring challenge wasn't
+              the code — it was the moments someone hit a wall, lost confidence,
+              and went quiet instead of asking. Left alone, those moments stall
+              a whole delivery.
+            </p>
+          </div>
+
+          <div class="beat">
+            <p class="label">What I did</p>
+            <p>
+              I ran the standups, sprint planning and code reviews, but the part
+              that mattered was spotting the stall early — noticing who'd gone
+              quiet — and pairing with them to get unblocked before frustration
+              set in. I gave feedback directly and kindly, and used the reviews
+              to teach, not just to gatekeep quality.
+            </p>
+          </div>
+
+          <div class="outcome">
+            <p class="label">Outcome</p>
+            <p>
+              Quality and delivery held across concurrent projects, and
+              developers got unstuck faster. The same instinct sits behind good
+              customer success: catch the frustrated moment early, and engineer
+              more of the confident ones.
+            </p>
+          </div>
+
+          <div class="stack">
+            <span>Agile delivery</span><span>Code review</span
+            ><span>Mentorship</span><span>C# · Python · SQL</span
+            ><span>Stakeholder reporting</span>
+          </div>
+        </section>
+
+        <!-- CLOSE -->
+        <section class="close">
+          <h2>Why this matters for a customer-facing role</h2>
+          <p>
+            I came up as a developer, but every project here turned on the same
+            thing a great customer success team turns on: noticing the friction a
+            person is about to hit, and removing it before they have to ask.
+            Onboarding someone onto a new tool, turning a hesitant first session
+            into confident daily use — that's the work I keep gravitating to. I'd
+            bring that instinct, plus enough technical depth to actually fix the
+            root cause, to a customer success team.
+          </p>
+          <a class="cta" href="mailto:collinmakwala@gmail.com">Let's talk</a>
+        </section>
+
+        <footer class="page-footer">
+          Collin Makwala · Johannesburg, South Africa · collinmakwala@gmail.com
+        </footer>
+      </div>
+    </main>
+
+    <script src="sidebar.js"></script>
+    <script src="grid-hover.js"></script>
+  </body>
+</html>
